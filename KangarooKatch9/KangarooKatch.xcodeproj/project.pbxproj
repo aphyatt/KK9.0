@@ -1,0 +1,688 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ADDDE9CC1BBA34FD00A95BA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CA1BBA34FD00A95BA3 /* Main.storyboard */; };
+		ADDDE9CE1BBA34FD00A95BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CD1BBA34FD00A95BA3 /* Assets.xcassets */; };
+		ADDDE9D11BBA34FD00A95BA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CF1BBA34FD00A95BA3 /* LaunchScreen.storyboard */; };
+		ADDDE9DC1BBA34FD00A95BA3 /* KangarooKatch9Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDE9DB1BBA34FD00A95BA3 /* KangarooKatch9Tests.swift */; };
+		ADDDE9E71BBA34FD00A95BA3 /* KangarooKatch9UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDE9E61BBA34FD00A95BA3 /* KangarooKatch9UITests.swift */; };
+		ADDDE9F51BBA35F600A95BA3 /* KKsprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9F41BBA35F600A95BA3 /* KKsprites.atlas */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA001BBA360C00A95BA3 /* ButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9F71BBA360C00A95BA3 /* ButtonImage.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA011BBA360C00A95BA3 /* ImageBoundary.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9F81BBA360C00A95BA3 /* ImageBoundary.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA021BBA360C00A95BA3 /* KKbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9F91BBA360C00A95BA3 /* KKbackground.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA031BBA360C00A95BA3 /* LoadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9FA1BBA360C00A95BA3 /* LoadingScreen.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA041BBA360C00A95BA3 /* MainMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9FB1BBA360C00A95BA3 /* MainMenu.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA051BBA360C00A95BA3 /* OneThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9FC1BBA360C00A95BA3 /* OneThumb.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA061BBA360C00A95BA3 /* PauseButtonGray.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9FD1BBA360C00A95BA3 /* PauseButtonGray.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA071BBA360C00A95BA3 /* PauseButtonWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9FE1BBA360C00A95BA3 /* PauseButtonWhite.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA081BBA360C00A95BA3 /* TwoThumbs.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9FF1BBA360C00A95BA3 /* TwoThumbs.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA151BBA361300A95BA3 /* Icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA0A1BBA361300A95BA3 /* Icon29.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA161BBA361300A95BA3 /* Icon29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA0B1BBA361300A95BA3 /* Icon29@2x.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA171BBA361300A95BA3 /* Icon29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA0C1BBA361300A95BA3 /* Icon29@3x.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA181BBA361300A95BA3 /* Icon40.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA0D1BBA361300A95BA3 /* Icon40.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA191BBA361300A95BA3 /* Icon40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA0E1BBA361300A95BA3 /* Icon40@2x.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA1A1BBA361300A95BA3 /* Icon40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA0F1BBA361300A95BA3 /* Icon40@3x.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA1B1BBA361300A95BA3 /* Icon60.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA101BBA361300A95BA3 /* Icon60.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA1C1BBA361300A95BA3 /* Icon60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA111BBA361300A95BA3 /* Icon60@2x.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA1D1BBA361300A95BA3 /* Icon60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA121BBA361300A95BA3 /* Icon60@3x.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA1E1BBA361300A95BA3 /* Icon76.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA131BBA361300A95BA3 /* Icon76.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA1F1BBA361300A95BA3 /* Icon76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA141BBA361300A95BA3 /* Icon76@2x.png */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA321BBA38FA00A95BA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA211BBA38FA00A95BA3 /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA331BBA38FA00A95BA3 /* ClassicGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA221BBA38FA00A95BA3 /* ClassicGameScene.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA341BBA38FA00A95BA3 /* ClassicHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA231BBA38FA00A95BA3 /* ClassicHUD.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA351BBA38FA00A95BA3 /* DropletLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA241BBA38FA00A95BA3 /* DropletLayer.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA361BBA38FA00A95BA3 /* EndlessHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA251BBA38FA00A95BA3 /* EndlessHUD.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA371BBA38FA00A95BA3 /* GameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA261BBA38FA00A95BA3 /* GameLabel.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA381BBA38FA00A95BA3 /* GameOverLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA271BBA38FA00A95BA3 /* GameOverLayer.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA391BBA38FA00A95BA3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA281BBA38FA00A95BA3 /* GameScene.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA3A1BBA38FA00A95BA3 /* GameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA291BBA38FA00A95BA3 /* GameStatus.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA3B1BBA38FA00A95BA3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA2A1BBA38FA00A95BA3 /* GameViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA3C1BBA38FA00A95BA3 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA2B1BBA38FA00A95BA3 /* HUD.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA3D1BBA38FA00A95BA3 /* Kangaroo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA2C1BBA38FA00A95BA3 /* Kangaroo.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA3E1BBA38FA00A95BA3 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA2D1BBA38FA00A95BA3 /* MainMenu.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA3F1BBA38FA00A95BA3 /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA2E1BBA38FA00A95BA3 /* MyUtils.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA401BBA38FA00A95BA3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA2F1BBA38FA00A95BA3 /* Settings.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA411BBA38FA00A95BA3 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA301BBA38FA00A95BA3 /* Variables.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA421BBA38FA00A95BA3 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA311BBA38FA00A95BA3 /* World.swift */; settings = {ASSET_TAGS = (); }; };
+		ADDDEA451BBA399700A95BA3 /* soupofjustice.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA441BBA399700A95BA3 /* soupofjustice.ttf */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ADDDE9D81BBA34FD00A95BA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADDDE9B71BBA34FD00A95BA3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ADDDE9BE1BBA34FD00A95BA3;
+			remoteInfo = KangarooKatch9;
+		};
+		ADDDE9E31BBA34FD00A95BA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADDDE9B71BBA34FD00A95BA3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ADDDE9BE1BBA34FD00A95BA3;
+			remoteInfo = KangarooKatch9;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ADDDE9BF1BBA34FD00A95BA3 /* KangarooKatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KangarooKatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADDDE9CB1BBA34FD00A95BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ADDDE9CD1BBA34FD00A95BA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ADDDE9D01BBA34FD00A95BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ADDDE9D21BBA34FD00A95BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADDDE9D71BBA34FD00A95BA3 /* KangarooKatch.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KangarooKatch.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADDDE9DB1BBA34FD00A95BA3 /* KangarooKatch9Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KangarooKatch9Tests.swift; sourceTree = "<group>"; };
+		ADDDE9DD1BBA34FD00A95BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADDDE9E21BBA34FD00A95BA3 /* KangarooKatch.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KangarooKatch.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADDDE9E61BBA34FD00A95BA3 /* KangarooKatch9UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KangarooKatch9UITests.swift; sourceTree = "<group>"; };
+		ADDDE9E81BBA34FD00A95BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADDDE9F41BBA35F600A95BA3 /* KKsprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = KKsprites.atlas; sourceTree = "<group>"; };
+		ADDDE9F71BBA360C00A95BA3 /* ButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonImage.png; sourceTree = "<group>"; };
+		ADDDE9F81BBA360C00A95BA3 /* ImageBoundary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageBoundary.png; sourceTree = "<group>"; };
+		ADDDE9F91BBA360C00A95BA3 /* KKbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KKbackground.png; sourceTree = "<group>"; };
+		ADDDE9FA1BBA360C00A95BA3 /* LoadingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreen.png; sourceTree = "<group>"; };
+		ADDDE9FB1BBA360C00A95BA3 /* MainMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainMenu.png; sourceTree = "<group>"; };
+		ADDDE9FC1BBA360C00A95BA3 /* OneThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OneThumb.png; sourceTree = "<group>"; };
+		ADDDE9FD1BBA360C00A95BA3 /* PauseButtonGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseButtonGray.png; sourceTree = "<group>"; };
+		ADDDE9FE1BBA360C00A95BA3 /* PauseButtonWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseButtonWhite.png; sourceTree = "<group>"; };
+		ADDDE9FF1BBA360C00A95BA3 /* TwoThumbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwoThumbs.png; sourceTree = "<group>"; };
+		ADDDEA0A1BBA361300A95BA3 /* Icon29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon29.png; sourceTree = "<group>"; };
+		ADDDEA0B1BBA361300A95BA3 /* Icon29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon29@2x.png"; sourceTree = "<group>"; };
+		ADDDEA0C1BBA361300A95BA3 /* Icon29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon29@3x.png"; sourceTree = "<group>"; };
+		ADDDEA0D1BBA361300A95BA3 /* Icon40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon40.png; sourceTree = "<group>"; };
+		ADDDEA0E1BBA361300A95BA3 /* Icon40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon40@2x.png"; sourceTree = "<group>"; };
+		ADDDEA0F1BBA361300A95BA3 /* Icon40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon40@3x.png"; sourceTree = "<group>"; };
+		ADDDEA101BBA361300A95BA3 /* Icon60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon60.png; sourceTree = "<group>"; };
+		ADDDEA111BBA361300A95BA3 /* Icon60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon60@2x.png"; sourceTree = "<group>"; };
+		ADDDEA121BBA361300A95BA3 /* Icon60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon60@3x.png"; sourceTree = "<group>"; };
+		ADDDEA131BBA361300A95BA3 /* Icon76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon76.png; sourceTree = "<group>"; };
+		ADDDEA141BBA361300A95BA3 /* Icon76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon76@2x.png"; sourceTree = "<group>"; };
+		ADDDEA211BBA38FA00A95BA3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ADDDEA221BBA38FA00A95BA3 /* ClassicGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicGameScene.swift; sourceTree = "<group>"; };
+		ADDDEA231BBA38FA00A95BA3 /* ClassicHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicHUD.swift; sourceTree = "<group>"; };
+		ADDDEA241BBA38FA00A95BA3 /* DropletLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletLayer.swift; sourceTree = "<group>"; };
+		ADDDEA251BBA38FA00A95BA3 /* EndlessHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndlessHUD.swift; sourceTree = "<group>"; };
+		ADDDEA261BBA38FA00A95BA3 /* GameLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLabel.swift; sourceTree = "<group>"; };
+		ADDDEA271BBA38FA00A95BA3 /* GameOverLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverLayer.swift; sourceTree = "<group>"; };
+		ADDDEA281BBA38FA00A95BA3 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		ADDDEA291BBA38FA00A95BA3 /* GameStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameStatus.swift; sourceTree = "<group>"; };
+		ADDDEA2A1BBA38FA00A95BA3 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		ADDDEA2B1BBA38FA00A95BA3 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
+		ADDDEA2C1BBA38FA00A95BA3 /* Kangaroo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kangaroo.swift; sourceTree = "<group>"; };
+		ADDDEA2D1BBA38FA00A95BA3 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		ADDDEA2E1BBA38FA00A95BA3 /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
+		ADDDEA2F1BBA38FA00A95BA3 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		ADDDEA301BBA38FA00A95BA3 /* Variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
+		ADDDEA311BBA38FA00A95BA3 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		ADDDEA441BBA399700A95BA3 /* soupofjustice.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = soupofjustice.ttf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ADDDE9BC1BBA34FD00A95BA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADDDE9D41BBA34FD00A95BA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADDDE9DF1BBA34FD00A95BA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ADDDE9B61BBA34FD00A95BA3 = {
+			isa = PBXGroup;
+			children = (
+				ADDDE9C11BBA34FD00A95BA3 /* KangarooKatch9 */,
+				ADDDEA431BBA399700A95BA3 /* Fonts */,
+				ADDDE9DA1BBA34FD00A95BA3 /* KangarooKatch9Tests */,
+				ADDDE9E51BBA34FD00A95BA3 /* KangarooKatch9UITests */,
+				ADDDE9C01BBA34FD00A95BA3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ADDDE9C01BBA34FD00A95BA3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ADDDE9BF1BBA34FD00A95BA3 /* KangarooKatch.app */,
+				ADDDE9D71BBA34FD00A95BA3 /* KangarooKatch.xctest */,
+				ADDDE9E21BBA34FD00A95BA3 /* KangarooKatch.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ADDDE9C11BBA34FD00A95BA3 /* KangarooKatch9 */ = {
+			isa = PBXGroup;
+			children = (
+				ADDDEA201BBA38FA00A95BA3 /* Classes */,
+				ADDDE9CA1BBA34FD00A95BA3 /* Main.storyboard */,
+				ADDDE9CD1BBA34FD00A95BA3 /* Assets.xcassets */,
+				ADDDE9CF1BBA34FD00A95BA3 /* LaunchScreen.storyboard */,
+				ADDDE9F61BBA360C00A95BA3 /* KKImages */,
+				ADDDEA091BBA361300A95BA3 /* KKIcons */,
+				ADDDE9F41BBA35F600A95BA3 /* KKsprites.atlas */,
+				ADDDE9D21BBA34FD00A95BA3 /* Info.plist */,
+			);
+			path = KangarooKatch9;
+			sourceTree = "<group>";
+		};
+		ADDDE9DA1BBA34FD00A95BA3 /* KangarooKatch9Tests */ = {
+			isa = PBXGroup;
+			children = (
+				ADDDE9DB1BBA34FD00A95BA3 /* KangarooKatch9Tests.swift */,
+				ADDDE9DD1BBA34FD00A95BA3 /* Info.plist */,
+			);
+			path = KangarooKatch9Tests;
+			sourceTree = "<group>";
+		};
+		ADDDE9E51BBA34FD00A95BA3 /* KangarooKatch9UITests */ = {
+			isa = PBXGroup;
+			children = (
+				ADDDE9E61BBA34FD00A95BA3 /* KangarooKatch9UITests.swift */,
+				ADDDE9E81BBA34FD00A95BA3 /* Info.plist */,
+			);
+			path = KangarooKatch9UITests;
+			sourceTree = "<group>";
+		};
+		ADDDE9F61BBA360C00A95BA3 /* KKImages */ = {
+			isa = PBXGroup;
+			children = (
+				ADDDE9F71BBA360C00A95BA3 /* ButtonImage.png */,
+				ADDDE9F81BBA360C00A95BA3 /* ImageBoundary.png */,
+				ADDDE9F91BBA360C00A95BA3 /* KKbackground.png */,
+				ADDDE9FA1BBA360C00A95BA3 /* LoadingScreen.png */,
+				ADDDE9FB1BBA360C00A95BA3 /* MainMenu.png */,
+				ADDDE9FC1BBA360C00A95BA3 /* OneThumb.png */,
+				ADDDE9FD1BBA360C00A95BA3 /* PauseButtonGray.png */,
+				ADDDE9FE1BBA360C00A95BA3 /* PauseButtonWhite.png */,
+				ADDDE9FF1BBA360C00A95BA3 /* TwoThumbs.png */,
+			);
+			path = KKImages;
+			sourceTree = "<group>";
+		};
+		ADDDEA091BBA361300A95BA3 /* KKIcons */ = {
+			isa = PBXGroup;
+			children = (
+				ADDDEA0A1BBA361300A95BA3 /* Icon29.png */,
+				ADDDEA0B1BBA361300A95BA3 /* Icon29@2x.png */,
+				ADDDEA0C1BBA361300A95BA3 /* Icon29@3x.png */,
+				ADDDEA0D1BBA361300A95BA3 /* Icon40.png */,
+				ADDDEA0E1BBA361300A95BA3 /* Icon40@2x.png */,
+				ADDDEA0F1BBA361300A95BA3 /* Icon40@3x.png */,
+				ADDDEA101BBA361300A95BA3 /* Icon60.png */,
+				ADDDEA111BBA361300A95BA3 /* Icon60@2x.png */,
+				ADDDEA121BBA361300A95BA3 /* Icon60@3x.png */,
+				ADDDEA131BBA361300A95BA3 /* Icon76.png */,
+				ADDDEA141BBA361300A95BA3 /* Icon76@2x.png */,
+			);
+			path = KKIcons;
+			sourceTree = "<group>";
+		};
+		ADDDEA201BBA38FA00A95BA3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				ADDDEA211BBA38FA00A95BA3 /* AppDelegate.swift */,
+				ADDDEA221BBA38FA00A95BA3 /* ClassicGameScene.swift */,
+				ADDDEA231BBA38FA00A95BA3 /* ClassicHUD.swift */,
+				ADDDEA241BBA38FA00A95BA3 /* DropletLayer.swift */,
+				ADDDEA251BBA38FA00A95BA3 /* EndlessHUD.swift */,
+				ADDDEA261BBA38FA00A95BA3 /* GameLabel.swift */,
+				ADDDEA271BBA38FA00A95BA3 /* GameOverLayer.swift */,
+				ADDDEA281BBA38FA00A95BA3 /* GameScene.swift */,
+				ADDDEA291BBA38FA00A95BA3 /* GameStatus.swift */,
+				ADDDEA2A1BBA38FA00A95BA3 /* GameViewController.swift */,
+				ADDDEA2B1BBA38FA00A95BA3 /* HUD.swift */,
+				ADDDEA2C1BBA38FA00A95BA3 /* Kangaroo.swift */,
+				ADDDEA2D1BBA38FA00A95BA3 /* MainMenu.swift */,
+				ADDDEA2E1BBA38FA00A95BA3 /* MyUtils.swift */,
+				ADDDEA2F1BBA38FA00A95BA3 /* Settings.swift */,
+				ADDDEA301BBA38FA00A95BA3 /* Variables.swift */,
+				ADDDEA311BBA38FA00A95BA3 /* World.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		ADDDEA431BBA399700A95BA3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				ADDDEA441BBA399700A95BA3 /* soupofjustice.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ADDDE9BE1BBA34FD00A95BA3 /* KangarooKatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADDDE9EB1BBA34FD00A95BA3 /* Build configuration list for PBXNativeTarget "KangarooKatch" */;
+			buildPhases = (
+				ADDDE9BB1BBA34FD00A95BA3 /* Sources */,
+				ADDDE9BC1BBA34FD00A95BA3 /* Frameworks */,
+				ADDDE9BD1BBA34FD00A95BA3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KangarooKatch;
+			productName = KangarooKatch9;
+			productReference = ADDDE9BF1BBA34FD00A95BA3 /* KangarooKatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ADDDE9D61BBA34FD00A95BA3 /* KangarooKatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADDDE9EE1BBA34FD00A95BA3 /* Build configuration list for PBXNativeTarget "KangarooKatchTests" */;
+			buildPhases = (
+				ADDDE9D31BBA34FD00A95BA3 /* Sources */,
+				ADDDE9D41BBA34FD00A95BA3 /* Frameworks */,
+				ADDDE9D51BBA34FD00A95BA3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ADDDE9D91BBA34FD00A95BA3 /* PBXTargetDependency */,
+			);
+			name = KangarooKatchTests;
+			productName = KangarooKatch9Tests;
+			productReference = ADDDE9D71BBA34FD00A95BA3 /* KangarooKatch.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ADDDE9E11BBA34FD00A95BA3 /* KangarooKatchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADDDE9F11BBA34FD00A95BA3 /* Build configuration list for PBXNativeTarget "KangarooKatchUITests" */;
+			buildPhases = (
+				ADDDE9DE1BBA34FD00A95BA3 /* Sources */,
+				ADDDE9DF1BBA34FD00A95BA3 /* Frameworks */,
+				ADDDE9E01BBA34FD00A95BA3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ADDDE9E41BBA34FD00A95BA3 /* PBXTargetDependency */,
+			);
+			name = KangarooKatchUITests;
+			productName = KangarooKatch9UITests;
+			productReference = ADDDE9E21BBA34FD00A95BA3 /* KangarooKatch.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ADDDE9B71BBA34FD00A95BA3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "ADAM HYATT";
+				TargetAttributes = {
+					ADDDE9BE1BBA34FD00A95BA3 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					ADDDE9D61BBA34FD00A95BA3 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = ADDDE9BE1BBA34FD00A95BA3;
+					};
+					ADDDE9E11BBA34FD00A95BA3 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = ADDDE9BE1BBA34FD00A95BA3;
+					};
+				};
+			};
+			buildConfigurationList = ADDDE9BA1BBA34FD00A95BA3 /* Build configuration list for PBXProject "KangarooKatch" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ADDDE9B61BBA34FD00A95BA3;
+			productRefGroup = ADDDE9C01BBA34FD00A95BA3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ADDDE9BE1BBA34FD00A95BA3 /* KangarooKatch */,
+				ADDDE9D61BBA34FD00A95BA3 /* KangarooKatchTests */,
+				ADDDE9E11BBA34FD00A95BA3 /* KangarooKatchUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ADDDE9BD1BBA34FD00A95BA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADDDEA061BBA360C00A95BA3 /* PauseButtonGray.png in Resources */,
+				ADDDE9D11BBA34FD00A95BA3 /* LaunchScreen.storyboard in Resources */,
+				ADDDEA071BBA360C00A95BA3 /* PauseButtonWhite.png in Resources */,
+				ADDDEA1E1BBA361300A95BA3 /* Icon76.png in Resources */,
+				ADDDEA041BBA360C00A95BA3 /* MainMenu.png in Resources */,
+				ADDDE9CE1BBA34FD00A95BA3 /* Assets.xcassets in Resources */,
+				ADDDEA031BBA360C00A95BA3 /* LoadingScreen.png in Resources */,
+				ADDDEA081BBA360C00A95BA3 /* TwoThumbs.png in Resources */,
+				ADDDEA1F1BBA361300A95BA3 /* Icon76@2x.png in Resources */,
+				ADDDEA1C1BBA361300A95BA3 /* Icon60@2x.png in Resources */,
+				ADDDEA161BBA361300A95BA3 /* Icon29@2x.png in Resources */,
+				ADDDEA1B1BBA361300A95BA3 /* Icon60.png in Resources */,
+				ADDDEA021BBA360C00A95BA3 /* KKbackground.png in Resources */,
+				ADDDE9F51BBA35F600A95BA3 /* KKsprites.atlas in Resources */,
+				ADDDEA1D1BBA361300A95BA3 /* Icon60@3x.png in Resources */,
+				ADDDEA181BBA361300A95BA3 /* Icon40.png in Resources */,
+				ADDDEA011BBA360C00A95BA3 /* ImageBoundary.png in Resources */,
+				ADDDEA051BBA360C00A95BA3 /* OneThumb.png in Resources */,
+				ADDDEA151BBA361300A95BA3 /* Icon29.png in Resources */,
+				ADDDE9CC1BBA34FD00A95BA3 /* Main.storyboard in Resources */,
+				ADDDEA451BBA399700A95BA3 /* soupofjustice.ttf in Resources */,
+				ADDDEA001BBA360C00A95BA3 /* ButtonImage.png in Resources */,
+				ADDDEA171BBA361300A95BA3 /* Icon29@3x.png in Resources */,
+				ADDDEA1A1BBA361300A95BA3 /* Icon40@3x.png in Resources */,
+				ADDDEA191BBA361300A95BA3 /* Icon40@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADDDE9D51BBA34FD00A95BA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADDDE9E01BBA34FD00A95BA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ADDDE9BB1BBA34FD00A95BA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADDDEA3E1BBA38FA00A95BA3 /* MainMenu.swift in Sources */,
+				ADDDEA421BBA38FA00A95BA3 /* World.swift in Sources */,
+				ADDDEA3B1BBA38FA00A95BA3 /* GameViewController.swift in Sources */,
+				ADDDEA351BBA38FA00A95BA3 /* DropletLayer.swift in Sources */,
+				ADDDEA411BBA38FA00A95BA3 /* Variables.swift in Sources */,
+				ADDDEA341BBA38FA00A95BA3 /* ClassicHUD.swift in Sources */,
+				ADDDEA391BBA38FA00A95BA3 /* GameScene.swift in Sources */,
+				ADDDEA3F1BBA38FA00A95BA3 /* MyUtils.swift in Sources */,
+				ADDDEA371BBA38FA00A95BA3 /* GameLabel.swift in Sources */,
+				ADDDEA3A1BBA38FA00A95BA3 /* GameStatus.swift in Sources */,
+				ADDDEA3C1BBA38FA00A95BA3 /* HUD.swift in Sources */,
+				ADDDEA401BBA38FA00A95BA3 /* Settings.swift in Sources */,
+				ADDDEA361BBA38FA00A95BA3 /* EndlessHUD.swift in Sources */,
+				ADDDEA321BBA38FA00A95BA3 /* AppDelegate.swift in Sources */,
+				ADDDEA381BBA38FA00A95BA3 /* GameOverLayer.swift in Sources */,
+				ADDDEA331BBA38FA00A95BA3 /* ClassicGameScene.swift in Sources */,
+				ADDDEA3D1BBA38FA00A95BA3 /* Kangaroo.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADDDE9D31BBA34FD00A95BA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADDDE9DC1BBA34FD00A95BA3 /* KangarooKatch9Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADDDE9DE1BBA34FD00A95BA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADDDE9E71BBA34FD00A95BA3 /* KangarooKatch9UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ADDDE9D91BBA34FD00A95BA3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ADDDE9BE1BBA34FD00A95BA3 /* KangarooKatch */;
+			targetProxy = ADDDE9D81BBA34FD00A95BA3 /* PBXContainerItemProxy */;
+		};
+		ADDDE9E41BBA34FD00A95BA3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ADDDE9BE1BBA34FD00A95BA3 /* KangarooKatch */;
+			targetProxy = ADDDE9E31BBA34FD00A95BA3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ADDDE9CA1BBA34FD00A95BA3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ADDDE9CB1BBA34FD00A95BA3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ADDDE9CF1BBA34FD00A95BA3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ADDDE9D01BBA34FD00A95BA3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ADDDE9E91BBA34FD00A95BA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ADDDE9EA1BBA34FD00A95BA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ADDDE9EC1BBA34FD00A95BA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KangarooKatch9/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangedude.KangarooKatch;
+				PRODUCT_NAME = KangarooKatch;
+			};
+			name = Debug;
+		};
+		ADDDE9ED1BBA34FD00A95BA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KangarooKatch9/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangedude.KangarooKatch;
+				PRODUCT_NAME = KangarooKatch;
+			};
+			name = Release;
+		};
+		ADDDE9EF1BBA34FD00A95BA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = KangarooKatch9Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangedude.KangarooKatch9Tests;
+				PRODUCT_NAME = KangarooKatch;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KangarooKatch.app/KangarooKatch";
+			};
+			name = Debug;
+		};
+		ADDDE9F01BBA34FD00A95BA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KangarooKatch9Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangedude.KangarooKatch9Tests;
+				PRODUCT_NAME = KangarooKatch;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KangarooKatch.app/KangarooKatch";
+			};
+			name = Release;
+		};
+		ADDDE9F21BBA34FD00A95BA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = KangarooKatch9UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangedude.KangarooKatch9UITests;
+				PRODUCT_NAME = KangarooKatch;
+				TEST_TARGET_NAME = KangarooKatch9;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		ADDDE9F31BBA34FD00A95BA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KangarooKatch9UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangedude.KangarooKatch9UITests;
+				PRODUCT_NAME = KangarooKatch;
+				TEST_TARGET_NAME = KangarooKatch9;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ADDDE9BA1BBA34FD00A95BA3 /* Build configuration list for PBXProject "KangarooKatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADDDE9E91BBA34FD00A95BA3 /* Debug */,
+				ADDDE9EA1BBA34FD00A95BA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADDDE9EB1BBA34FD00A95BA3 /* Build configuration list for PBXNativeTarget "KangarooKatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADDDE9EC1BBA34FD00A95BA3 /* Debug */,
+				ADDDE9ED1BBA34FD00A95BA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ADDDE9EE1BBA34FD00A95BA3 /* Build configuration list for PBXNativeTarget "KangarooKatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADDDE9EF1BBA34FD00A95BA3 /* Debug */,
+				ADDDE9F01BBA34FD00A95BA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ADDDE9F11BBA34FD00A95BA3 /* Build configuration list for PBXNativeTarget "KangarooKatchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADDDE9F21BBA34FD00A95BA3 /* Debug */,
+				ADDDE9F31BBA34FD00A95BA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ADDDE9B71BBA34FD00A95BA3 /* Project object */;
+}

@@ -29,9 +29,11 @@ class DropletLayer: SKNode {
     
     var catchZoneRect: CGRect = CGRectNull
     var fadeZoneRect: CGRect = CGRectNull
+    var eggInitSize: CGSize = CGSize(width: 40.0, height: 50.2)
     
     //Variables affecting speed / frequency of droplet lines
     var checkDiffCalls: Int = 1
+    var dropID: Int = 0
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -95,10 +97,8 @@ class DropletLayer: SKNode {
             case .GameOver:
                 break
             }
-            
-            
         }
-     
+        
     }
     
     //Set Difficulty once for Classic
@@ -318,25 +318,25 @@ class DropletLayer: SKNode {
     */
     
     func spawnDroplet(col: Int, type: Int) {
-        var droplet: SKSpriteNode!
+        var drop: Droplet!
         var somethingDropped = true
         switch type {
         case JOEY:
-            droplet = SKSpriteNode(imageNamed: "Egg")
-            droplet.name = "joey"
-            droplet.setScale(0.1)
+            drop = Droplet(imageNamed: "Egg")
+            drop.name = "joey"
+            drop.setScale(0.1)
             break
         case BOOMERANG:
-            droplet = SKSpriteNode(imageNamed: "Boomerang")
-            droplet.name = "boomerang"
-            droplet.setScale(0.2)
+            drop = Droplet(imageNamed: "Boomerang")
+            drop.name = "boomerang"
+            drop.setScale(0.2)
             break
         default:
             somethingDropped = false
         }
         
         if somethingDropped {
-            droplet.zPosition = 3
+            drop.zPosition = self.zPosition + 3
             var dropletPosX: CGFloat = rightColX
             if(col == 1) {
                 dropletPosX = leftColX
@@ -344,13 +344,13 @@ class DropletLayer: SKNode {
             else if(col == 2) {
                 dropletPosX = midColX
             }
-            droplet.position = CGPoint(
+            drop.position = CGPoint(
                 x: dropletPosX,
-                y: GameSize!.height + droplet.size.height/2)
+                y: GameSize!.height + drop.size.height/2)
             
             if(type == JOEY) {
                 //Joey animation here
-                droplet.zRotation = -π / 8.0
+                drop.zRotation = -π / 8.0
                 let leftWiggle = SKAction.rotateByAngle(π/4.0, duration: 0.25)
                 let rightWiggle = leftWiggle.reversedAction()
                 let fullWiggle = SKAction.sequence([leftWiggle, rightWiggle, leftWiggle, rightWiggle])
@@ -359,7 +359,7 @@ class DropletLayer: SKNode {
                 let fullScale = SKAction.sequence(
                     [scaleUp, scaleDown, scaleUp, scaleDown])
                 let group = SKAction.group([fullScale, fullWiggle])
-                droplet.runAction(SKAction.repeatActionForever(group))
+                drop.runAction(SKAction.repeatActionForever(group))
                 if GS.GameMode == .Classic {
                     TheClassicHUD?.subtractJoeyCount()
                 }
@@ -367,11 +367,11 @@ class DropletLayer: SKNode {
             if(type == BOOMERANG) {
                 let halfSpin = SKAction.rotateByAngle(π, duration: 0.5)
                 let fullSpin = SKAction.sequence([halfSpin, halfSpin])
-                droplet.runAction(SKAction.repeatActionForever(fullSpin))
+                drop.runAction(SKAction.repeatActionForever(fullSpin))
             }
             
-            droplet.physicsBody = SKPhysicsBody(circleOfRadius: droplet.size.width/2)
-            addChild(droplet)
+            drop.physicsBody = SKPhysicsBody(circleOfRadius: drop.size.width/2)
+            addChild(drop)
             
         }
     }
@@ -382,66 +382,63 @@ class DropletLayer: SKNode {
     *********************************************************************************************************/
     func checkCollisions() {
         
-        var caughtJoeys: [SKSpriteNode] = []
-        var missedJoeys: [SKSpriteNode] = []
-        enumerateChildNodesWithName("joey") { node, _ in
-            let joey = node as! SKSpriteNode
-            if (Int(joey.position.x+0.1) == Int(kangPosX)) {
-                if CGRectIntersectsRect(CGRectInset(joey.frame, 5, 5), self.catchZoneRect) {
-                    caughtJoeys.append(joey)
-                    joey.name = "caught"
+        var caughtJoeys: [Droplet] = []
+        var missedJoeys: [Droplet] = []
+        var fadeJoeys: [Droplet] = []
+        var caughtBoomers: [Droplet] = []
+        var missedBoomers: [Droplet] = []
+        
+        enumerateChildNodesWithName("*") { node, _ in
+            if node.name == "joey" {
+                let joey = node as! Droplet
+                if (Int(joey.position.x+0.1) == Int(kangPosX)) {
+                    if CGRectIntersectsRect(CGRectInset(joey.frame, 5, 5), self.catchZoneRect) {
+                        caughtJoeys.append(joey)
+                    }
+                    else if joey.position.y < dropletCatchBoundaryY {
+                        missedJoeys.append(joey)
+                        joey.name = "missedJoey"
+                    }
                 }
-                else if joey.position.y < dropletCatchBoundaryY {
-                    missedJoeys.append(joey)
-                    joey.name = "missedJoey"
+                else {
+                    if joey.position.y < dropletCatchBoundaryY {
+                        missedJoeys.append(joey)
+                        joey.name = "missedJoey"
+                    }
                 }
             }
-            else {
-                if joey.position.y < dropletCatchBoundaryY {
-                    missedJoeys.append(joey)
-                    joey.name = "missedJoey"
+            if node.name == "missedJoey" {
+                let joey = node as! Droplet
+                if CGRectIntersectsRect(CGRectInset(joey.frame, 5, 5), self.fadeZoneRect) {
+                    fadeJoeys.append(joey)
+                }
+            }
+            if node.name == "boomerang" {
+                let boomer = node as! Droplet
+                if (Int(boomer.position.x+0.1) == Int(kangPosX)) {
+                    if CGRectIntersectsRect(CGRectInset(boomer.frame, 5, 5), self.catchZoneRect) {
+                        caughtBoomers.append(boomer)
+                    }
+                    else if boomer.position.y < dropletCatchBoundaryY {
+                        missedBoomers.append(boomer)
+                    }
+                }
+                else {
+                    if boomer.position.y < dropletCatchBoundaryY {
+                        missedBoomers.append(boomer)
+                    }
                 }
             }
         }
+        
         for joey in caughtJoeys {
             kangarooCaughtJoey(joey)
         }
         for joey in missedJoeys {
             kangarooMissedJoey(joey)
         }
-        
-        var fadeJoeys: [SKSpriteNode] = []
-        enumerateChildNodesWithName("missedJoey") { node, _ in
-            let joey = node as! SKSpriteNode
-            if CGRectIntersectsRect(CGRectInset(joey.frame, 5, 5), self.fadeZoneRect) {
-                fadeJoeys.append(joey)
-                joey.name = "faded"
-            }
-        }
         for joey in fadeJoeys {
             stopAndFadeJoey(joey)
-        }
-        
-        var caughtBoomers: [SKSpriteNode] = []
-        var missedBoomers: [SKSpriteNode] = []
-        enumerateChildNodesWithName("boomerang") { node, _ in
-            let boomer = node as! SKSpriteNode
-            if (Int(boomer.position.x) == Int(kangPosX)) {
-                if CGRectIntersectsRect(CGRectInset(boomer.frame, 5, 5), self.catchZoneRect) {
-                    caughtBoomers.append(boomer)
-                    boomer.name = "caught"
-                }
-                else if boomer.position.y < dropletCatchBoundaryY {
-                    missedBoomers.append(boomer)
-                    boomer.name = "missedBoomer"
-                }
-            }
-            else {
-                if boomer.position.y < dropletCatchBoundaryY {
-                    missedBoomers.append(boomer)
-                    boomer.name = "missedBoomer"
-                }
-            }
         }
         for boomer in caughtBoomers {
             kangarooCaughtBoomer(boomer)
@@ -453,7 +450,7 @@ class DropletLayer: SKNode {
     }
     
     //Can use pouch idea where joey falls behind pouch and detection is near entrance
-    func kangarooCaughtJoey(joey: SKSpriteNode) {
+    func kangarooCaughtJoey(joey: Droplet) {
         //runAction(caughtJoeySound)
         //println("joeyCaught")
         
@@ -472,7 +469,7 @@ class DropletLayer: SKNode {
         
     }
     
-    func kangarooMissedJoey(joey: SKSpriteNode) {
+    func kangarooMissedJoey(joey: Droplet) {
         //runAction(missedJoeySound) aaahh
         
         //make fade rect like catchzone, in checkcollision if missed hits fadezone, then stop and fade
@@ -502,7 +499,7 @@ class DropletLayer: SKNode {
         
     }
     
-    func kangarooCaughtBoomer(boomer: SKSpriteNode) {
+    func kangarooCaughtBoomer(boomer: Droplet) {
         
         //runAction(enemyCollisionSound) ouch!
         // make kangaroo frown
@@ -527,7 +524,7 @@ class DropletLayer: SKNode {
         
     }
     
-    func kangarooMissedBoomer(boomer: SKSpriteNode) {
+    func kangarooMissedBoomer(boomer: Droplet) {
         let fade = SKAction.fadeAlphaTo(0.0, duration: 0.18)
         let remove = SKAction.removeFromParent()
         boomer.runAction(SKAction.sequence([fade, remove]))
@@ -539,7 +536,10 @@ class DropletLayer: SKNode {
         enumerateChildNodesWithName("*") { node, _ in
             if node.name == "joey" || node.name == "missedJoey" ||
                 node.name == "boomerang" || node.name == "missedBoomer" {
-                    let node = node as! SKSpriteNode
+                    let node = node as! Droplet
+                    if node.physicsBody?.velocity != nil {
+                        node.gravSpeed = (node.physicsBody?.velocity)!
+                    }
                     node.removeAllActions()
                     node.physicsBody = nil
             }
@@ -549,8 +549,9 @@ class DropletLayer: SKNode {
     internal func unfreezeDroplets() {
         enumerateChildNodesWithName("*") { node, _ in
             if node.name == "joey" || node.name == "missedJoey" {
-                let node = node as! SKSpriteNode
+                let node = node as! Droplet
                 node.zRotation = -π / 8.0
+                node.size = self.eggInitSize
                 let leftWiggle = SKAction.rotateByAngle(π/4.0, duration: 0.25)
                 let rightWiggle = leftWiggle.reversedAction()
                 let fullWiggle = SKAction.sequence([leftWiggle, rightWiggle, leftWiggle, rightWiggle])
@@ -561,17 +562,17 @@ class DropletLayer: SKNode {
                 let group = SKAction.group([fullScale, fullWiggle])
                 node.runAction(SKAction.repeatActionForever(group))
                 node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width/2)
+                node.physicsBody?.velocity = node.gravSpeed
             }
             if node.name == "boomerang" || node.name == "missedBoomer" {
-                let node = node as! SKSpriteNode
+                let node = node as! Droplet
                 let halfSpin = SKAction.rotateByAngle(π, duration: 0.5)
                 let fullSpin = SKAction.sequence([halfSpin, halfSpin])
                 node.runAction(SKAction.repeatActionForever(fullSpin))
                 node.physicsBody = SKPhysicsBody(circleOfRadius: node.size.width/2)
+                node.physicsBody?.velocity = node.gravSpeed
             }
         }
     }
-
-
 
 }

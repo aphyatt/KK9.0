@@ -231,10 +231,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let hudOutline = drawRectangle(hudRect, SKColor.blueColor(), 20.0)
         hudOutline.zPosition = 500
         addChild(hudOutline)
-            */
+
         let pauseRect = drawRectangle(CGRect(x: 585, y: GameSize!.height - 80, width: 60, height: 60), color: SKColor.blackColor(), width: 6.0)
         pauseRect.zPosition = 3
         addChild(pauseRect)
+*/
         
     }
     

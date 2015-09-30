@@ -51,6 +51,7 @@
 		ADDDEA411BBA38FA00A95BA3 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA301BBA38FA00A95BA3 /* Variables.swift */; settings = {ASSET_TAGS = (); }; };
 		ADDDEA421BBA38FA00A95BA3 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA311BBA38FA00A95BA3 /* World.swift */; settings = {ASSET_TAGS = (); }; };
 		ADDDEA451BBA399700A95BA3 /* soupofjustice.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA441BBA399700A95BA3 /* soupofjustice.ttf */; settings = {ASSET_TAGS = (); }; };
+		ADEFB9921BBB877D0009F97A /* Droplet.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEFB9911BBB877D0009F97A /* Droplet.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		ADDDEA301BBA38FA00A95BA3 /* Variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		ADDDEA311BBA38FA00A95BA3 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		ADDDEA441BBA399700A95BA3 /* soupofjustice.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = soupofjustice.ttf; sourceTree = "<group>"; };
+		ADEFB9911BBB877D0009F97A /* Droplet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Droplet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 				ADDDEA221BBA38FA00A95BA3 /* ClassicGameScene.swift */,
 				ADDDEA231BBA38FA00A95BA3 /* ClassicHUD.swift */,
 				ADDDEA241BBA38FA00A95BA3 /* DropletLayer.swift */,
+				ADEFB9911BBB877D0009F97A /* Droplet.swift */,
 				ADDDEA251BBA38FA00A95BA3 /* EndlessHUD.swift */,
 				ADDDEA261BBA38FA00A95BA3 /* GameLabel.swift */,
 				ADDDEA271BBA38FA00A95BA3 /* GameOverLayer.swift */,
@@ -436,6 +439,7 @@
 				ADDDEA321BBA38FA00A95BA3 /* AppDelegate.swift in Sources */,
 				ADDDEA381BBA38FA00A95BA3 /* GameOverLayer.swift in Sources */,
 				ADDDEA331BBA38FA00A95BA3 /* ClassicGameScene.swift in Sources */,
+				ADEFB9921BBB877D0009F97A /* Droplet.swift in Sources */,
 				ADDDEA3D1BBA38FA00A95BA3 /* Kangaroo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +669,7 @@
 				ADDDE9ED1BBA34FD00A95BA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ADDDE9EE1BBA34FD00A95BA3 /* Build configuration list for PBXNativeTarget "KangarooKatchTests" */ = {
 			isa = XCConfigurationList;
@@ -673,6 +678,7 @@
 				ADDDE9F01BBA34FD00A95BA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ADDDE9F11BBA34FD00A95BA3 /* Build configuration list for PBXNativeTarget "KangarooKatchUITests" */ = {
 			isa = XCConfigurationList;
@@ -681,6 +687,7 @@
 				ADDDE9F31BBA34FD00A95BA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

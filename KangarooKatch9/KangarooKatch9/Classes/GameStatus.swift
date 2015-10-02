@@ -11,9 +11,9 @@ var GS = GameStatus()
 
 class GameStatus {
     //endless
-    let MaxJoeyLives = 10
+    let MaxJoeyLives = 6
     let MaxBoomerangLives = 3
-    var CurrJoeyLives = 10
+    var CurrJoeyLives = 6
     var CurrBoomerangLives = 3
     
     //classic

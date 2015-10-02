@@ -21,13 +21,18 @@ class HUD: SKNode {
     var pauseButton: SKSpriteNode?
     var pauseButtonS: SKSpriteNode?
     var pauseLabel: GameLabel?
-    var mainMenuLabel: GameLabel?
+    var exitLabel: GameLabel?
+    var resumeLabel: GameLabel?
     var unpauseGame: Bool = false
     var pauseMenuArray: [SKNode]
     let fullRect: CGRect
     let pauseRect: CGRect
     let pauseX: CGFloat = 585
     let pauseY: CGFloat = GameSize!.height - 80
+    
+    let resumeLabelY: CGFloat = GameSize!.height/2 + 120
+    let restartLabelY: CGFloat = GameSize!.width/2 + 40
+    let exitLabelY: CGFloat = GameSize!.height/2 - 40
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,7 +78,7 @@ class HUD: SKNode {
         if let pb = pauseButton {
             pb.position = CGPoint(x: pauseX+30, y: pauseY+30)
             pb.setScale(1.5)
-            pb.zPosition = 301
+            pb.zPosition = self.zPosition + 1
             pb.setScale(0.45)
             pb.color = SKColor.whiteColor()
             addChild(pb)
@@ -81,7 +86,7 @@ class HUD: SKNode {
         if let pbS = pauseButtonS {
             pbS.position = CGPoint(x: pauseX+32, y: pauseY+28)
             pbS.setScale(1.5)
-            pbS.zPosition = 300
+            pbS.zPosition = self.zPosition
             pbS.setScale(0.45)
             pbS.color = SKColor.grayColor()
             addChild(pbS)
@@ -92,6 +97,7 @@ class HUD: SKNode {
     private func CreateClassicHUD() {
         classicHUD = ClassicHUD()
         if let cHUD = classicHUD {
+            cHUD.zPosition = -1
             self.addChild(cHUD)
         }
     }
@@ -99,27 +105,38 @@ class HUD: SKNode {
     private func CreateEndlessHUD() {
         endlessHUD = EndlessHUD()
         if let eHUD = endlessHUD {
+            eHUD.zPosition = -1
             self.addChild(eHUD)
         }
     }
     
     private func CreatePauseLabel() {
-        pauseLabel = GameLabel(text: "GAME PAUSED", size: 50,
+        pauseLabel = GameLabel(text: "GAME PAUSED", size: 60,
             horAlignMode: .Center, vertAlignMode: .Baseline,
             color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
-            pos: CGPoint(x: GameSize!.width/2, y: 780), zPosition: 300)
+            pos: CGPoint(x: GameSize!.width/2, y: 710), zPosition: 300)
         if let p = pauseLabel {
             self.addChild(p)
         }
     }
     
-    private func CreateMMLabel() {
-        mainMenuLabel = GameLabel(text: "MAIN MENU", size: 20,
+    private func CreateExitLabel() {
+        exitLabel = GameLabel(text: "EXIT", size: 40,
             horAlignMode: .Center, vertAlignMode: .Baseline,
             color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
-            pos: CGPoint(x: oneThirdX, y: 500), zPosition: 300)
-        if let mm = mainMenuLabel {
-            self.addChild(mm)
+            pos: CGPoint(x: GameSize!.width/2, y: exitLabelY - 10), zPosition: 300)
+        if let el = exitLabel {
+            self.addChild(el)
+        }
+    }
+    
+    private func CreateResumeLabel() {
+        resumeLabel = GameLabel(text: "RESUME", size: 40,
+            horAlignMode: .Center, vertAlignMode: .Baseline,
+            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
+            pos: CGPoint(x: GameSize!.width/2, y: resumeLabelY - 10), zPosition: 300)
+        if let rl = resumeLabel {
+            self.addChild(rl)
         }
     }
     
@@ -181,29 +198,45 @@ class HUD: SKNode {
     
     func removePauseMenu() {
         removeChildrenInArray(pauseMenuArray)
-        mainMenuLabel?.removeFromParent()
+        exitLabel?.removeFromParent()
         pauseLabel?.removeFromParent()
+        resumeLabel?.removeFromParent()
     }
     
     func showPauseMenu() {
         let shade = drawRectangle(fullRect, color: SKColor.grayColor(), width: 1.0)
         shade.fillColor = SKColor.grayColor()
         shade.alpha = 0.4
-        shade.zPosition = 6
+        shade.zPosition = 250
         shade.name = "shade"
         addChild(shade)
         
-        let mmRect = CGRect(x: oneThirdX-70, y: GameSize!.height/2-300,
-            width: GameSize!.width-(2*(oneThirdX-70)), height: 600)
-        let mainMenu = getRoundedRectShape(mmRect, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 8)
-        mainMenu.fillColor = SKColor.blackColor()
-        mainMenu.zPosition = 7
-        addChild(mainMenu)
+        let pmRect = CGRect(x: oneThirdX-130, y: GameSize!.height/2-250,
+            width: GameSize!.width-(2*(oneThirdX-130)), height: 500)
+        let pauseMenu = getRoundedRectShape(pmRect, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 8)
+        pauseMenu.fillColor = SKColor.blackColor()
+        pauseMenu.zPosition = 251
+        addChild(pauseMenu)
+        
+        let rRect = CGRect(x: GameSize!.width/2 - 100, y: resumeLabelY - 35,
+            width: 200, height: 70)
+        let resumeSquare = getRoundedRectShape(rRect, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 4)
+        resumeSquare.fillColor = SKColor.blackColor()
+        resumeSquare.zPosition = 252
+        addChild(resumeSquare)
+        
+        let eRect = CGRect(x: GameSize!.width/2 - 100, y: exitLabelY - 35,
+            width: 200, height: 70)
+        let exitSquare = getRoundedRectShape(eRect, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 4)
+        exitSquare.fillColor = SKColor.blackColor()
+        exitSquare.zPosition = 252
+        addChild(exitSquare)
         
         CreatePauseLabel()
-        CreateMMLabel()
+        CreateExitLabel()
+        CreateResumeLabel()
         
-        pauseMenuArray = [shade, mainMenu]
+        pauseMenuArray = [shade, pauseMenu, resumeSquare, exitSquare]
     }
     
 }

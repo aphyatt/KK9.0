@@ -21,8 +21,8 @@ class EndlessHUD: SKNode {
     let scoreLabelX: CGFloat = oneThirdX - 70
     let scoreLabelY: CGFloat = 962
     let livesDropsX: CGFloat = twoThirdX - 25
-    let livesLabelY: CGFloat = 982
-    let dropsLabelY: CGFloat = 942
+    let livesLabelY: CGFloat = 987
+    let dropsLabelY: CGFloat = 937
     
     var livesLabel: GameLabel?
     var dropsLabel: GameLabel?
@@ -33,8 +33,11 @@ class EndlessHUD: SKNode {
     
     override init() {
         
-        joeyLifeStartX = GameSize!.width/2 + 93
-        boomerangLifeStartX = GameSize!.width/2 + 115
+        //joeyLifeStartX = GameSize!.width/2 + 93
+        //boomerangLifeStartX = GameSize!.width/2 + 115
+        
+        joeyLifeStartX = GameSize!.width/2 - 20
+        boomerangLifeStartX = GameSize!.width/2 - 5
         
         super.init()
         
@@ -44,8 +47,8 @@ class EndlessHUD: SKNode {
         self.zPosition = 200
         
         CreateScoreLabel()
-        CreateLivesLabel()
-        CreateDropsLabel()
+        //CreateLivesLabel()
+        //CreateDropsLabel()
         CreateLives()
         
     }
@@ -94,38 +97,38 @@ class EndlessHUD: SKNode {
     
     func CreateLives() {
         
-        for i in 0...9 {
+        for i in 0...(GS.MaxJoeyLives-1) {
             let node = SKSpriteNode(imageNamed: "Egg")
             let nodeS = SKSpriteNode(imageNamed: "Egg")
             
-            node.position.x = joeyLifeStartX + CGFloat(i)*20
+            node.position.x = joeyLifeStartX + CGFloat(i)*35
             node.position.y = dropsLabelY
-            node.setScale(0.04)
-            node.zPosition = self.zPosition + 2
+            node.setScale(0.08)
+            node.zPosition = 202
             node.name = "drop\(i+1)"
             
             nodeS.position = node.position
-            nodeS.setScale(0.04)
-            nodeS.zPosition = self.zPosition + 1
+            nodeS.setScale(0.08)
+            nodeS.zPosition = 201
             nodeS.alpha = 0.5
             
             addChild(node)
             addChild(nodeS)
         }
         
-        for i in 0...2 {
+        for i in 0...(GS.MaxBoomerangLives-1) {
             let node = SKSpriteNode(imageNamed: "Boomerang")
             let nodeS = SKSpriteNode(imageNamed: "Boomerang")
             
-            node.position.x = boomerangLifeStartX + CGFloat(i)*60
+            node.position.x = boomerangLifeStartX + CGFloat(i)*72
             node.position.y = livesLabelY
-            node.setScale(0.10)
-            node.zPosition = 5
+            node.setScale(0.15)
+            node.zPosition = 202
             node.name = "life\(i+1)"
             
             nodeS.position = node.position
-            nodeS.setScale(0.10)
-            nodeS.zPosition = 4
+            nodeS.setScale(0.15)
+            nodeS.zPosition = 201
             nodeS.alpha = 0.5
             
             addChild(node)

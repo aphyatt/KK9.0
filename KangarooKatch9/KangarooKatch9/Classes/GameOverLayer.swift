@@ -109,7 +109,7 @@ class GameOverLayer: SKNode {
         GS.groupWaitTimeMax = 3.0
         GS.groupAmtMin = 2
         GS.groupAmtMax = 3
-        GS.CurrJoeyLives = 10
+        GS.CurrJoeyLives = 6
         GS.CurrBoomerangLives = 3
         //kangPos = 2
         scene?.physicsWorld.gravity = CGVector(dx: 0, dy: -7.8)
@@ -135,7 +135,7 @@ class GameOverLayer: SKNode {
      
         //have score move and grow under GAME OVER
         let wait2 = SKAction.waitForDuration(3.0)
-        let bringToFront = SKAction.runBlock({scoreLabel?.zPosition = self.zPosition + 1})
+        let bringToFront = SKAction.runBlock({scoreLabel?.zPosition = self.zPosition + 500})
         let moveIntoPos = SKAction.moveTo(CGPoint(x: GameSize!.width/2, y: 722), duration: 1.0)
         let grow = SKAction.scaleBy(1.3, duration: 1.0)
         let adjust = SKAction.runBlock({

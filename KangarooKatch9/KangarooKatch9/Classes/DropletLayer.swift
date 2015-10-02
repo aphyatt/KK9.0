@@ -394,6 +394,7 @@ class DropletLayer: SKNode {
                 if (Int(joey.position.x+0.1) == Int(kangPosX)) {
                     if CGRectIntersectsRect(CGRectInset(joey.frame, 5, 5), self.catchZoneRect) {
                         caughtJoeys.append(joey)
+                        joey.name = "done"
                     }
                     else if joey.position.y < dropletCatchBoundaryY {
                         missedJoeys.append(joey)
@@ -411,6 +412,7 @@ class DropletLayer: SKNode {
                 let joey = node as! Droplet
                 if CGRectIntersectsRect(CGRectInset(joey.frame, 5, 5), self.fadeZoneRect) {
                     fadeJoeys.append(joey)
+                    joey.name = "done"
                 }
             }
             if node.name == "boomerang" {
@@ -418,14 +420,17 @@ class DropletLayer: SKNode {
                 if (Int(boomer.position.x+0.1) == Int(kangPosX)) {
                     if CGRectIntersectsRect(CGRectInset(boomer.frame, 5, 5), self.catchZoneRect) {
                         caughtBoomers.append(boomer)
+                        boomer.name = "done"
                     }
                     else if boomer.position.y < dropletCatchBoundaryY {
                         missedBoomers.append(boomer)
+                        boomer.name = "done"
                     }
                 }
                 else {
                     if boomer.position.y < dropletCatchBoundaryY {
                         missedBoomers.append(boomer)
+                        boomer.name = "done"
                     }
                 }
             }
@@ -489,6 +494,7 @@ class DropletLayer: SKNode {
         addChild(joey)
         
         if GS.GameMode == .Endless {
+            print(GS.CurrJoeyLives)
             TheEndlessHUD?.removeLife("drop\(GS.CurrJoeyLives)")
             GS.CurrJoeyLives--
     

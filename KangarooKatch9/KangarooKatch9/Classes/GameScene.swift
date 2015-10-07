@@ -21,7 +21,7 @@ let rightColX: CGFloat = 548.57
 let oneThirdX: CGFloat = 288.0
 let twoThirdX: CGFloat = 480.0
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene {
     
     let fullRect: CGRect
     let sceneRect: CGRect
@@ -30,7 +30,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var GameWorld: World?
     var HUDdisplay: HUD?
-    var Drops: DropletLayer?
     var GameOver: GameOverLayer?
     
     /************************************ Init/Update Functions ***************************************/
@@ -42,7 +41,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         CreateWorld()
         CreateHUD()
-        CreateDropletLayer()
         CreateGameOver()
         
         debugDrawPlayableArea()
@@ -53,7 +51,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         removeAllChildren()
         CreateWorld()
         CreateHUD()
-        CreateDropletLayer()
         CreateGameOver()
     }
     
@@ -68,13 +65,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         HUDdisplay = HUD()
         if let hud = HUDdisplay {
             self.addChild(hud)
-        }
-    }
-    
-    private func CreateDropletLayer() {
-        Drops = DropletLayer()
-        if let dl = Drops {
-            self.addChild(dl)
         }
     }
     
@@ -105,6 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         GS.GameState = .GameRunning
         
         super.init(size: size)
+        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -121,7 +112,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case .GameRunning:
             GameWorld!.update(currentTime)
             HUDdisplay!.update(currentTime)
-            Drops!.update(currentTime)
             break
         case .Paused:
             dropLines = false
@@ -190,7 +180,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didEvaluateActions()  {
-        Drops!.checkCollisions()
+        Droplets!.checkCollisions()
     }
     
     

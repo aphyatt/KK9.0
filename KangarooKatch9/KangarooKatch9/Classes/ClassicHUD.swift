@@ -29,7 +29,6 @@ class ClassicHUD: SKNode {
         
         CreateJoeyCountLabel()
         
-        
     }
     
     private func CreateJoeyCountLabel() {

@@ -97,8 +97,7 @@ class GameOverLayer: SKNode {
         //add background and kangaroo
         GS.CurrScore = 0
         GS.JoeysLeft = 100 //CHANGE LATER
-        GS.DiffLevel = V_EASY
-        TheGameScene!.restart()
+        if GS.GameMode == .Endless { GS.DiffLevel = V_EASY }
         //set difficulty, speeds, ect.
         GS.timeBetweenLines = 0.5
         GS.totalLinesDropped = 0
@@ -111,6 +110,7 @@ class GameOverLayer: SKNode {
         GS.groupAmtMax = 3
         GS.CurrJoeyLives = 6
         GS.CurrBoomerangLives = 3
+        TheGameScene!.restart()
         //kangPos = 2
         scene?.physicsWorld.gravity = CGVector(dx: 0, dy: -7.8)
         //change gameState

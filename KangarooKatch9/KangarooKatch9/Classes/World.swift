@@ -10,11 +10,12 @@ import SpriteKit
 
 var leftRect: CGRect?
 var rightRect: CGRect?
+var Droplets: DropletLayer?
+var TheWorld: World?
 
 class World: SKNode {
     
     var Kang: Kangaroo?
-    var Droplets: DropletLayer?
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -53,6 +54,7 @@ class World: SKNode {
     
     func update(currentTime: CFTimeInterval) {
         Kang!.update(currentTime)
+        Droplets!.update(currentTime)
     }
     
     private func CreateKangaroo() {
@@ -86,13 +88,5 @@ class World: SKNode {
             Kang!.trackThumb(touchLocation)
         }
     }
-    
-    
-  
-    
-    
-    
-    
-    
     
 }

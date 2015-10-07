@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD024B521BC49BDC00E84EAA /* PauseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD024B511BC49BDC00E84EAA /* PauseMenu.swift */; settings = {ASSET_TAGS = (); }; };
+		AD024B541BC4AB2200E84EAA /* WhiteCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = AD024B531BC4AB2200E84EAA /* WhiteCheck.png */; settings = {ASSET_TAGS = (); }; };
 		ADDDE9CC1BBA34FD00A95BA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CA1BBA34FD00A95BA3 /* Main.storyboard */; };
 		ADDDE9CE1BBA34FD00A95BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CD1BBA34FD00A95BA3 /* Assets.xcassets */; };
 		ADDDE9D11BBA34FD00A95BA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CF1BBA34FD00A95BA3 /* LaunchScreen.storyboard */; };
@@ -72,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD024B511BC49BDC00E84EAA /* PauseMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseMenu.swift; sourceTree = "<group>"; };
+		AD024B531BC4AB2200E84EAA /* WhiteCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCheck.png; sourceTree = "<group>"; };
 		ADDDE9BF1BBA34FD00A95BA3 /* KangarooKatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KangarooKatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADDDE9CB1BBA34FD00A95BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ADDDE9CD1BBA34FD00A95BA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 		ADDDE9F61BBA360C00A95BA3 /* KKImages */ = {
 			isa = PBXGroup;
 			children = (
+				AD024B531BC4AB2200E84EAA /* WhiteCheck.png */,
 				ADDDE9F71BBA360C00A95BA3 /* ButtonImage.png */,
 				ADDDE9F81BBA360C00A95BA3 /* ImageBoundary.png */,
 				ADDDE9F91BBA360C00A95BA3 /* KKbackground.png */,
@@ -253,6 +258,7 @@
 				ADDDEA291BBA38FA00A95BA3 /* GameStatus.swift */,
 				ADDDEA2A1BBA38FA00A95BA3 /* GameViewController.swift */,
 				ADDDEA2B1BBA38FA00A95BA3 /* HUD.swift */,
+				AD024B511BC49BDC00E84EAA /* PauseMenu.swift */,
 				ADDDEA2C1BBA38FA00A95BA3 /* Kangaroo.swift */,
 				ADDDEA2D1BBA38FA00A95BA3 /* MainMenu.swift */,
 				ADDDEA2E1BBA38FA00A95BA3 /* MyUtils.swift */,
@@ -394,6 +400,7 @@
 				ADDDEA051BBA360C00A95BA3 /* OneThumb.png in Resources */,
 				ADDDEA151BBA361300A95BA3 /* Icon29.png in Resources */,
 				ADDDE9CC1BBA34FD00A95BA3 /* Main.storyboard in Resources */,
+				AD024B541BC4AB2200E84EAA /* WhiteCheck.png in Resources */,
 				ADDDEA451BBA399700A95BA3 /* soupofjustice.ttf in Resources */,
 				ADDDEA001BBA360C00A95BA3 /* ButtonImage.png in Resources */,
 				ADDDEA171BBA361300A95BA3 /* Icon29@3x.png in Resources */,
@@ -424,6 +431,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADDDEA3E1BBA38FA00A95BA3 /* MainMenu.swift in Sources */,
+				AD024B521BC49BDC00E84EAA /* PauseMenu.swift in Sources */,
 				ADDDEA421BBA38FA00A95BA3 /* World.swift in Sources */,
 				ADDDEA3B1BBA38FA00A95BA3 /* GameViewController.swift in Sources */,
 				ADDDEA351BBA38FA00A95BA3 /* DropletLayer.swift in Sources */,

@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view?.multipleTouchEnabled = true
         
         let scene = MainMenu(size: CGSize(width: 768, height: 1024))
         // Configure the view.

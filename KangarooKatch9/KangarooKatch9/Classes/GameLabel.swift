@@ -44,7 +44,7 @@ class GameLabel: SKLabelNode {
             labelS.horizontalAlignmentMode = horAlignMode
             labelS.verticalAlignmentMode = vertAlignMode
             labelS.fontColor = shadowColor
-            labelS.position = CGPoint(x: pos.x+2, y: pos.y-2)
+            labelS.position = CGPoint(x: pos.x+3, y: pos.y-3)
             labelS.zPosition = zPosition
             
             super.init()

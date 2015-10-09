@@ -8,21 +8,26 @@
 
 import SpriteKit
 
+var ThePauseMenu: PauseMenu?
+
 class PauseMenu: SKNode {
     
     var gamePausedLabel: GameLabel?
-    var exitLabel: GameLabel?
-    var resumeLabel: GameLabel?
-    var restartLabel: GameLabel?
     var soundLabel: GameLabel?
     var shakeLabel: GameLabel?
     
+    var resumeButton: OptionButton?
+    var restartButton: OptionButton?
+    var exitButton: OptionButton?
+    var soundButton: OptionButton?
+    var shakeButton: OptionButton?
+    
+    let fullRect: CGRect
     let resumeRect: CGRect
     let restartRect: CGRect
     let exitRect: CGRect
     let soundRect: CGRect
     let shakeRect: CGRect
-    
     
     let gamePausedY: CGFloat = 700
     let resumeLabelY: CGFloat = GameSize!.height/2 + 110
@@ -30,7 +35,15 @@ class PauseMenu: SKNode {
     let exitLabelY: CGFloat = GameSize!.height/2 - 70
     let checkBoxY: CGFloat = GameSize!.height/2 - 180
     
-    let fullRect: CGRect
+    let pauseColor: UIColor = SKColor.blackColor()
+    let pauseOColor: UIColor = SKColor.whiteColor()
+    let buttonColor: UIColor = SKColor.blackColor()
+    let buttonOColor: UIColor = SKColor.whiteColor()
+    let textColor: UIColor = SKColor.whiteColor()
+    let textSColor: UIColor = SKColor.grayColor()
+    
+    let soundCheck = SKSpriteNode(imageNamed: "WhiteCheck")
+    let shakeCheck = SKSpriteNode(imageNamed: "WhiteCheck")
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -49,68 +62,155 @@ class PauseMenu: SKNode {
         soundRect = CGRect(x: GameSize!.width/2 - 65, y: checkBoxY - 25, width: 50, height: 50)
         shakeRect = CGRect(x: GameSize!.width/2 + 135, y: checkBoxY - 25, width: 50, height: 50)
         
+        soundCheck.position = CGPoint(x: soundRect.midX+10, y: soundRect.midY+10)
+        shakeCheck.position = CGPoint(x: shakeRect.midX+10, y: shakeRect.midY+10)
+        soundCheck.setScale(0.2)
+        shakeCheck.setScale(0.2)
+        soundCheck.zPosition = 5
+        shakeCheck.zPosition = 5
         
         super.init()
+        
+        ThePauseMenu = self
         
         CreatePauseMenu()
         debugRect()
     }
     
+    func sceneTouched(touchLocation:CGPoint) {
+        if resumeRect.contains(touchLocation) {
+            resumeButton?.click()
+        }
+        if restartRect.contains(touchLocation) {
+            restartButton?.click()
+        }
+        if exitRect.contains(touchLocation) {
+            exitButton?.click()
+        }
+        if soundRect.contains(touchLocation) {
+            soundButton?.click()
+        }
+        if shakeRect.contains(touchLocation) {
+            shakeButton?.click()
+        }
+        
+    }
+    
+    func sceneUntouched(touchLocation:CGPoint) {
+        if resumeRect.contains(touchLocation) {
+            resumeButton?.unclick()
+            TheHUD?.unpauseGame = true
+        }
+        if restartRect.contains(touchLocation) {
+            //add ask are you sure you want to restart?
+            GameOver?.restartGame()
+            restartButton?.unclick()
+        }
+        if exitRect.contains(touchLocation) {
+            //add ask are you sure you want to quit?
+            let myScene = MainMenu(size: TheGameScene!.size)
+            myScene.scaleMode = TheGameScene!.scaleMode
+            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+            TheGameScene!.view?.presentScene(myScene, transition: reveal)
+            exitButton?.unclick()
+        }
+        if soundRect.contains(touchLocation) {
+            if GS.SoundOn {
+                GS.SoundOn = false
+                soundCheck.removeFromParent()
+            }
+            else {
+                GS.SoundOn = true
+                addChild(soundCheck)
+            }
+            soundButton?.unclick()
+        }
+        if shakeRect.contains(touchLocation) {
+            if GS.ShakeOn {
+                GS.ShakeOn = false
+                shakeCheck.removeFromParent()
+            }
+            else {
+                GS.ShakeOn = true
+                addChild(shakeCheck)
+            }
+            shakeButton?.unclick()
+        }
+    }
+    
     private func CreateGamePausedLabel() {
         gamePausedLabel = GameLabel(text: "GAME PAUSED", size: 60,
             horAlignMode: .Center, vertAlignMode: .Baseline,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
+            color: textColor, shadowColor: textSColor,
             pos: CGPoint(x: GameSize!.width/2, y: gamePausedY), zPosition: 4)
         if let p = gamePausedLabel {
             self.addChild(p)
         }
     }
     
-    private func CreateExitLabel() {
-        exitLabel = GameLabel(text: "EXIT", size: 40,
-            horAlignMode: .Center, vertAlignMode: .Baseline,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
-            pos: CGPoint(x: GameSize!.width/2, y: exitLabelY - 10), zPosition: 4)
-        if let el = exitLabel {
-            self.addChild(el)
+    private func CreateResumeButton() {
+        resumeButton = OptionButton(buttonRect: resumeRect,
+            outlineColor: buttonOColor, fillColor: buttonColor,
+            lineWidth: 4, startZ: 2)
+        resumeButton?.setText("RESUME", textSize: 40,
+            textColor: textColor, textColorS: textSColor,
+            textPos: CGPoint(x: GameSize!.width/2, y: resumeLabelY - 10))
+        if let rsmb = resumeButton {
+            self.addChild(rsmb)
         }
     }
     
-    private func CreateResumeLabel() {
-        resumeLabel = GameLabel(text: "RESUME", size: 40,
-            horAlignMode: .Center, vertAlignMode: .Baseline,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
-            pos: CGPoint(x: GameSize!.width/2, y: resumeLabelY - 10), zPosition: 4)
-        if let rl = resumeLabel {
-            self.addChild(rl)
+    private func CreateRestartButton() {
+        restartButton = OptionButton(buttonRect: restartRect,
+            outlineColor: buttonOColor, fillColor: buttonColor,
+            lineWidth: 4, startZ: 2)
+        restartButton?.setText("RESTART", textSize: 40,
+            textColor: textColor, textColorS: textSColor,
+            textPos: CGPoint(x: GameSize!.width/2, y: restartLabelY - 10))
+        if let rstb = restartButton {
+            self.addChild(rstb)
         }
     }
     
-    private func CreateRestartLabel() {
-        restartLabel = GameLabel(text: "RESTART", size:40,
-            horAlignMode: .Center, vertAlignMode: .Baseline,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
-            pos: CGPoint(x: GameSize!.width/2, y: restartLabelY - 10), zPosition: 4)
-        if let rl = restartLabel {
-            self.addChild(rl)
+    private func CreateExitButton() {
+        exitButton = OptionButton(buttonRect: exitRect,
+            outlineColor: buttonOColor, fillColor: buttonColor,
+            lineWidth: 4, startZ: 2)
+        exitButton?.setText("EXIT", textSize: 40,
+            textColor: textColor, textColorS: textSColor,
+            textPos: CGPoint(x: GameSize!.width/2, y: exitLabelY - 10))
+        if let eb = exitButton {
+            self.addChild(eb)
         }
     }
     
-    private func CreateSoundLabel() {
+    private func CreateSoundOption() {
+        soundButton = OptionButton(buttonRect: soundRect,
+            outlineColor: buttonOColor, fillColor: buttonColor,
+            lineWidth: 4, startZ: 2)
         soundLabel = GameLabel(text: "SOUND", size:40,
             horAlignMode: .Center, vertAlignMode: .Baseline,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
+            color: textColor, shadowColor: textSColor,
             pos: CGPoint(x: GameSize!.width/2 - 135, y: checkBoxY - 10), zPosition: 4)
+        if let sb = soundButton {
+            self.addChild(sb)
+        }
         if let sl = soundLabel {
             self.addChild(sl)
         }
     }
     
-    private func CreateShakeLabel() {
+    private func CreateShakeOption() {
+        shakeButton = OptionButton(buttonRect: shakeRect,
+            outlineColor: buttonOColor, fillColor: buttonColor,
+            lineWidth: 4, startZ: 2)
         shakeLabel = GameLabel(text: "SHAKE", size:40,
             horAlignMode: .Center, vertAlignMode: .Baseline,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
+            color: textColor, shadowColor: textSColor,
             pos: CGPoint(x: GameSize!.width/2 + 65, y: checkBoxY - 10), zPosition: 4)
+        if let shb = shakeButton {
+            self.addChild(shb)
+        }
         if let shl = shakeLabel {
             self.addChild(shl)
         }
@@ -124,93 +224,27 @@ class PauseMenu: SKNode {
         shade.name = "shade"
         addChild(shade)
         
-        //PauseMenuRect
         let pmRect = CGRect(x: oneThirdX-130, y: GameSize!.height/2-250,
             width: GameSize!.width-(2*(oneThirdX-130)), height: 500)
-        let pauseMenu = getRoundedRectShape(pmRect, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 10)
-        pauseMenu.fillColor = SKColor.blackColor()
+        let pauseMenu = getRoundedRectShape(pmRect, cornerRadius: 16,
+            color: pauseOColor, lineWidth: 10)
+        pauseMenu.fillColor = pauseColor
         pauseMenu.zPosition = 2
         addChild(pauseMenu)
-        
-        /*
-        let pmRectS = CGRect(x: oneThirdX-130, y: GameSize!.height/2-255,
-            width: GameSize!.width-(2*(oneThirdX-130)), height: 500)
-        let pauseMenuS = getRoundedRectShape(pmRectS, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 16)
-        pauseMenuS.fillColor = SKColor.blackColor()
-        pauseMenuS.zPosition = 1
-        addChild(pauseMenuS)
-        */
-        
-        //Resume Rect
-        let resumeSquare = getRoundedRectShape(resumeRect, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 4)
-        resumeSquare.fillColor = SKColor.blackColor()
-        resumeSquare.zPosition = 3
-        addChild(resumeSquare)
-        
-        let rsmRectS = CGRect(x: GameSize!.width/2 - 100, y: resumeLabelY - 40,
-            width: 200, height: 70)
-        let resumeSquareS = getRoundedRectShape(rsmRectS, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 8)
-        resumeSquareS.fillColor = SKColor.blackColor()
-        resumeSquareS.zPosition = 2
-        addChild(resumeSquareS)
-        
-        //Restart Rect
-        let restartSquare = getRoundedRectShape(restartRect, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 4)
-        restartSquare.fillColor = SKColor.blackColor()
-        restartSquare.zPosition = 3
-        addChild(restartSquare)
-        
-        let rstRectS = CGRect(x: GameSize!.width/2 - 100, y: restartLabelY - 40, width: 200, height: 70)
-        let restartSquareS = getRoundedRectShape(rstRectS, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 8)
-        restartSquareS.fillColor = SKColor.blackColor()
-        restartSquareS.zPosition = 2
-        addChild(restartSquareS)
-        
-        //Exit Rect
-        let exitSquare = getRoundedRectShape(exitRect, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 4)
-        exitSquare.fillColor = SKColor.blackColor()
-        exitSquare.zPosition = 3
-        addChild(exitSquare)
-        
-        let eRectS = CGRect(x: GameSize!.width/2 - 100, y: exitLabelY - 40,
-            width: 200, height: 70)
-        let exitSquareS = getRoundedRectShape(eRectS, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 8)
-        exitSquareS.fillColor = SKColor.blackColor()
-        exitSquareS.zPosition = 2
-        addChild(exitSquareS)
-        
-        //Sound Box
-        let soundBox = getRoundedRectShape(soundRect, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 4)
-        soundBox.fillColor = SKColor.blackColor()
-        soundBox.zPosition = 3
-        addChild(soundBox)
-        
-        let sBoxS = CGRect(x: GameSize!.width/2 - 65, y: checkBoxY - 30, width: 50, height: 50)
-        let soundBoxS = getRoundedRectShape(sBoxS, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 8)
-        soundBoxS.fillColor = SKColor.blackColor()
-        soundBoxS.zPosition = 2
-        addChild(soundBoxS)
-        
-        //Shake Box
-        let shakeBox = getRoundedRectShape(shakeRect, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 4)
-        shakeBox.fillColor = SKColor.blackColor()
-        shakeBox.zPosition = 3
-        addChild(shakeBox)
-        
-        let shBoxS = CGRect(x: GameSize!.width/2 + 135, y: checkBoxY - 30, width: 50, height: 50)
-        let shakeBoxS = getRoundedRectShape(shBoxS, cornerRadius: 16, color: SKColor.whiteColor(), lineWidth: 8)
-        shakeBoxS.fillColor = SKColor.blackColor()
-        shakeBoxS.zPosition = 2
-        addChild(shakeBoxS)
-        
         CreateGamePausedLabel()
         
-        CreateResumeLabel()
-        CreateRestartLabel()
-        CreateExitLabel()
-        CreateSoundLabel()
-        CreateShakeLabel()
-
+        CreateResumeButton()
+        CreateRestartButton()
+        CreateExitButton()
+        CreateSoundOption()
+        CreateShakeOption()
+        
+        if GS.SoundOn {
+            addChild(soundCheck)
+        }
+        if GS.ShakeOn {
+            addChild(shakeCheck)
+        }
     }
     
     func debugRect() {

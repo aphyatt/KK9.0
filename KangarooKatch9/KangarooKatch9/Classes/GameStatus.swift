@@ -27,6 +27,9 @@ class GameStatus {
     var GameMode: GameModeType = .Classic
     var GameState: GameStateType = .GameRunning
     
+    var SoundOn: Bool = true
+    var ShakeOn: Bool = true
+    
     //Droplet Status
     var timeBetweenLines: NSTimeInterval = 0.5
     var totalGroupsDropped: Int = 0

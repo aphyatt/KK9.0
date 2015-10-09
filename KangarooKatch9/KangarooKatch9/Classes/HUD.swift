@@ -110,7 +110,7 @@ class HUD: SKNode {
             }
             break
         case .Paused:
-            unpauseGame = true
+            ThePauseMenu?.sceneTouched(touchLocation)
             break
         case .GameOver:
             break
@@ -119,7 +119,15 @@ class HUD: SKNode {
     }
     
     func sceneUntouched(touchLocation:CGPoint) {
-        
+        switch GS.GameState {
+        case .GameRunning:
+            break
+        case .Paused:
+            ThePauseMenu?.sceneUntouched(touchLocation)
+            break
+        case .GameOver:
+            break
+        }
     }
     
     var pauseGameCalls: Int = 0

@@ -8,6 +8,8 @@
 
 import SpriteKit
 
+var GameOver: GameOverLayer?
+
 class GameOverLayer: SKNode {
     
     let fullRect: CGRect
@@ -32,9 +34,10 @@ class GameOverLayer: SKNode {
         
         super.init()
         
+        GameOver = self
+        
         self.name = "GameOver"
         self.zPosition = 300
-        
     }
     
     func update(currentTime: CFTimeInterval) {
@@ -145,29 +148,6 @@ class GameOverLayer: SKNode {
         let scoreAction = SKAction.sequence([wait2, bringToFront, SKAction.group([moveIntoPos, grow]), adjust])
         scoreLabel!.runAction(scoreAction)
         
-        /*
-        //tap anywhere to restart
-        let tapRestart = createShadowLabel(font: "Soup of Justice", text: "TAP ANYWHERE TO RESTART",
-            fontSize: 20,
-            horAlignMode: horAlignModeDefault, vertAlignMode: .Baseline,
-            labelColor: SKColor.blackColor(), shadowColor: SKColor.whiteColor(),
-            name: "tapRestartLabel",
-            positon: CGPoint(x: GameSize!.width/2, y: 650),
-            shadowZPos: 7, shadowOffset: 2)
-        tapRestart[0].alpha = 0.0
-        tapRestart[1].alpha = 0.0
-        addChild(tapRestart[0])
-        addChild(tapRestart[1])
-        
-        let wait3 = SKAction.waitForDuration(5.0)
-        let fadeIn2 = SKAction.fadeAlphaTo(1.0, duration: 0.8)
-        let fadeOut = SKAction.fadeAlphaTo(0.0, duration: 0.8)
-        let blink = SKAction.sequence([fadeIn2, fadeOut])
-        let tapAction = SKAction.sequence([wait3, SKAction.repeatActionForever(blink)])
-        tapRestart[0].runAction(tapAction)
-        tapRestart[1].runAction(tapAction)
-        */
-        
     }
     
     func classicGameOver() {
@@ -214,28 +194,6 @@ class GameOverLayer: SKNode {
         let finalAction = SKAction.sequence([SKAction.waitForDuration(2.5), finalScoreAction])
         tempScoreLabel!.runAction(finalAction)
         
-        /*
-        //tap anywhere to restart
-        let tapRestart = createShadowLabel(font: "Soup of Justice", text: "TAP ANYWHERE TO RESTART",
-            fontSize: 20,
-            horAlignMode: horAlignModeDefault, vertAlignMode: .Baseline,
-            labelColor: SKColor.blackColor(), shadowColor: SKColor.whiteColor(),
-            name: "tapRestartLabel",
-            positon: CGPoint(x: size.width/2, y: 650),
-            shadowZPos: 7, shadowOffset: 2)
-        tapRestart[0].alpha = 0.0
-        tapRestart[1].alpha = 0.0
-        addChild(tapRestart[0])
-        addChild(tapRestart[1])
-        
-        let wait3 = SKAction.waitForDuration(5.0)
-        let fadeIn2 = SKAction.fadeAlphaTo(1.0, duration: 0.8)
-        let fadeOut = SKAction.fadeAlphaTo(0.0, duration: 0.8)
-        let blink = SKAction.sequence([fadeIn2, fadeOut])
-        let tapAction = SKAction.sequence([wait3, SKAction.repeatActionForever(blink)])
-        tapRestart[0].runAction(tapAction)
-        tapRestart[1].runAction(tapAction)
-        */
     }
     
     func sceneTouched(touchLocation:CGPoint) {

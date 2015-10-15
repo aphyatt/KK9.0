@@ -42,4 +42,27 @@ class GameStatus {
     var groupAmtMin: Int = 2
     var groupAmtMax: Int = 3
     
+    func printStatus() {
+        print("Curr Joey Lives: \(CurrJoeyLives)")
+        print("Curr Boomerang Lives: \(CurrBoomerangLives)")
+        print("Joeys Left: \(JoeysLeft)")
+        print("Curr Score: \(CurrScore)")
+        print("Difficulty Level: \(DiffLevel)")
+        print("Game Controls: \(GameControls)")
+        print("Game Mode: \(GameMode)")
+        print("Game State: \(GameState)")
+        print("SoundOn: \(SoundOn)")
+        print("ShakeOn: \(ShakeOn)")
+        print("timeBetweenLines: \(timeBetweenLines)")
+        print("totalGroupsDropped: \(totalGroupsDropped)")
+        print("totalLinesDropped: \(totalLinesDropped)")
+        print("currLinesToDrop: \(currLinesToDrop)")
+        print("lineCountBeforeDrops: \(lineCountBeforeDrops)")
+        print("eggPercentage: \(eggPercentage)")
+        print("groupWaitTimeMin: \(groupWaitTimeMin)")
+        print("groupWaitTimeMax: \(groupWaitTimeMax)")
+        print("groupAmtMin: \(groupAmtMin)")
+        print("groupAmtMax: \(groupAmtMax)")
+    }
+    
 }

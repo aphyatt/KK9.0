@@ -57,7 +57,7 @@ class DropletLayer: SKNode {
         
         switch GS.GameMode {
         case .Endless:
-            GS.DiffLevel = V_EASY
+            setDifficulty(V_EASY)
             break
         case .Classic:
             setDifficulty(GS.DiffLevel)
@@ -75,7 +75,6 @@ class DropletLayer: SKNode {
                 if (changeDiff) {
                     changeDifficulty()
                 }
-                
                 if (GS.totalLinesDropped - GS.lineCountBeforeDrops) == GS.currLinesToDrop {
                     dropNewGroup()
                 }

@@ -25,6 +25,10 @@ class MainMenu: SKScene {
     let settingsY: CGFloat = 220
     
     override func didMoveToView(view: SKView) {
+        if (TheGameScene != nil) {
+            TheGameScene?.removeFromParent()
+        }
+        
         backgroundColor = SKColor.whiteColor()
         let background = SKSpriteNode(imageNamed: "MainMenu")
         background.position = CGPoint(x: size.width/2, y: size.height/2)

@@ -42,6 +42,9 @@ class PauseMenu: SKNode {
     let textColor: UIColor = SKColor.whiteColor()
     let textSColor: UIColor = SKColor.grayColor()
     
+    var buttonNumber = 1
+    var buttonClicked: OptionButton?
+    
     let soundCheck = SKSpriteNode(imageNamed: "WhiteCheck")
     let shakeCheck = SKSpriteNode(imageNamed: "WhiteCheck")
     
@@ -79,42 +82,45 @@ class PauseMenu: SKNode {
     
     func sceneTouched(touchLocation:CGPoint) {
         if resumeRect.contains(touchLocation) {
-            resumeButton?.click()
+            buttonClicked = resumeButton
+            buttonNumber = 1
         }
         if restartRect.contains(touchLocation) {
-            restartButton?.click()
+            buttonClicked = restartButton
+            buttonNumber = 2
         }
         if exitRect.contains(touchLocation) {
-            exitButton?.click()
+            buttonClicked = exitButton
+            buttonNumber = 3
         }
         if soundRect.contains(touchLocation) {
-            soundButton?.click()
+            buttonClicked = soundButton
+            buttonNumber = 4
         }
         if shakeRect.contains(touchLocation) {
-            shakeButton?.click()
+            buttonClicked = shakeButton
+            buttonNumber = 5
         }
         
+        buttonClicked?.click()
     }
     
     func sceneUntouched(touchLocation:CGPoint) {
-        if resumeRect.contains(touchLocation) {
-            resumeButton?.unclick()
+        if resumeRect.contains(touchLocation) && buttonNumber == 1 {
             TheHUD?.unpauseGame = true
         }
-        if restartRect.contains(touchLocation) {
+        if restartRect.contains(touchLocation) && buttonNumber == 2 {
             //add ask are you sure you want to restart?
             GameOver?.restartGame()
-            restartButton?.unclick()
         }
-        if exitRect.contains(touchLocation) {
+        if exitRect.contains(touchLocation) && buttonNumber == 3 {
             //add ask are you sure you want to quit?
             let myScene = MainMenu(size: TheGameScene!.size)
             myScene.scaleMode = TheGameScene!.scaleMode
             let reveal = SKTransition.flipHorizontalWithDuration(0.5)
             TheGameScene!.view?.presentScene(myScene, transition: reveal)
-            exitButton?.unclick()
         }
-        if soundRect.contains(touchLocation) {
+        if soundRect.contains(touchLocation) && buttonNumber == 4 {
             if GS.SoundOn {
                 GS.SoundOn = false
                 soundCheck.removeFromParent()
@@ -123,9 +129,8 @@ class PauseMenu: SKNode {
                 GS.SoundOn = true
                 addChild(soundCheck)
             }
-            soundButton?.unclick()
         }
-        if shakeRect.contains(touchLocation) {
+        if shakeRect.contains(touchLocation) && buttonNumber == 5 {
             if GS.ShakeOn {
                 GS.ShakeOn = false
                 shakeCheck.removeFromParent()
@@ -134,8 +139,9 @@ class PauseMenu: SKNode {
                 GS.ShakeOn = true
                 addChild(shakeCheck)
             }
-            shakeButton?.unclick()
         }
+        
+        buttonClicked?.unclick()
     }
     
     private func CreateGamePausedLabel() {

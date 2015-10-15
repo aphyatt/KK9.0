@@ -97,27 +97,7 @@ class GameOverLayer: SKNode {
         //remove all nodes
         removeAllActions()
         removeAllChildren()
-        //add background and kangaroo
-        GS.CurrScore = 0
-        GS.JoeysLeft = 100 //CHANGE LATER
-        if GS.GameMode == .Endless { GS.DiffLevel = V_EASY }
-        //set difficulty, speeds, ect.
-        GS.timeBetweenLines = 0.5
-        GS.totalLinesDropped = 0
-        GS.currLinesToDrop = 0
-        GS.lineCountBeforeDrops = 0
-        GS.eggPercentage = 100
-        GS.groupWaitTimeMin = 2.0
-        GS.groupWaitTimeMax = 3.0
-        GS.groupAmtMin = 2
-        GS.groupAmtMax = 3
-        GS.CurrJoeyLives = 6
-        GS.CurrBoomerangLives = 3
-        TheGameScene!.restart()
-        //kangPos = 2
-        scene?.physicsWorld.gravity = CGVector(dx: 0, dy: -7.8)
-        //change gameState
-        GS.GameState = .GameRunning
+        TheGameScene!.restartGame()
     }
     
     func endlessGameOver() {

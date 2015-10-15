@@ -39,11 +39,7 @@ class GameScene: SKScene {
         GameSize = TheGameScene?.size
         super.didMoveToView(view)
         
-        CreateWorld()
-        CreateHUD()
-        CreateGameOver()
-        
-        debugDrawPlayableArea()
+        restartGame()
     }
     
     func restart() {
@@ -107,7 +103,7 @@ class GameScene: SKScene {
     * Function is called incredibly frequently, main game loop is here
     *********************************************************************************************************/
     override func update(currentTime: CFTimeInterval) {
-    
+        
         switch GS.GameState {
         case .GameRunning:
             GameWorld!.update(currentTime)
@@ -122,7 +118,6 @@ class GameScene: SKScene {
             GameOver!.update(currentTime)
             break
         }
-        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -183,50 +178,25 @@ class GameScene: SKScene {
         Droplets!.checkCollisions()
     }
     
-    
-    /****************************** Other Functions ***********************************/
-    
-    func debugDrawPlayableArea() {
+    func restartGame() {
+        GS.CurrScore = 0
+        GS.totalLinesDropped = 0
+        GS.currLinesToDrop = 0
+        GS.lineCountBeforeDrops = 0
         
-        //let sceneArea = drawRectangle(sceneRect, SKColor.redColor(), 4.0)
-        //addChild(sceneArea)
-        
-        //let dropletArea = drawRectangle(dropletRect, SKColor.yellowColor(), 6.0)
-        //addChild(dropletArea)
-        
-        //let leftSide = drawRectangle(leftRect, SKColor.greenColor(), 10.0)
-        //addChild(leftSide)
-        
-        //let rightSide = drawRectangle(rightRect, SKColor.redColor(), 10.0)
-        //addChild(rightSide)
-        
-        /*
-        let catchZone = drawRectangle(catchZoneRect, SKColor.blueColor(), 6.0)
-        catchZone.zPosition = 2
-        addChild(catchZone)
-        
-        let fadeZone = drawRectangle(fadeZoneRect, SKColor.whiteColor(), 6.0)
-        fadeZone.zPosition = 2
-        addChild(fadeZone)
-        
-        let testRect = CGRect(x: 300, y: 300, width: 300, height: 300)
-        let test = getRoundedRectShape(rect: testRect, cornerRadius: 16, color: SKColor.blackColor(), lineWidth: 5)
-        test.zPosition = 10
-        addChild(test)
-        
-        let worldOutline = drawRectangle(worldRect, SKColor.greenColor(), 20.0)
-        worldOutline.zPosition = 500
-        addChild(worldOutline)
-        
-        let hudOutline = drawRectangle(hudRect, SKColor.blueColor(), 20.0)
-        hudOutline.zPosition = 500
-        addChild(hudOutline)
-
-        let pauseRect = drawRectangle(CGRect(x: 585, y: GameSize!.height - 80, width: 60, height: 60), color: SKColor.blackColor(), width: 6.0)
-        pauseRect.zPosition = 3
-        addChild(pauseRect)
-*/
-        
+        switch GS.GameMode {
+        case .Classic:
+            GS.JoeysLeft = 100 //CHANGE LATER GS.CurrJoeysLeft
+            GS.DiffLevel = MED //CHANGE LATER GS.CurrDiffLevel
+            break
+        case .Endless:
+            GS.DiffLevel = V_EASY
+            GS.CurrJoeyLives = 6
+            GS.CurrBoomerangLives = 3
+            break
+        }
+        restart()
+        GS.GameState = .GameRunning
     }
     
 }

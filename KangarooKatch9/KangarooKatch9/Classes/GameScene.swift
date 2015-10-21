@@ -111,6 +111,7 @@ class GameScene: SKScene {
             break
         case .Paused:
             dropLines = false
+            GameWorld!.update(currentTime)
             HUDdisplay!.update(currentTime)
             break
         case .GameOver:
@@ -130,12 +131,9 @@ class GameScene: SKScene {
             if worldRect.contains(touchLocation) {
                 GameWorld!.sceneTouched(touchLocation)
             }
-            if hudRect.contains(touchLocation) {
-                HUDdisplay!.sceneTouched(touchLocation)
-            }
             break
         case .Paused:
-            HUDdisplay!.sceneTouched(touchLocation)
+            GameWorld!.sceneTouched(touchLocation)
             break
         case .GameOver:
             GameOver!.sceneTouched(touchLocation)
@@ -161,12 +159,9 @@ class GameScene: SKScene {
             if worldRect.contains(touchLocation) {
                 GameWorld!.sceneUntouched(touchLocation)
             }
-            if hudRect.contains(touchLocation) {
-                HUDdisplay!.sceneUntouched(touchLocation)
-            }
             break
         case .Paused:
-            HUDdisplay!.sceneUntouched(touchLocation)
+            GameWorld!.sceneUntouched(touchLocation)
             break
         case .GameOver:
             GameOver!.sceneUntouched(touchLocation)

@@ -18,11 +18,10 @@ class EndlessHUD: SKNode {
     
     var dropsLeft: Int = 10
     var livesLeft: Int = 3
-    let scoreLabelX: CGFloat = oneThirdX - 70
-    let scoreLabelY: CGFloat = 962
-    let livesDropsX: CGFloat = twoThirdX - 25
-    let livesLabelY: CGFloat = 987
-    let dropsLabelY: CGFloat = 937
+    let scoreLabelX: CGFloat = oneThirdX - 38
+    let scoreLabelY: CGFloat = 952
+    let livesLabelY: CGFloat = 982
+    let dropsLabelY: CGFloat = 922
     
     var livesLabel: GameLabel?
     var dropsLabel: GameLabel?
@@ -33,11 +32,8 @@ class EndlessHUD: SKNode {
     
     override init() {
         
-        //joeyLifeStartX = GameSize!.width/2 + 93
-        //boomerangLifeStartX = GameSize!.width/2 + 115
-        
-        joeyLifeStartX = GameSize!.width/2 - 20
-        boomerangLifeStartX = GameSize!.width/2 - 5
+        joeyLifeStartX = GameSize!.width/2 + 32
+        boomerangLifeStartX = GameSize!.width/2 + 50
         
         super.init()
         
@@ -47,8 +43,6 @@ class EndlessHUD: SKNode {
         self.zPosition = 200
         
         CreateScoreLabel()
-        //CreateLivesLabel()
-        //CreateDropsLabel()
         CreateLives()
         
     }
@@ -63,7 +57,7 @@ class EndlessHUD: SKNode {
     }
     
     private func CreateScoreLabel() {
-        scoreLabel = GameLabel(text: "Score: \(GS.CurrScore)", size: 50,
+        scoreLabel = GameLabel(text: "Score: \(GS.CurrScore)", size: 58,
             horAlignMode: .Center, vertAlignMode: .Center,
             color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
             pos: CGPoint(x: scoreLabelX, y: scoreLabelY), zPosition: self.zPosition + 1)
@@ -73,42 +67,20 @@ class EndlessHUD: SKNode {
         }
     }
     
-    private func CreateLivesLabel() {
-        livesLabel = GameLabel(text: "Lives: ", size: 35,
-            horAlignMode: .Right, vertAlignMode: .Center,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
-            pos: CGPoint(x: livesDropsX, y: livesLabelY), zPosition: self.zPosition + 1)
-        if let ll = livesLabel {
-            ll.runAction(SKAction.scaleYTo(1.2, duration: 0.0))
-            self.addChild(ll)
-        }
-    }
-    
-    private func CreateDropsLabel() {
-        dropsLabel = GameLabel(text: "Drops: ", size: 35,
-            horAlignMode: .Right, vertAlignMode: .Center,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
-            pos: CGPoint(x: livesDropsX, y: dropsLabelY), zPosition: self.zPosition + 1)
-        if let dl = dropsLabel {
-            dl.runAction(SKAction.scaleYTo(1.2, duration: 0.0))
-            self.addChild(dl)
-        }
-    }
-    
     func CreateLives() {
         
         for i in 0...(GS.MaxJoeyLives-1) {
             let node = SKSpriteNode(imageNamed: "Egg")
             let nodeS = SKSpriteNode(imageNamed: "Egg")
             
-            node.position.x = joeyLifeStartX + CGFloat(i)*35
+            node.position.x = joeyLifeStartX + CGFloat(i)*41
             node.position.y = dropsLabelY
-            node.setScale(0.08)
+            node.setScale(0.09)
             node.zPosition = 202
             node.name = "drop\(i+1)"
             
             nodeS.position = node.position
-            nodeS.setScale(0.08)
+            nodeS.setScale(0.09)
             nodeS.zPosition = 201
             nodeS.alpha = 0.5
             
@@ -120,14 +92,14 @@ class EndlessHUD: SKNode {
             let node = SKSpriteNode(imageNamed: "Boomerang")
             let nodeS = SKSpriteNode(imageNamed: "Boomerang")
             
-            node.position.x = boomerangLifeStartX + CGFloat(i)*72
+            node.position.x = boomerangLifeStartX + CGFloat(i)*86
             node.position.y = livesLabelY
-            node.setScale(0.15)
+            node.setScale(0.17)
             node.zPosition = 202
             node.name = "life\(i+1)"
             
             nodeS.position = node.position
-            nodeS.setScale(0.15)
+            nodeS.setScale(0.17)
             nodeS.zPosition = 201
             nodeS.alpha = 0.5
             

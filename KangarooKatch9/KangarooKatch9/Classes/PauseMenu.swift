@@ -77,7 +77,6 @@ class PauseMenu: SKNode {
         ThePauseMenu = self
         
         CreatePauseMenu()
-        debugRect()
     }
     
     func sceneTouched(touchLocation:CGPoint) {
@@ -85,29 +84,34 @@ class PauseMenu: SKNode {
             buttonClicked = resumeButton
             buttonNumber = 1
         }
-        if restartRect.contains(touchLocation) {
+        else if restartRect.contains(touchLocation) {
             buttonClicked = restartButton
             buttonNumber = 2
         }
-        if exitRect.contains(touchLocation) {
+        else if exitRect.contains(touchLocation) {
             buttonClicked = exitButton
             buttonNumber = 3
         }
-        if soundRect.contains(touchLocation) {
+        else if soundRect.contains(touchLocation) {
             buttonClicked = soundButton
             buttonNumber = 4
         }
-        if shakeRect.contains(touchLocation) {
+        else if shakeRect.contains(touchLocation) {
             buttonClicked = shakeButton
             buttonNumber = 5
         }
+        else {
+            buttonNumber = 6
+        }
         
-        buttonClicked?.click()
+        if buttonNumber < 6 {
+            buttonClicked?.click()
+        }
     }
     
     func sceneUntouched(touchLocation:CGPoint) {
         if resumeRect.contains(touchLocation) && buttonNumber == 1 {
-            TheHUD?.unpauseGame = true
+            unpauseGame = true
         }
         if restartRect.contains(touchLocation) && buttonNumber == 2 {
             //add ask are you sure you want to restart?
@@ -141,7 +145,9 @@ class PauseMenu: SKNode {
             }
         }
         
-        buttonClicked?.unclick()
+        if buttonNumber < 6 {
+            buttonClicked?.unclick()
+        }
     }
     
     private func CreateGamePausedLabel() {

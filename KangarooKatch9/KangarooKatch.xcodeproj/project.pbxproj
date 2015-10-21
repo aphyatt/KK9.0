@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		AD024B521BC49BDC00E84EAA /* PauseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD024B511BC49BDC00E84EAA /* PauseMenu.swift */; settings = {ASSET_TAGS = (); }; };
 		AD024B541BC4AB2200E84EAA /* WhiteCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = AD024B531BC4AB2200E84EAA /* WhiteCheck.png */; settings = {ASSET_TAGS = (); }; };
-		AD59AAFD1BCF3EDF00B6C31B /* PauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD59AAFC1BCF3EDF00B6C31B /* PauseButton.swift */; settings = {ASSET_TAGS = (); }; };
 		AD6DD26B1BC72EC800DA17C4 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6DD26A1BC72EC800DA17C4 /* OptionButton.swift */; settings = {ASSET_TAGS = (); }; };
 		ADDDE9CC1BBA34FD00A95BA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CA1BBA34FD00A95BA3 /* Main.storyboard */; };
 		ADDDE9CE1BBA34FD00A95BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CD1BBA34FD00A95BA3 /* Assets.xcassets */; };
@@ -38,7 +37,6 @@
 		ADDDEA1E1BBA361300A95BA3 /* Icon76.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA131BBA361300A95BA3 /* Icon76.png */; settings = {ASSET_TAGS = (); }; };
 		ADDDEA1F1BBA361300A95BA3 /* Icon76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA141BBA361300A95BA3 /* Icon76@2x.png */; settings = {ASSET_TAGS = (); }; };
 		ADDDEA321BBA38FA00A95BA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA211BBA38FA00A95BA3 /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
-		ADDDEA331BBA38FA00A95BA3 /* ClassicGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA221BBA38FA00A95BA3 /* ClassicGameScene.swift */; settings = {ASSET_TAGS = (); }; };
 		ADDDEA341BBA38FA00A95BA3 /* ClassicHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA231BBA38FA00A95BA3 /* ClassicHUD.swift */; settings = {ASSET_TAGS = (); }; };
 		ADDDEA351BBA38FA00A95BA3 /* DropletLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA241BBA38FA00A95BA3 /* DropletLayer.swift */; settings = {ASSET_TAGS = (); }; };
 		ADDDEA361BBA38FA00A95BA3 /* EndlessHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA251BBA38FA00A95BA3 /* EndlessHUD.swift */; settings = {ASSET_TAGS = (); }; };
@@ -78,7 +76,6 @@
 /* Begin PBXFileReference section */
 		AD024B511BC49BDC00E84EAA /* PauseMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseMenu.swift; sourceTree = "<group>"; };
 		AD024B531BC4AB2200E84EAA /* WhiteCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCheck.png; sourceTree = "<group>"; };
-		AD59AAFC1BCF3EDF00B6C31B /* PauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseButton.swift; sourceTree = "<group>"; };
 		AD6DD26A1BC72EC800DA17C4 /* OptionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
 		ADDDE9BF1BBA34FD00A95BA3 /* KangarooKatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KangarooKatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADDDE9CB1BBA34FD00A95BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,7 +110,6 @@
 		ADDDEA131BBA361300A95BA3 /* Icon76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon76.png; sourceTree = "<group>"; };
 		ADDDEA141BBA361300A95BA3 /* Icon76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon76@2x.png"; sourceTree = "<group>"; };
 		ADDDEA211BBA38FA00A95BA3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ADDDEA221BBA38FA00A95BA3 /* ClassicGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicGameScene.swift; sourceTree = "<group>"; };
 		ADDDEA231BBA38FA00A95BA3 /* ClassicHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicHUD.swift; sourceTree = "<group>"; };
 		ADDDEA241BBA38FA00A95BA3 /* DropletLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletLayer.swift; sourceTree = "<group>"; };
 		ADDDEA251BBA38FA00A95BA3 /* EndlessHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndlessHUD.swift; sourceTree = "<group>"; };
@@ -251,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				ADDDEA211BBA38FA00A95BA3 /* AppDelegate.swift */,
-				ADDDEA221BBA38FA00A95BA3 /* ClassicGameScene.swift */,
 				ADDDEA231BBA38FA00A95BA3 /* ClassicHUD.swift */,
 				ADDDEA241BBA38FA00A95BA3 /* DropletLayer.swift */,
 				ADEFB9911BBB877D0009F97A /* Droplet.swift */,
@@ -262,7 +257,6 @@
 				ADDDEA291BBA38FA00A95BA3 /* GameStatus.swift */,
 				ADDDEA2A1BBA38FA00A95BA3 /* GameViewController.swift */,
 				ADDDEA2B1BBA38FA00A95BA3 /* HUD.swift */,
-				AD59AAFC1BCF3EDF00B6C31B /* PauseButton.swift */,
 				AD024B511BC49BDC00E84EAA /* PauseMenu.swift */,
 				AD6DD26A1BC72EC800DA17C4 /* OptionButton.swift */,
 				ADDDEA2C1BBA38FA00A95BA3 /* Kangaroo.swift */,
@@ -442,7 +436,6 @@
 				ADDDEA3B1BBA38FA00A95BA3 /* GameViewController.swift in Sources */,
 				ADDDEA351BBA38FA00A95BA3 /* DropletLayer.swift in Sources */,
 				ADDDEA411BBA38FA00A95BA3 /* Variables.swift in Sources */,
-				AD59AAFD1BCF3EDF00B6C31B /* PauseButton.swift in Sources */,
 				ADDDEA341BBA38FA00A95BA3 /* ClassicHUD.swift in Sources */,
 				ADDDEA391BBA38FA00A95BA3 /* GameScene.swift in Sources */,
 				ADDDEA3F1BBA38FA00A95BA3 /* MyUtils.swift in Sources */,
@@ -454,7 +447,6 @@
 				ADDDEA361BBA38FA00A95BA3 /* EndlessHUD.swift in Sources */,
 				ADDDEA321BBA38FA00A95BA3 /* AppDelegate.swift in Sources */,
 				ADDDEA381BBA38FA00A95BA3 /* GameOverLayer.swift in Sources */,
-				ADDDEA331BBA38FA00A95BA3 /* ClassicGameScene.swift in Sources */,
 				ADEFB9921BBB877D0009F97A /* Droplet.swift in Sources */,
 				ADDDEA3D1BBA38FA00A95BA3 /* Kangaroo.swift in Sources */,
 			);

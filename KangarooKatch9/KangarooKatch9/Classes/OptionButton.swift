@@ -106,6 +106,10 @@ class OptionButton: SKNode {
     func unclick() {
         shade!.removeFromParent()
     }
+    
+    func stretchText() {
+        
+    }
 
 }
 

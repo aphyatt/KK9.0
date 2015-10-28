@@ -17,9 +17,11 @@ class GameOverLayer: SKNode {
     var restartTap: Bool = false
     var restartTapWait: Bool = false
     var startGameOver: Bool = false
+    var newHighscore: Bool = false
     
     var gameOverLabel: GameLabel?
     var tempScoreLabel: GameLabel?
+    var highscoreLabel: GameLabel?
     
     var scoreTmp: Int = 0
     
@@ -51,9 +53,18 @@ class GameOverLayer: SKNode {
         if(endGameCalls == 1) {
             var gameOver: SKAction
             if GS.GameMode == .Endless {
+                let highscore = GS.getEndlessHighscore()
+                if GS.CurrScore > highscore {
+                    newHighscore = true
+                }
                 gameOver = SKAction.runBlock({self.endlessGameOver()})
             }
-            else { //if GS.GameMode == .Classic {
+            else { //if GS.GameMode == .Classic
+                let highscore = GS.getClassicHighscore()
+                let currScore = intDivisionToDouble(GS.CurrScore, rhs: GS.JoeyAmount)*100
+                if currScore > highscore {
+                    newHighscore = true
+                }
                 gameOver = SKAction.runBlock({self.classicGameOver()})
             }
             let wait2 = SKAction.waitForDuration(NSTimeInterval(5))
@@ -78,6 +89,27 @@ class GameOverLayer: SKNode {
         if let gol = gameOverLabel {
             gol.alpha = 0.0
             self.addChild(gol)
+        }
+    }
+    
+    private func CreateHighscoreLabel() {
+        var ltext: String
+        var yPos: CGFloat
+        if GS.GameMode == .Classic {
+            ltext = "HIGHSCORE: \(GS.getClassicHighscore())%"
+            yPos = 600
+        }
+        else { //Endless
+            ltext = "HIGHSCORE: \(GS.getEndlessHighscore())"
+            yPos = 624
+        }
+        highscoreLabel = GameLabel(text: ltext, size: 60,
+            horAlignMode: .Center, vertAlignMode: .Baseline,
+            color: SKColor.blackColor(), shadowColor: SKColor.whiteColor(),
+            pos: CGPoint(x: GameSize!.width/2, y: yPos), zPosition: self.zPosition + 1)
+        if let hsl = highscoreLabel {
+            hsl.alpha = 0.0
+            self.addChild(hsl)
         }
     }
     
@@ -128,6 +160,26 @@ class GameOverLayer: SKNode {
         let scoreAction = SKAction.sequence([wait2, bringToFront, SKAction.group([moveIntoPos, grow]), adjust])
         scoreLabel!.runAction(scoreAction)
         
+        //have old high score appear
+        CreateHighscoreLabel()
+        let wait3 = SKAction.waitForDuration(5.0)
+        let fadeIn2 = SKAction.fadeAlphaTo(1.0, duration: 1.5)
+        let beforeHighscoreLabelAction = SKAction.sequence([wait3, fadeIn2])
+        highscoreLabel?.runAction(beforeHighscoreLabelAction)
+        
+        //if new, replace old with new and animate
+        if newHighscore {
+            GS.setEndlessHighscore(GS.CurrScore)
+            
+            //TODO animate if new highscore
+            let wait4 = SKAction.waitForDuration(5.5)
+            let changeScore = SKAction.runBlock({
+                self.highscoreLabel?.text = "HIGHSCORE: \(GS.CurrScore)"
+            })
+            let newHighscoreAction = SKAction.sequence([wait4, changeScore])
+            highscoreLabel!.runAction(newHighscoreAction)
+        }
+        
     }
     
     func classicGameOver() {
@@ -173,6 +225,27 @@ class GameOverLayer: SKNode {
         }
         let finalAction = SKAction.sequence([SKAction.waitForDuration(2.5), finalScoreAction])
         tempScoreLabel!.runAction(finalAction)
+        
+        //have old high score appear
+        CreateHighscoreLabel()
+        let wait2 = SKAction.waitForDuration(5.0) //figure out time to wait
+        let fadeIn2 = SKAction.fadeAlphaTo(1.0, duration: 1.5)
+        let beforeHighscoreLabelAction = SKAction.sequence([wait2, fadeIn2])
+        highscoreLabel?.runAction(beforeHighscoreLabelAction)
+        
+        //if new, replace old with new and animate
+        if newHighscore {
+            let currScore = intDivisionToDouble(GS.CurrScore, rhs: GS.JoeyAmount)*100
+            GS.setClassicHighscore(currScore)
+            
+            //TODO animate if new highscore
+            let wait3 = SKAction.waitForDuration(7.0)
+            let changeScore = SKAction.runBlock({
+                self.highscoreLabel?.text = "HIGHSCORE: \(currScore)%"
+            })
+            let newHighscoreAction = SKAction.sequence([wait3, changeScore])
+            highscoreLabel!.runAction(newHighscoreAction)
+        }
         
     }
     

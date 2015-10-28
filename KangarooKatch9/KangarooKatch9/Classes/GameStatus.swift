@@ -17,11 +17,11 @@ class GameStatus {
     var CurrBoomerangLives = 3
     
     //classic
+    var JoeyAmount = 100
     var JoeysLeft = 100
     
     var CurrScore = 0
-    var HiScore = 0
-    var DiffLevel = 0
+    var DiffLevel = V_EASY
     
     var GameControls: ControlType = .Thumb
     var GameMode: GameModeType = .Classic
@@ -41,6 +41,73 @@ class GameStatus {
     var groupWaitTimeMax: CGFloat = 3.0
     var groupAmtMin: Int = 2
     var groupAmtMax: Int = 3
+    
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
+    func setClassicHighscore(highscore: Double) {
+        switch GS.DiffLevel {
+        case V_EASY:
+            userDefaults.setValue(highscore, forKey: "CHS0")
+            break
+        case EASY:
+            userDefaults.setValue(highscore, forKey: "CHS1")
+            break
+        case MED:
+            userDefaults.setValue(highscore, forKey: "CHS2")
+            break
+        case HARD:
+            userDefaults.setValue(highscore, forKey: "CHS3")
+            break
+        case V_HARD:
+            userDefaults.setValue(highscore, forKey: "CHS4")
+            break
+        default:
+            userDefaults.setValue(highscore, forKey: "CHS5")
+            break
+        }
+    }
+    
+    func getClassicHighscore() -> Double
+    {
+        switch GS.DiffLevel {
+        case V_EASY:
+            if let highscore = userDefaults.valueForKey("CHS0")
+            {return highscore as! Double}
+            break
+        case EASY:
+            if let highscore = userDefaults.valueForKey("CHS1")
+            {return highscore as! Double}
+            break
+        case MED:
+            if let highscore = userDefaults.valueForKey("CHS2")
+            {return highscore as! Double}
+            break
+        case HARD:
+            if let highscore = userDefaults.valueForKey("CHS3")
+            {return highscore as! Double}
+            break
+        case V_HARD:
+            if let highscore = userDefaults.valueForKey("CHS4")
+            {return highscore as! Double}
+            break
+        default:
+            if let highscore = userDefaults.valueForKey("CHS5")
+            {return highscore as! Double}
+            break
+        }
+        return 0
+    }
+    
+    func setEndlessHighscore(highscore: Int) {
+        userDefaults.setValue(highscore, forKey: "EHS")
+    }
+    
+    func getEndlessHighscore() -> Int {
+        if let highscore = userDefaults.valueForKey("EHS") {
+            return highscore as! Int
+        }
+        return 0
+    }
     
     func printStatus() {
         print("Curr Joey Lives: \(CurrJoeyLives)")

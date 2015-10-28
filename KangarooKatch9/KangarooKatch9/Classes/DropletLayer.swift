@@ -155,7 +155,6 @@ class DropletLayer: SKNode {
             GS.groupAmtMin = (GS.groupAmtMin*2 - 1)
             GS.groupAmtMax = (GS.groupAmtMin*2 - 1)
         }
-        
     }
     
     //Change Difficulty for Endless

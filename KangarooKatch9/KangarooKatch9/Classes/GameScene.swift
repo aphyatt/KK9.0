@@ -178,6 +178,8 @@ class GameScene: SKScene {
         GS.totalLinesDropped = 0
         GS.currLinesToDrop = 0
         GS.lineCountBeforeDrops = 0
+        GS.groupAmtMin = 2
+        GS.groupAmtMax = 3
         
         switch GS.GameMode {
         case .Classic:

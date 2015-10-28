@@ -25,6 +25,7 @@ enum GameModeType {
     case Endless
 }
 
+let kangColor: SKColor = SKColorWithRGB(189, g: 88, b: 14)
 let dropletCatchBoundaryY: CGFloat = 175
 let dropletFadeBoundaryY: CGFloat = 65
 

@@ -15,14 +15,22 @@ class MainMenu: SKScene {
     let multiRect: CGRect
     let settingsRect: CGRect
     
-    let classicButton = SKSpriteNode(imageNamed: "ButtonImage")
-    let endlessButton = SKSpriteNode(imageNamed: "ButtonImage")
-    let multiplayerButton = SKSpriteNode(imageNamed: "ButtonImage")
-    let settingsButton = SKSpriteNode(imageNamed: "ButtonImage")
+    var classicButton: OptionButton?
+    var endlessButton: OptionButton?
+    var multiButton: OptionButton?
+    var settingsButton: OptionButton?
     let classicY: CGFloat = 760
     let endlessY: CGFloat = 580
     let multiY: CGFloat = 400
     let settingsY: CGFloat = 220
+    
+    let buttonColor: UIColor = kangColor
+    let buttonOColor: UIColor = SKColor.blackColor()
+    let textColor: UIColor = SKColor.blackColor()
+    let textSColor: UIColor = SKColor.whiteColor()
+    let buttonWidth: CGFloat = 500
+    let buttonHeight: CGFloat = 100
+    let fontSize: CGFloat = 55
     
     override func didMoveToView(view: SKView) {
         if (TheGameScene != nil) {
@@ -35,93 +43,91 @@ class MainMenu: SKScene {
         background.zPosition = -1
         addChild(background)
         
-        classicButton.position = CGPoint(x: size.width/2, y: classicY)
-        endlessButton.position = CGPoint(x: size.width/2, y: endlessY)
-        multiplayerButton.position = CGPoint(x: size.width/2, y: multiY)
-        settingsButton.position = CGPoint(x: size.width/2, y: settingsY)
-        
-        let stretch = SKAction.scaleYTo(1.6, duration: 0.0)
-        
-        let classicLabel: [SKLabelNode] = createShadowLabel("Soup of Justice", text: "CLASSIC MODE",
-            fontSize: 50,
-            horAlignMode: .Center, vertAlignMode: .Baseline,
-            labelColor: SKColor.blackColor(), shadowColor: SKColor.whiteColor(),
-            name: "classicLabel",
-            positon: CGPoint(x: size.width/2, y: classicY-15),
-            shadowZPos: 2, shadowOffset: 2)
-        classicLabel[0].runAction(stretch)
-        classicLabel[1].runAction(stretch)
-        
-        let endlessLabel: [SKLabelNode] = createShadowLabel("Soup of Justice", text: "ENDLESS MODE",
-            fontSize: 50,
-            horAlignMode: .Center, vertAlignMode: .Baseline,
-            labelColor: SKColor.blackColor(), shadowColor: SKColor.whiteColor(),
-            name: "endlessLabel",
-            positon: CGPoint(x: size.width/2, y: endlessY-15),
-            shadowZPos: 2, shadowOffset: 2)
-        endlessLabel[0].runAction(stretch)
-        endlessLabel[1].runAction(stretch)
-        
-        let multiplayerLabel: [SKLabelNode] = createShadowLabel("Soup of Justice", text: "MULTIPLAYER MODE",
-            fontSize: 50,
-            horAlignMode: .Center, vertAlignMode: .Baseline,
-            labelColor: SKColor.blackColor(), shadowColor: SKColor.whiteColor(),
-            name: "multiplayerLabel",
-            positon: CGPoint(x: size.width/2, y: multiY-15),
-            shadowZPos: 2, shadowOffset: 2)
-        multiplayerLabel[0].runAction(stretch)
-        multiplayerLabel[1].runAction(stretch)
-        
-        let settingsLabel: [SKLabelNode] = createShadowLabel("Soup of Justice", text: "SETTINGS",
-            fontSize: 50,
-            horAlignMode: .Center, vertAlignMode: .Baseline,
-            labelColor: SKColor.blackColor(), shadowColor: SKColor.whiteColor(),
-            name: "settingsLabel",
-            positon: CGPoint(x: size.width/2, y: settingsY-15),
-            shadowZPos: 2, shadowOffset: 2)
-        settingsLabel[0].runAction(stretch)
-        settingsLabel[1].runAction(stretch)
-        
-        addChild(classicButton)
-        addChild(endlessButton)
-        addChild(multiplayerButton)
-        addChild(settingsButton)
-        
-        addChild(classicLabel[0])
-        addChild(classicLabel[1])
-        addChild(endlessLabel[0])
-        addChild(endlessLabel[1])
-        addChild(multiplayerLabel[0])
-        addChild(multiplayerLabel[1])
-        addChild(settingsLabel[0])
-        addChild(settingsLabel[1])
-        
         //debugDrawPlayableArea()
     }
     
     override init(size: CGSize) {
-        classicRect = CGRect(x: size.width/2 - classicButton.size.width/2,
-            y: classicY - classicButton.size.height/2,
-            width: classicButton.size.width,
-            height: classicButton.size.height)
-        endlessRect = CGRect(x: size.width/2 - classicButton.size.width/2,
-            y: endlessY - classicButton.size.height/2,
-            width: classicButton.size.width,
-            height: classicButton.size.height)
-        multiRect = CGRect(x: size.width/2 - classicButton.size.width/2,
-            y: multiY - classicButton.size.height/2,
-            width: classicButton.size.width,
-            height: classicButton.size.height)
-        settingsRect = CGRect(x: size.width/2 - classicButton.size.width/2,
-            y: settingsY - classicButton.size.height/2,
-            width: classicButton.size.width,
-            height: classicButton.size.height)
+        classicRect = CGRect(x: size.width/2 - buttonWidth/2,
+            y: classicY - buttonHeight/2,
+            width: buttonWidth,
+            height: buttonHeight)
+        endlessRect = CGRect(x: size.width/2 - buttonWidth/2,
+            y: endlessY - buttonHeight/2,
+            width: buttonWidth,
+            height: buttonHeight)
+        multiRect = CGRect(x: size.width/2 - buttonWidth/2,
+            y: multiY - buttonHeight/2,
+            width: buttonWidth,
+            height: buttonHeight)
+        settingsRect = CGRect(x: size.width/2 - buttonWidth/2,
+            y: settingsY - buttonHeight/2,
+            width: buttonWidth,
+            height: buttonHeight)
         
         super.init(size: size)
+        
+        CreateMainMenu()
     }
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func CreateClassicButton() {
+        classicButton = OptionButton(buttonRect: classicRect,
+            outlineColor: buttonOColor, fillColor: buttonColor,
+            lineWidth: 4, startZ: 2)
+        classicButton?.setText("CLASSIC MODE", textSize: fontSize,
+            textColor: textColor, textColorS: textSColor,
+            textPos: CGPoint(x: size.width/2, y: classicY-15))
+        if let cb = classicButton {
+            self.addChild(cb)
+        }
+    }
+    
+    private func CreateEndlessButton() {
+        classicButton = OptionButton(buttonRect: endlessRect,
+            outlineColor: buttonOColor, fillColor: buttonColor,
+            lineWidth: 4, startZ: 2)
+        classicButton?.setText("ENDLESS MODE", textSize: fontSize,
+            textColor: textColor, textColorS: textSColor,
+            textPos: CGPoint(x: size.width/2, y: endlessY-15))
+        if let cb = classicButton {
+            self.addChild(cb)
+        }
+    }
+    
+    private func CreateMultiButton() {
+        classicButton = OptionButton(buttonRect: multiRect,
+            outlineColor: buttonOColor, fillColor: buttonColor,
+            lineWidth: 4, startZ: 2)
+        classicButton?.setText("MULTIPLAYER MODE", textSize: fontSize,
+            textColor: textColor, textColorS: textSColor,
+            textPos: CGPoint(x: size.width/2, y: multiY-15))
+        if let cb = classicButton {
+            self.addChild(cb)
+        }
+    }
+    
+    private func CreateSettingsButton() {
+        classicButton = OptionButton(buttonRect: settingsRect,
+            outlineColor: buttonOColor, fillColor: buttonColor,
+            lineWidth: 4, startZ: 2)
+        classicButton?.setText("SETTINGS", textSize: fontSize,
+            textColor: textColor, textColorS: textSColor,
+            textPos: CGPoint(x: size.width/2, y: settingsY-15))
+        if let cb = classicButton {
+            self.addChild(cb)
+        }
+    }
+    
+    func CreateMainMenu() {
+        
+        CreateClassicButton()
+        CreateEndlessButton()
+        CreateMultiButton()
+        CreateSettingsButton()
+        
     }
     
     func sceneTouched(touchLocation:CGPoint) {
@@ -163,8 +169,10 @@ class MainMenu: SKScene {
             var myScene: SKScene!
             if(classicRect.contains(touchLocation)) {
                 GS.GameMode = .Classic
+                //Create menus for diff->amount->then go
                 GS.DiffLevel = MED
                 GS.JoeysLeft = 100
+                GS.JoeyAmount = 100
                 myScene = GameScene(size: self.size)
                 myScene.scaleMode = self.scaleMode
                 let reveal = SKTransition.flipHorizontalWithDuration(0.5)

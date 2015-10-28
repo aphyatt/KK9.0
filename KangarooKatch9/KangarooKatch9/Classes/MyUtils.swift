@@ -63,6 +63,10 @@ func /= (inout point: CGPoint, scalar: CGFloat) {
   point = point / scalar
 }
 
+func intDivisionToDouble(lhs: Int, rhs: Int) -> Double {
+    return Double(lhs) / Double(rhs)
+}
+
 #if !(arch(x86_64) || arch(arm64))
 func atan2(y: CGFloat, x: CGFloat) -> CGFloat {
   return CGFloat(atan2f(Float(y), Float(x)))
@@ -192,6 +196,10 @@ func createShadowLabel(font: String, text: String, fontSize: CGFloat, horAlignMo
         labelArray.append(labelS)
         
         return labelArray
+}
+
+public func SKColorWithRGB(r: Int, g: Int, b: Int) -> SKColor {
+    return SKColor(red: CGFloat(r)/255.0, green: CGFloat(g)/255.0, blue: CGFloat(b)/255.0, alpha: 1.0)
 }
 
 

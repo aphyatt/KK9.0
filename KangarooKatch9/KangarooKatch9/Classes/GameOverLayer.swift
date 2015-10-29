@@ -61,7 +61,7 @@ class GameOverLayer: SKNode {
             }
             else { //if GS.GameMode == .Classic
                 let highscore = GS.getClassicHighscore()
-                let currScore = intDivisionToDouble(GS.CurrScore, rhs: GS.JoeyAmount)*100
+                let currScore = intDivisionToDouble(GS.CurrScore, rhs: GS.JoeyAmountSelected)*100
                 if currScore > highscore {
                     newHighscore = true
                 }
@@ -198,44 +198,53 @@ class GameOverLayer: SKNode {
         let fadeAction = SKAction.sequence([wait, fadeIn])
         tempScoreLabel!.runAction(fadeAction)
         
+        var scoreTime: NSTimeInterval
+        if GS.CurrScore < 11 {
+            scoreTime = 0.5
+        }
+        else if GS.CurrScore < 31 {
+            scoreTime = 1.0
+        }
+        else if GS.CurrScore < 61 {
+            scoreTime = 1.5
+        }
+        else if GS.CurrScore < 101 {
+            scoreTime = 2.0
+        }
+        else {
+            scoreTime = 2.5
+        }
+        
         let changeScore = SKAction.runBlock({
             //will add twice because of shadow and main label
             self.scoreTmp++
             self.tempScoreLabel!.text = "Score: \(self.scoreTmp/2)"
         })
-        let grow = SKAction.scaleBy(1.005, duration: 0.05)
         
-        let scoreAction = SKAction.group([changeScore, grow])
-        let waitFirstScoreAction = SKAction.waitForDuration(0.5)
-        let waitQuickScoreAction = SKAction.waitForDuration(0.01)
-        let beginScoreAction = SKAction.sequence([scoreAction, waitFirstScoreAction])
-        let endScoreAction2 = SKAction.sequence([SKAction.waitForDuration(0.5), scoreAction])
-        var finalScoreAction: SKAction
-        var repeatScore: SKAction
-        var endScoreAction1: SKAction
-        if GS.CurrScore > 4 {
-            endScoreAction1 = SKAction.sequence([SKAction.waitForDuration(0.49), scoreAction])
-            repeatScore = SKAction.repeatAction(SKAction.sequence([scoreAction, waitQuickScoreAction]), count: GS.CurrScore-4)
-            finalScoreAction = SKAction.sequence([beginScoreAction, beginScoreAction, repeatScore, endScoreAction1, endScoreAction2])
-        }
-        else {
-            endScoreAction1 = SKAction.sequence([SKAction.waitForDuration(0.2), scoreAction])
-            repeatScore = SKAction.repeatAction(SKAction.sequence([scoreAction, SKAction.waitForDuration(0.3)]), count: GS.CurrScore-1)
-            finalScoreAction = SKAction.sequence([repeatScore, endScoreAction1])
-        }
-        let finalAction = SKAction.sequence([SKAction.waitForDuration(2.5), finalScoreAction])
-        tempScoreLabel!.runAction(finalAction)
+        let waitBetweenTime = SKAction.waitForDuration(scoreTime / Double(GS.CurrScore))
+        let repeatScore = SKAction.repeatAction(SKAction.sequence([changeScore, waitBetweenTime]), count: GS.CurrScore)
+        
+        let grow = SKAction.scaleBy(1.05, duration: 0.3)
+        let scoreAnimation = SKAction.sequence([grow, grow.reversedAction()])
+    
+        let repeatScoreAnimation = SKAction.repeatActionForever(scoreAnimation)
+        let scoreAction = SKAction.group([repeatScore, repeatScoreAnimation])
+       
+        print("\(scoreTime) , \(GS.CurrScore) , wait = \(scoreTime / Double(GS.CurrScore))")
+        
+        let finalScoreAction = SKAction.sequence([SKAction.waitForDuration(2.5), scoreAction])
+        tempScoreLabel!.runAction(finalScoreAction)
         
         //have old high score appear
         CreateHighscoreLabel()
-        let wait2 = SKAction.waitForDuration(5.0) //figure out time to wait
+        let wait2 = SKAction.waitForDuration(5.0+scoreTime)
         let fadeIn2 = SKAction.fadeAlphaTo(1.0, duration: 1.5)
         let beforeHighscoreLabelAction = SKAction.sequence([wait2, fadeIn2])
         highscoreLabel?.runAction(beforeHighscoreLabelAction)
         
         //if new, replace old with new and animate
         if newHighscore {
-            let currScore = intDivisionToDouble(GS.CurrScore, rhs: GS.JoeyAmount)*100
+            let currScore = intDivisionToDouble(GS.CurrScore, rhs: GS.JoeyAmountSelected)*100
             GS.setClassicHighscore(currScore)
             
             //TODO animate if new highscore

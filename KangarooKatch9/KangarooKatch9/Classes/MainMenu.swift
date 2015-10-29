@@ -170,9 +170,8 @@ class MainMenu: SKScene {
             if(classicRect.contains(touchLocation)) {
                 GS.GameMode = .Classic
                 //Create menus for diff->amount->then go
-                GS.DiffLevel = MED
-                GS.JoeysLeft = 100
-                GS.JoeyAmount = 100
+                GS.DiffLevelSelected = MED
+                GS.JoeyAmountSelected = 100
                 myScene = GameScene(size: self.size)
                 myScene.scaleMode = self.scaleMode
                 let reveal = SKTransition.flipHorizontalWithDuration(0.5)

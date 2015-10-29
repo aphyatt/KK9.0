@@ -183,8 +183,8 @@ class GameScene: SKScene {
         
         switch GS.GameMode {
         case .Classic:
-            GS.JoeysLeft = 100 //CHANGE LATER GS.CurrJoeysLeft
-            GS.DiffLevel = MED //CHANGE LATER GS.CurrDiffLevel
+            GS.JoeysLeft = GS.JoeyAmountSelected
+            GS.DiffLevel = GS.DiffLevelSelected
             break
         case .Endless:
             GS.DiffLevel = V_EASY

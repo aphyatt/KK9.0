@@ -17,11 +17,12 @@ class GameStatus {
     var CurrBoomerangLives = 3
     
     //classic
-    var JoeyAmount = 100
+    var JoeyAmountSelected = 100
     var JoeysLeft = 100
     
     var CurrScore = 0
     var DiffLevel = V_EASY
+    var DiffLevelSelected = V_EASY
     
     var GameControls: ControlType = .Thumb
     var GameMode: GameModeType = .Classic

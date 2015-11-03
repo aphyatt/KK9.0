@@ -20,10 +20,21 @@ class GameOverLayer: SKNode {
     var newHighscore: Bool = false
     
     var gameOverLabel: GameLabel?
-    var tempScoreLabel: GameLabel?
+    var joeysCaughtLabel: GameLabel?
+    var boomersCaughtLabel: GameLabel?
+    var percentScoreLabel: GameLabel?
     var highscoreLabel: GameLabel?
     
-    var scoreTmp: Int = 0
+    let gameOverY: CGFloat = 780
+    let joeysCaughtY: CGFloat = 780
+    let boomersCaughtY: CGFloat = 680
+    let scorePercentageY: CGFloat = 580
+    let highScoreY: CGFloat = 480
+    
+    let grow = SKAction.scaleBy(1.05, duration: 0.2)
+    let scoreAnimation: SKAction
+    let repeatScoreAnimation: SKAction
+    let scoreTime: NSTimeInterval = 2.0
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -33,6 +44,9 @@ class GameOverLayer: SKNode {
         fullRect = CGRect(x: 0, y: 0,
             width: GameSize!.width,
             height: GameSize!.height)
+        
+        scoreAnimation = SKAction.sequence([grow, grow.reversedAction()])
+        repeatScoreAnimation = SKAction.repeatAction(scoreAnimation, count: 5)
         
         super.init()
         
@@ -45,7 +59,6 @@ class GameOverLayer: SKNode {
     func update(currentTime: CFTimeInterval) {
         endGame()
     }
-    
     
     var endGameCalls: Int = 0
     func endGame() {
@@ -85,10 +98,46 @@ class GameOverLayer: SKNode {
         gameOverLabel = GameLabel(text: "GAME OVER", size: 70,
             horAlignMode: .Center, vertAlignMode: .Baseline,
             color: SKColor.blackColor(), shadowColor: SKColor.whiteColor(),
-            pos: CGPoint(x: GameSize!.width/2, y: 780), zPosition: self.zPosition + 1)
+            pos: CGPoint(x: GameSize!.width/2, y: gameOverY), zPosition: self.zPosition + 1)
         if let gol = gameOverLabel {
             gol.alpha = 0.0
             self.addChild(gol)
+        }
+    }
+    
+    private func CreateJoeysCaughtLabel() {
+        joeysCaughtLabel = GameLabel(text: "Joeys: 0", size: 55,
+            horAlignMode: .Center, vertAlignMode: .Center,
+            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
+            pos: CGPoint(x: GameSize!.width/2, y: joeysCaughtY), zPosition: self.zPosition + 1)
+        if let jcl = joeysCaughtLabel {
+            jcl.runAction(SKAction.scaleYTo(1.3, duration: 0.0))
+            jcl.alpha = 0.0
+            self.addChild(jcl)
+        }
+    }
+    
+    private func CreateBoomersCaughtLabel() {
+        boomersCaughtLabel = GameLabel(text: "Boomerangs: 0", size: 55,
+            horAlignMode: .Center, vertAlignMode: .Center,
+            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
+            pos: CGPoint(x: GameSize!.width/2, y: boomersCaughtY), zPosition: self.zPosition + 1)
+        if let bcl = boomersCaughtLabel {
+            bcl.runAction(SKAction.scaleYTo(1.3, duration: 0.0))
+            bcl.alpha = 0.0
+            self.addChild(bcl)
+        }
+    }
+    
+    private func CreatePercentScoreLabel() {
+        percentScoreLabel = GameLabel(text: "Score: 0.00%", size: 55,
+            horAlignMode: .Center, vertAlignMode: .Center,
+            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
+            pos: CGPoint(x: GameSize!.width/2, y: scorePercentageY), zPosition: self.zPosition + 1)
+        if let psl = percentScoreLabel {
+            psl.runAction(SKAction.scaleYTo(1.3, duration: 0.0))
+            psl.alpha = 0.0
+            self.addChild(psl)
         }
     }
     
@@ -97,13 +146,13 @@ class GameOverLayer: SKNode {
         var yPos: CGFloat
         if GS.GameMode == .Classic {
             ltext = "HIGHSCORE: \(GS.getClassicHighscore())%"
-            yPos = 600
+            yPos = highScoreY
         }
         else { //Endless
             ltext = "HIGHSCORE: \(GS.getEndlessHighscore())"
             yPos = 624
         }
-        highscoreLabel = GameLabel(text: ltext, size: 60,
+        highscoreLabel = GameLabel(text: ltext, size: 45,
             horAlignMode: .Center, vertAlignMode: .Baseline,
             color: SKColor.blackColor(), shadowColor: SKColor.whiteColor(),
             pos: CGPoint(x: GameSize!.width/2, y: yPos), zPosition: self.zPosition + 1)
@@ -111,25 +160,6 @@ class GameOverLayer: SKNode {
             hsl.alpha = 0.0
             self.addChild(hsl)
         }
-    }
-    
-    private func CreateTempScoreLabel() {
-        tempScoreLabel = GameLabel(text: "Score: 0", size: 60,
-            horAlignMode: .Center, vertAlignMode: .Center,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
-            pos: CGPoint(x: GameSize!.width/2, y: 780), zPosition: self.zPosition + 1)
-        if let tsl = tempScoreLabel {
-            tsl.runAction(SKAction.scaleYTo(1.3, duration: 0.0))
-            tsl.alpha = 0.0
-            self.addChild(tsl)
-        }
-    }
-    
-    func restartGame() {
-        //remove all nodes
-        removeAllActions()
-        removeAllChildren()
-        TheGameScene!.restartGame()
     }
     
     func endlessGameOver() {
@@ -190,61 +220,20 @@ class GameOverLayer: SKNode {
         shade.zPosition = self.zPosition
         addChild(shade)
         
-        CreateTempScoreLabel()
+        runJoeysCaughtAction()
+        runBoomersCaughtAction()
+        runPercentScoreAction()
         
-        //fade in score
-        let wait = SKAction.waitForDuration(0.5)
-        let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 2.0)
-        let fadeAction = SKAction.sequence([wait, fadeIn])
-        tempScoreLabel!.runAction(fadeAction)
-        
-        var scoreTime: NSTimeInterval
-        if GS.CurrScore < 11 {
-            scoreTime = 0.5
-        }
-        else if GS.CurrScore < 31 {
-            scoreTime = 1.0
-        }
-        else if GS.CurrScore < 61 {
-            scoreTime = 1.5
-        }
-        else if GS.CurrScore < 101 {
-            scoreTime = 2.0
-        }
-        else {
-            scoreTime = 2.5
-        }
-        
-        let changeScore = SKAction.runBlock({
-            //will add twice because of shadow and main label
-            self.scoreTmp++
-            self.tempScoreLabel!.text = "Score: \(self.scoreTmp/2)"
-        })
-        
-        let waitBetweenTime = SKAction.waitForDuration(scoreTime / Double(GS.CurrScore))
-        let repeatScore = SKAction.repeatAction(SKAction.sequence([changeScore, waitBetweenTime]), count: GS.CurrScore)
-        
-        let grow = SKAction.scaleBy(1.05, duration: 0.3)
-        let scoreAnimation = SKAction.sequence([grow, grow.reversedAction()])
-    
-        let repeatScoreAnimation = SKAction.repeatActionForever(scoreAnimation)
-        let scoreAction = SKAction.group([repeatScore, repeatScoreAnimation])
-       
-        print("\(scoreTime) , \(GS.CurrScore) , wait = \(scoreTime / Double(GS.CurrScore))")
-        
-        let finalScoreAction = SKAction.sequence([SKAction.waitForDuration(2.5), scoreAction])
-        tempScoreLabel!.runAction(finalScoreAction)
-        
-        //have old high score appear
+        //show old high score appear
         CreateHighscoreLabel()
-        let wait2 = SKAction.waitForDuration(5.0+scoreTime)
-        let fadeIn2 = SKAction.fadeAlphaTo(1.0, duration: 1.5)
-        let beforeHighscoreLabelAction = SKAction.sequence([wait2, fadeIn2])
-        highscoreLabel?.runAction(beforeHighscoreLabelAction)
+        let wait3 = SKAction.waitForDuration(9.5)
+        let fadeIn3 = SKAction.fadeAlphaTo(1.0, duration: 1.5)
+        let highscoreLabelAction = SKAction.sequence([wait3, fadeIn3])
+        highscoreLabel?.runAction(highscoreLabelAction)
         
         //if new, replace old with new and animate
         if newHighscore {
-            let currScore = intDivisionToDouble(GS.CurrScore, rhs: GS.JoeyAmountSelected)*100
+            let currScore = (Double(GS.CurrScore) / Double(GS.JoeyAmountSelected))*100
             GS.setClassicHighscore(currScore)
             
             //TODO animate if new highscore
@@ -255,7 +244,88 @@ class GameOverLayer: SKNode {
             let newHighscoreAction = SKAction.sequence([wait3, changeScore])
             highscoreLabel!.runAction(newHighscoreAction)
         }
+    }
+    
+    private func runJoeysCaughtAction() {
+        CreateJoeysCaughtLabel()
         
+        //show JoeysCaught
+        let JCwait = SKAction.waitForDuration(0.5)
+        let JCfadeIn = SKAction.fadeAlphaTo(1.0, duration: 2.0)
+        let JCfadeAction = SKAction.sequence([JCwait, JCfadeIn])
+        joeysCaughtLabel!.runAction(JCfadeAction)
+        
+        var JCtemp = 0
+        let changeJC = SKAction.runBlock({
+            //will add twice because of shadow and main label
+            JCtemp++
+            self.joeysCaughtLabel!.text = "Joeys: \(JCtemp/2)"
+        })
+        
+        let JCwaitBetweenTime = SKAction.waitForDuration(scoreTime / Double(GS.JoeysCaught))
+        let JCrepeatScore = SKAction.repeatAction(SKAction.sequence([changeJC, JCwaitBetweenTime]), count: GS.JoeysCaught)
+        let JCscoreAction = SKAction.group([JCrepeatScore, repeatScoreAnimation])
+        
+        let JCfinalAction = SKAction.sequence([SKAction.waitForDuration(2.5), JCscoreAction])
+        joeysCaughtLabel!.runAction(JCfinalAction)
+    }
+    
+    private func runBoomersCaughtAction() {
+        CreateBoomersCaughtLabel()
+        
+        //show BoomersCaught
+        let BCwait = SKAction.waitForDuration(3.5)
+        let BCfadeIn = SKAction.fadeAlphaTo(1.0, duration: 2.0)
+        let BCfadeAction = SKAction.sequence([BCwait, BCfadeIn])
+        boomersCaughtLabel!.runAction(BCfadeAction)
+        
+        var BCtemp = 0
+        let changeBC = SKAction.runBlock({
+            //will add twice because of shadow and main label
+            BCtemp++
+            self.boomersCaughtLabel!.text = "Boomerangs: \(BCtemp/2)"
+        })
+        
+        let BCwaitBetweenTime = SKAction.waitForDuration(scoreTime / Double(GS.BoomersCaught))
+        let BCrepeatScore = SKAction.repeatAction(SKAction.sequence([changeBC, BCwaitBetweenTime]), count: GS.BoomersCaught)
+        let BCscoreAction = SKAction.group([BCrepeatScore, repeatScoreAnimation])
+        
+        let BCfinalAction = SKAction.sequence([SKAction.waitForDuration(5.5), BCscoreAction])
+        boomersCaughtLabel!.runAction(BCfinalAction)
+    }
+    
+    private func runPercentScoreAction() {
+        CreatePercentScoreLabel()
+        
+        //show BoomersCaught
+        let PSwait = SKAction.waitForDuration(6.0)
+        let PSfadeIn = SKAction.fadeAlphaTo(1.0, duration: 2.0)
+        let PSfadeAction = SKAction.sequence([PSwait, PSfadeIn])
+        percentScoreLabel!.runAction(PSfadeAction)
+        
+        var PStemp: Double = 0.00
+        let changePS = SKAction.runBlock({
+            //will add twice because of shadow and main label
+            PStemp = PStemp + 0.01
+            let scoreString = String(format: "%.2f", (PStemp/2))
+            self.percentScoreLabel!.text = "Score: \(scoreString)%"
+        })
+        
+        if (GS.CurrScore > 0) {
+            let PSwaitBetweenTime = SKAction.waitForDuration(scoreTime / (Double(GS.CurrScore)*100))
+            let PSrepeatScore = SKAction.repeatAction(SKAction.sequence([changePS, PSwaitBetweenTime]), count: GS.CurrScore*100)
+            let PSscoreAction = SKAction.group([PSrepeatScore, repeatScoreAnimation])
+            
+            let PSfinalAction = SKAction.sequence([SKAction.waitForDuration(8.0), PSscoreAction])
+            percentScoreLabel!.runAction(PSfinalAction)
+        }
+    }
+    
+    func restartGame() {
+        //remove all nodes
+        removeAllActions()
+        removeAllChildren()
+        TheGameScene!.restartGame()
     }
     
     func sceneTouched(touchLocation:CGPoint) {

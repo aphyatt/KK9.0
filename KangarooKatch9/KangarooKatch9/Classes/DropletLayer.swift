@@ -465,6 +465,7 @@ class DropletLayer: SKNode {
         joey.removeAllActions()
         joey.runAction(SKAction.removeFromParent())
         
+        GS.JoeysCaught++
         GS.CurrScore++
         if GS.GameMode == .Endless {
             TheEndlessHUD!.updateScore()
@@ -516,6 +517,10 @@ class DropletLayer: SKNode {
         
         boomer.removeAllActions()
         boomer.runAction(SKAction.removeFromParent())
+        GS.BoomersCaught++
+        if GS.GameMode == .Classic {
+            GS.CurrScore--
+        }
         
         if GS.GameMode == .Endless {
             TheEndlessHUD?.removeLife("life\(GS.CurrBoomerangLives)")

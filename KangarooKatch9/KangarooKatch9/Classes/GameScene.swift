@@ -180,6 +180,8 @@ class GameScene: SKScene {
         GS.lineCountBeforeDrops = 0
         GS.groupAmtMin = 2
         GS.groupAmtMax = 3
+        GS.JoeysCaught = 0
+        GS.BoomersCaught = 0
         
         switch GS.GameMode {
         case .Classic:

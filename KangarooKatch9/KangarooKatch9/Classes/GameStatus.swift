@@ -18,7 +18,9 @@ class GameStatus {
     
     //classic
     var JoeyAmountSelected = 100
+    var JoeysCaught = 0
     var JoeysLeft = 100
+    var BoomersCaught = 0
     
     var CurrScore = 0
     var DiffLevel = V_EASY

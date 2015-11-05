@@ -26,9 +26,9 @@ class GameStatus {
     var DiffLevel = V_EASY
     var DiffLevelSelected = V_EASY
     
-    var GameControls: ControlType = .Thumb
     var GameMode: GameModeType = .Classic
     var GameState: GameStateType = .GameRunning
+    var GameControls: ControlType = .Thumb
     
     var SoundOn: Bool = true
     var ShakeOn: Bool = true
@@ -118,7 +118,6 @@ class GameStatus {
         print("Joeys Left: \(JoeysLeft)")
         print("Curr Score: \(CurrScore)")
         print("Difficulty Level: \(DiffLevel)")
-        print("Game Controls: \(GameControls)")
         print("Game Mode: \(GameMode)")
         print("Game State: \(GameState)")
         print("SoundOn: \(SoundOn)")

@@ -467,9 +467,7 @@ class DropletLayer: SKNode {
         
         GS.JoeysCaught++
         GS.CurrScore++
-        if GS.GameMode == .Endless {
-            TheEndlessHUD!.updateScore()
-        }
+        TheHUD?.updateScore()
         
     }
     

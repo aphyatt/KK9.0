@@ -80,13 +80,15 @@ class GameLabel: SKLabelNode {
         }
     }
     
-    func changePositionX(posX: CGFloat) {
-        var adjustX: CGFloat = 0
-        if GS.CurrScore >= 10 { adjustX = 3 }
-        if GS.CurrScore >= 100 { adjustX = 6 }
-        
-        label.position.x = posX - adjustX
-        labelS.position.x = posX + 2 - adjustX
+    func changePos(pos: CGPoint) {
+        label.position = pos
+        labelS.position.x = pos.x + 2
+        labelS.position.y = pos.y - 2
+    }
+    
+    func changeHorAlign(horAlign: SKLabelHorizontalAlignmentMode) {
+        label.horizontalAlignmentMode = horAlign
+        labelS.horizontalAlignmentMode = horAlign
     }
     
     override func runAction(action: SKAction) {

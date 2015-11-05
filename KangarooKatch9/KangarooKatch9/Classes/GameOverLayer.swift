@@ -166,33 +166,37 @@ class GameOverLayer: SKNode {
         TheDropletLayer?.freezeDroplets()
         let shade = drawRectangle(fullRect, color: SKColor.grayColor(), width: 1.0)
         shade.fillColor = SKColor.grayColor()
-        shade.alpha = 0.4
+        shade.alpha = 0.0
         shade.zPosition = self.zPosition
         addChild(shade)
+        let fadeInShade = SKAction.fadeAlphaTo(0.4, duration: 0.5)
+        let fadeOutScore = SKAction.fadeAlphaTo(0.0, duration: 0.5)
+        shade.runAction(fadeInShade);
+        scoreLabel?.runAction(fadeOutScore)
         
         CreateGameOverLabel()
         
         //fade in GAME OVER
-        let wait = SKAction.waitForDuration(0.5)
+        let wait = SKAction.waitForDuration(1.0)
         let fadeIn = SKAction.fadeAlphaTo(1.0, duration: 2.0)
         let gameOverAction = SKAction.sequence([wait, fadeIn])
         gameOverLabel!.runAction(gameOverAction)
      
         //have score move and grow under GAME OVER
-        let wait2 = SKAction.waitForDuration(3.0)
-        let bringToFront = SKAction.runBlock({scoreLabel?.zPosition = self.zPosition + 500})
-        let moveIntoPos = SKAction.moveTo(CGPoint(x: GameSize!.width/2, y: 722), duration: 1.0)
-        let grow = SKAction.scaleBy(1.3, duration: 1.0)
-        let adjust = SKAction.runBlock({
-            scoreLabel?.labelS.position.x += 2
-            scoreLabel?.labelS.position.y -= 2
+        let wait2 = SKAction.waitForDuration(3.5)
+        let grow = SKAction.scaleBy(1.3, duration: 0.0)
+        let moveAndSizeScore = SKAction.runBlock({
+            scoreLabel?.zPosition = self.zPosition + 500
+            scoreLabel?.changeHorAlign(.Center)
+            scoreLabel?.changePos(CGPoint(x: GameSize!.width/2, y: 722))
         })
-        let scoreAction = SKAction.sequence([wait2, bringToFront, SKAction.group([moveIntoPos, grow]), adjust])
+        let fadeInScore = SKAction.fadeAlphaTo(1.0, duration: 0.5)
+        let scoreAction = SKAction.sequence([wait2, grow, moveAndSizeScore, fadeInScore])
         scoreLabel!.runAction(scoreAction)
         
         //have old high score appear
         CreateHighscoreLabel()
-        let wait3 = SKAction.waitForDuration(5.0)
+        let wait3 = SKAction.waitForDuration(5.5)
         let fadeIn2 = SKAction.fadeAlphaTo(1.0, duration: 1.5)
         let beforeHighscoreLabelAction = SKAction.sequence([wait3, fadeIn2])
         highscoreLabel?.runAction(beforeHighscoreLabelAction)
@@ -202,7 +206,7 @@ class GameOverLayer: SKNode {
             GS.setEndlessHighscore(GS.CurrScore)
             
             //TODO animate if new highscore
-            let wait4 = SKAction.waitForDuration(5.5)
+            let wait4 = SKAction.waitForDuration(6.0)
             let changeScore = SKAction.runBlock({
                 self.highscoreLabel?.text = "HIGHSCORE: \(GS.CurrScore)"
             })

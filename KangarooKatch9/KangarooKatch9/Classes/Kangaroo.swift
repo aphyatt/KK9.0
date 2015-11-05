@@ -46,7 +46,6 @@ class Kangaroo: SKNode {
     }
     
     func update(currentTime: CFTimeInterval) {
-        
         var kangSpeed: NSTimeInterval?
         switch GS.GameControls {
         case .TwoThumbs:

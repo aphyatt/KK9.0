@@ -153,7 +153,7 @@ class PauseMenu: SKNode {
     private func CreateGamePausedLabel() {
         gamePausedLabel = GameLabel(text: "GAME PAUSED", size: 60,
             horAlignMode: .Center, vertAlignMode: .Baseline,
-            color: textColor, shadowColor: textSColor,
+            color: textColor, shadowColor: textSColor, shadowOffset: 3,
             pos: CGPoint(x: GameSize!.width/2, y: gamePausedY), zPosition: 4)
         if let p = gamePausedLabel {
             self.addChild(p)
@@ -166,7 +166,7 @@ class PauseMenu: SKNode {
             lineWidth: 4, startZ: 2)
         resumeButton?.setText("RESUME", textSize: 40,
             textColor: textColor, textColorS: textSColor,
-            textPos: CGPoint(x: GameSize!.width/2, y: resumeLabelY - 10))
+            textPos: CGPoint(x: GameSize!.width/2, y: resumeLabelY - 10), shadowOffset: 3)
         if let rsmb = resumeButton {
             self.addChild(rsmb)
         }
@@ -178,7 +178,7 @@ class PauseMenu: SKNode {
             lineWidth: 4, startZ: 2)
         restartButton?.setText("RESTART", textSize: 40,
             textColor: textColor, textColorS: textSColor,
-            textPos: CGPoint(x: GameSize!.width/2, y: restartLabelY - 10))
+            textPos: CGPoint(x: GameSize!.width/2, y: restartLabelY - 10), shadowOffset: 3)
         if let rstb = restartButton {
             self.addChild(rstb)
         }
@@ -190,7 +190,7 @@ class PauseMenu: SKNode {
             lineWidth: 4, startZ: 2)
         exitButton?.setText("EXIT", textSize: 40,
             textColor: textColor, textColorS: textSColor,
-            textPos: CGPoint(x: GameSize!.width/2, y: exitLabelY - 10))
+            textPos: CGPoint(x: GameSize!.width/2, y: exitLabelY - 10), shadowOffset: 3)
         if let eb = exitButton {
             self.addChild(eb)
         }
@@ -202,7 +202,7 @@ class PauseMenu: SKNode {
             lineWidth: 4, startZ: 2)
         soundLabel = GameLabel(text: "SOUND", size:40,
             horAlignMode: .Center, vertAlignMode: .Baseline,
-            color: textColor, shadowColor: textSColor,
+            color: textColor, shadowColor: textSColor, shadowOffset: 3,
             pos: CGPoint(x: GameSize!.width/2 - 135, y: checkBoxY - 10), zPosition: 4)
         if let sb = soundButton {
             self.addChild(sb)
@@ -218,7 +218,7 @@ class PauseMenu: SKNode {
             lineWidth: 4, startZ: 2)
         shakeLabel = GameLabel(text: "SHAKE", size:40,
             horAlignMode: .Center, vertAlignMode: .Baseline,
-            color: textColor, shadowColor: textSColor,
+            color: textColor, shadowColor: textSColor, shadowOffset: 3,
             pos: CGPoint(x: GameSize!.width/2 + 65, y: checkBoxY - 10), zPosition: 4)
         if let shb = shakeButton {
             self.addChild(shb)

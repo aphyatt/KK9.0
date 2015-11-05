@@ -79,7 +79,7 @@ class MainMenu: SKScene {
             lineWidth: 4, startZ: 2)
         classicButton?.setText("CLASSIC MODE", textSize: fontSize,
             textColor: textColor, textColorS: textSColor,
-            textPos: CGPoint(x: size.width/2, y: classicY-15))
+            textPos: CGPoint(x: size.width/2, y: classicY-15), shadowOffset: 3)
         if let cb = classicButton {
             self.addChild(cb)
         }
@@ -91,7 +91,7 @@ class MainMenu: SKScene {
             lineWidth: 4, startZ: 2)
         classicButton?.setText("ENDLESS MODE", textSize: fontSize,
             textColor: textColor, textColorS: textSColor,
-            textPos: CGPoint(x: size.width/2, y: endlessY-15))
+            textPos: CGPoint(x: size.width/2, y: endlessY-15), shadowOffset: 3)
         if let cb = classicButton {
             self.addChild(cb)
         }
@@ -103,7 +103,7 @@ class MainMenu: SKScene {
             lineWidth: 4, startZ: 2)
         classicButton?.setText("MULTIPLAYER MODE", textSize: fontSize,
             textColor: textColor, textColorS: textSColor,
-            textPos: CGPoint(x: size.width/2, y: multiY-15))
+            textPos: CGPoint(x: size.width/2, y: multiY-15), shadowOffset: 3)
         if let cb = classicButton {
             self.addChild(cb)
         }
@@ -115,7 +115,7 @@ class MainMenu: SKScene {
             lineWidth: 4, startZ: 2)
         classicButton?.setText("SETTINGS", textSize: fontSize,
             textColor: textColor, textColorS: textSColor,
-            textPos: CGPoint(x: size.width/2, y: settingsY-15))
+            textPos: CGPoint(x: size.width/2, y: settingsY-15), shadowOffset: 3)
         if let cb = classicButton {
             self.addChild(cb)
         }

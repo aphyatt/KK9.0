@@ -144,9 +144,7 @@ class GameScene: SKScene {
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let touchLocation = touch!.locationInNode(self)
-        if GS.GameControls == .Thumb {
-            GameWorld!.trackThumb(touchLocation)
-        }
+        GameWorld!.trackThumb(touchLocation)
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {

@@ -28,7 +28,6 @@ class GameStatus {
     
     var GameMode: GameModeType = .Classic
     var GameState: GameStateType = .GameRunning
-    var GameControls: ControlType = .Thumb
     
     var SoundOn: Bool = true
     var ShakeOn: Bool = true

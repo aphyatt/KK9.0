@@ -19,6 +19,7 @@ class OptionButton: SKNode {
     var m_textColor: UIColor?
     var m_textColorS: UIColor?
     var m_textPos: CGPoint?
+    var m_shadowOffset: CGFloat?
     var textZPos: CGFloat?
     
     var m_outlineColor: UIColor?
@@ -63,7 +64,7 @@ class OptionButton: SKNode {
     private func CreateButtonLabel() {
         buttonLabel = GameLabel(text: m_buttonText!, size: m_textSize!,
             horAlignMode: hor, vertAlignMode: vert,
-            color: m_textColor!, shadowColor: m_textColorS!,
+            color: m_textColor!, shadowColor: m_textColorS!, shadowOffset: m_shadowOffset!,
             pos: m_textPos!, zPosition: textZPos!)
         if let bl = buttonLabel {
             self.addChild(bl)
@@ -84,13 +85,15 @@ class OptionButton: SKNode {
         addChild(m_rect)
     }
     
-    func setText(buttonText: String, textSize: CGFloat, textColor: UIColor, textColorS: UIColor, textPos: CGPoint) {
+    func setText(buttonText: String, textSize: CGFloat, textColor: UIColor,
+        textColorS: UIColor, textPos: CGPoint, shadowOffset: CGFloat) {
         //Label Vars
         m_buttonText = buttonText
         m_textSize = textSize
         m_textColor = textColor
         m_textColorS = textColorS
         m_textPos = textPos
+        m_shadowOffset = shadowOffset
         
         CreateButtonLabel()
     }

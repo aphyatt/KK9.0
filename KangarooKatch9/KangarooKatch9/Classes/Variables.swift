@@ -9,11 +9,6 @@
 import Foundation
 import SpriteKit
 
-enum ControlType {
-    case Thumb
-    case TwoThumbs
-}
-
 enum GameStateType {
     case GameRunning
     case GameOver

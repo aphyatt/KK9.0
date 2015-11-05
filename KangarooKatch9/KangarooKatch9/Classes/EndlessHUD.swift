@@ -56,7 +56,7 @@ class EndlessHUD: SKNode {
     private func CreateScoreLabel() {
         scoreLabel = GameLabel(text: "Score: \(GS.CurrScore)", size: 50,
             horAlignMode: .Left, vertAlignMode: .Center,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
+            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(), shadowOffset: 3,
             pos: CGPoint(x: scoreLabelX, y: scoreLabelY), zPosition: self.zPosition + 1)
         if let sl = scoreLabel {
             sl.runAction(SKAction.scaleYTo(1.3, duration: 0.0))

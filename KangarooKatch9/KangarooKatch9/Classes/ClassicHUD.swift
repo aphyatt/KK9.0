@@ -34,7 +34,7 @@ class ClassicHUD: SKNode {
     private func CreateJoeyCountLabel() {
         joeyCountLabel = GameLabel(text: "Joeys: \(GS.JoeysLeft)", size: 50,
             horAlignMode: .Center, vertAlignMode: .Center,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
+            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(), shadowOffset: 3,
             pos: CGPoint(x: GameSize!.width/2, y: GameSize!.height-40), zPosition: self.zPosition + 1)
         if let jc = joeyCountLabel {
             jc.runAction(SKAction.scaleYTo(1.3, duration: 0.0))

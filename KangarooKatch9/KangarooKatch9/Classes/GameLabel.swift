@@ -23,7 +23,7 @@ class GameLabel: SKLabelNode {
     
     init(text: String, size: CGFloat,
         horAlignMode: SKLabelHorizontalAlignmentMode, vertAlignMode: SKLabelVerticalAlignmentMode,
-        color: UIColor, shadowColor: UIColor, pos: CGPoint, zPosition: CGFloat) {
+        color: UIColor, shadowColor: UIColor, shadowOffset: CGFloat, pos: CGPoint, zPosition: CGFloat) {
             
             m_Text = text
             m_zPosition = zPosition
@@ -44,7 +44,7 @@ class GameLabel: SKLabelNode {
             labelS.horizontalAlignmentMode = horAlignMode
             labelS.verticalAlignmentMode = vertAlignMode
             labelS.fontColor = shadowColor
-            labelS.position = CGPoint(x: pos.x+3, y: pos.y-3)
+            labelS.position = CGPoint(x: pos.x+shadowOffset, y: pos.y-shadowOffset)
             labelS.zPosition = zPosition
             
             super.init()

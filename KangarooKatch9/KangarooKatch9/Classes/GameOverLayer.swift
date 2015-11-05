@@ -97,7 +97,7 @@ class GameOverLayer: SKNode {
     private func CreateGameOverLabel() {
         gameOverLabel = GameLabel(text: "GAME OVER", size: 70,
             horAlignMode: .Center, vertAlignMode: .Baseline,
-            color: SKColor.blackColor(), shadowColor: SKColor.whiteColor(),
+            color: SKColor.blackColor(), shadowColor: SKColor.whiteColor(), shadowOffset: 3,
             pos: CGPoint(x: GameSize!.width/2, y: gameOverY), zPosition: self.zPosition + 1)
         if let gol = gameOverLabel {
             gol.alpha = 0.0
@@ -108,7 +108,7 @@ class GameOverLayer: SKNode {
     private func CreateJoeysCaughtLabel() {
         joeysCaughtLabel = GameLabel(text: "Joeys: 0", size: 55,
             horAlignMode: .Center, vertAlignMode: .Center,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
+            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(), shadowOffset: 3,
             pos: CGPoint(x: GameSize!.width/2, y: joeysCaughtY), zPosition: self.zPosition + 1)
         if let jcl = joeysCaughtLabel {
             jcl.runAction(SKAction.scaleYTo(1.3, duration: 0.0))
@@ -120,7 +120,7 @@ class GameOverLayer: SKNode {
     private func CreateBoomersCaughtLabel() {
         boomersCaughtLabel = GameLabel(text: "Boomerangs: 0", size: 55,
             horAlignMode: .Center, vertAlignMode: .Center,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
+            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(), shadowOffset: 3,
             pos: CGPoint(x: GameSize!.width/2, y: boomersCaughtY), zPosition: self.zPosition + 1)
         if let bcl = boomersCaughtLabel {
             bcl.runAction(SKAction.scaleYTo(1.3, duration: 0.0))
@@ -132,7 +132,7 @@ class GameOverLayer: SKNode {
     private func CreatePercentScoreLabel() {
         percentScoreLabel = GameLabel(text: "Score: 0.00%", size: 55,
             horAlignMode: .Center, vertAlignMode: .Center,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(),
+            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(), shadowOffset: 3,
             pos: CGPoint(x: GameSize!.width/2, y: scorePercentageY), zPosition: self.zPosition + 1)
         if let psl = percentScoreLabel {
             psl.runAction(SKAction.scaleYTo(1.3, duration: 0.0))
@@ -154,7 +154,7 @@ class GameOverLayer: SKNode {
         }
         highscoreLabel = GameLabel(text: ltext, size: 45,
             horAlignMode: .Center, vertAlignMode: .Baseline,
-            color: SKColor.blackColor(), shadowColor: SKColor.whiteColor(),
+            color: SKColor.blackColor(), shadowColor: SKColor.whiteColor(), shadowOffset: 3,
             pos: CGPoint(x: GameSize!.width/2, y: yPos), zPosition: self.zPosition + 1)
         if let hsl = highscoreLabel {
             hsl.alpha = 0.0

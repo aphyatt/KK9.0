@@ -67,27 +67,4 @@ class HUD: SKNode {
         }
     }
     
-    func sceneTouched(touchLocation:CGPoint) {
-        switch GS.GameState {
-        case .GameRunning:
-            break
-        case .Paused:
-            break
-        case .GameOver:
-            break
-        }
-        
-    }
-    
-    func sceneUntouched(touchLocation:CGPoint) {
-        switch GS.GameState {
-        case .GameRunning:
-            break
-        case .Paused:
-            break
-        case .GameOver:
-            break
-        }
-    }
-    
 }

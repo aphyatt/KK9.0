@@ -83,6 +83,7 @@ class DropletLayer: SKNode {
                 break
             case .GameOver:
                 break
+            default: break
             }
         case .Classic:
             switch GS.GameState {
@@ -95,9 +96,10 @@ class DropletLayer: SKNode {
                 break
             case .GameOver:
                 break
+            default: break
             }
         }
-        
+
     }
     
     //Set Difficulty once for Classic
@@ -511,6 +513,7 @@ class DropletLayer: SKNode {
         let shakeRight = SKAction.moveByX(20.0, y: 0.0, duration: 0.1)
         let shakeOff = SKAction.sequence([shakeLeft, shakeRight, shakeLeft])
         //turn shake off into screen shake
+        print("shake")
         TheKangaroo!.runAction(shakeOff)
         
         boomer.removeAllActions()

@@ -77,6 +77,7 @@ class World: SKNode {
             break
         case .GameOver:
             break
+        default: break
         }
     
     }
@@ -128,6 +129,7 @@ class World: SKNode {
             break
         case .GameOver:
             break
+        default: break
         }
         
     }
@@ -142,6 +144,7 @@ class World: SKNode {
             break
         case .GameOver:
             break
+        default: break
         }
     }
     
@@ -163,12 +166,10 @@ class World: SKNode {
                 unpauseGame = false
                 pauseGameCalls = 0
                 removePauseMenu()
-                //countdown / wait
-                TheDropletLayer!.unfreezeDroplets()
                 GS.lineCountBeforeDrops = GS.totalLinesDropped
                 GS.currLinesToDrop = 0
                 dropLines = true
-                GS.GameState = .GameRunning
+                GS.GameState = .Countdown
             }
         }
     }

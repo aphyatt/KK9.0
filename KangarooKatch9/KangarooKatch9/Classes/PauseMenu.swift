@@ -35,15 +35,16 @@ class PauseMenu: SKNode {
     let exitLabelY: CGFloat = GameSize!.height/2 - 70
     let checkBoxY: CGFloat = GameSize!.height/2 - 180
     
-    let pauseColor: UIColor = SKColor.blackColor()
-    let pauseOColor: UIColor = SKColor.whiteColor()
-    let buttonColor: UIColor = SKColor.blackColor()
-    let buttonOColor: UIColor = SKColor.whiteColor()
-    let textColor: UIColor = SKColor.whiteColor()
-    let textSColor: UIColor = SKColor.grayColor()
+    let pauseColor: UIColor = kangColor
+    let pauseOColor: UIColor = SKColor.blackColor()
+    let buttonColor: UIColor = kangColor
+    let buttonOColor: UIColor = SKColor.blackColor()
+    let textColor: UIColor = SKColor.blackColor()
+    let textSColor: UIColor = SKColor.whiteColor()
     
     var buttonNumber = 1
     var buttonClicked: OptionButton?
+    let buttonWidth: CGFloat = 300
     
     let soundCheck = SKSpriteNode(imageNamed: "WhiteCheck")
     let shakeCheck = SKSpriteNode(imageNamed: "WhiteCheck")
@@ -57,11 +58,12 @@ class PauseMenu: SKNode {
         fullRect = CGRect(x: 0, y: 0,
             width: GameSize!.width,
             height: GameSize!.height)
-        resumeRect = CGRect(x: GameSize!.width/2 - 100, y: resumeLabelY - 35,
-            width: 200, height: 70)
-        restartRect = CGRect(x: GameSize!.width/2 - 100, y: restartLabelY - 35, width: 200, height: 70)
-        exitRect = CGRect(x: GameSize!.width/2 - 100, y: exitLabelY - 35,
-            width: 200, height: 70)
+        resumeRect = CGRect(x: GameSize!.width/2 - buttonWidth/2, y: resumeLabelY - 35,
+            width: buttonWidth, height: 70)
+        restartRect = CGRect(x: GameSize!.width/2 - buttonWidth/2, y: restartLabelY - 35,
+            width: buttonWidth, height: 70)
+        exitRect = CGRect(x: GameSize!.width/2 - buttonWidth/2, y: exitLabelY - 35,
+            width: buttonWidth, height: 70)
         soundRect = CGRect(x: GameSize!.width/2 - 65, y: checkBoxY - 25, width: 50, height: 50)
         shakeRect = CGRect(x: GameSize!.width/2 + 135, y: checkBoxY - 25, width: 50, height: 50)
         

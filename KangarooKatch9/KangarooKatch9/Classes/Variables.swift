@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 
 enum GameStateType {
+    case Countdown
     case GameRunning
     case GameOver
     case Paused

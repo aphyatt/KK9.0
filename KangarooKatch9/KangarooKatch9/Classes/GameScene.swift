@@ -32,7 +32,8 @@ class GameScene: SKScene {
     var HUDdisplay: HUD?
     var GameOver: GameOverLayer?
     
-    /************************************ Init/Update Functions ***************************************/
+    var countdownWait: Bool = false
+    var countdownLabel: GameLabel?
     
     override func didMoveToView(view: SKView) {
         TheGameScene = self
@@ -98,13 +99,12 @@ class GameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /*********************************************************************************************************
-    * UPDATE
-    * Function is called incredibly frequently, main game loop is here
-    *********************************************************************************************************/
     override func update(currentTime: CFTimeInterval) {
         
         switch GS.GameState {
+        case .Countdown:
+            countdownHelper()
+            break
         case .GameRunning:
             GameWorld!.update(currentTime)
             HUDdisplay!.update(currentTime)
@@ -118,6 +118,51 @@ class GameScene: SKScene {
             dropLines = false
             GameOver!.update(currentTime)
             break
+        }
+    }
+    
+    var countdownCalls: Int = 0
+    func countdownHelper() {
+        countdownCalls++
+        if(countdownCalls == 1) {
+            let countdown = SKAction.runBlock({self.countdown()})
+            let wait = SKAction.waitForDuration(NSTimeInterval(3))
+            let setBool = SKAction.runBlock({self.countdownWait = true})
+            runAction(SKAction.sequence([countdown, wait, setBool]))
+        }
+        else {
+            if countdownWait {
+                countdownWait = false
+                countdownCalls = 0
+                TheDropletLayer!.unfreezeDroplets()
+                GS.GameState = .GameRunning
+            }
+        }
+    }
+    
+    private func countdown() {
+        CreateCountdownLabel()
+        
+        let grow = SKAction.scaleBy(1.2, duration: 0.1)
+        let wait1s = SKAction.waitForDuration(0.8)
+        let changeTo2 = SKAction.runBlock({self.countdownLabel!.text = "2"})
+        let changeTo1 = SKAction.runBlock({self.countdownLabel!.text = "1"})
+        let removeCD = SKAction.runBlock({self.countdownLabel!.removeFromParent()})
+        let sec3Action = SKAction.sequence([grow, grow.reversedAction(), wait1s])
+        let sec2Action = SKAction.sequence([grow, changeTo2, grow.reversedAction(), wait1s])
+        let sec1Action = SKAction.sequence([grow, changeTo1, grow.reversedAction(), wait1s])
+        let countDownAction = SKAction.sequence([sec3Action, sec2Action, sec1Action, removeCD])
+        countdownLabel!.runAction(countDownAction)
+        
+    }
+    
+    private func CreateCountdownLabel() {
+        countdownLabel = GameLabel(text: "3", size: 120,
+            horAlignMode: .Center, vertAlignMode: .Center,
+            color: SKColor.blackColor(), shadowColor: SKColor.whiteColor(), shadowOffset: 5,
+            pos: CGPoint(x: self.size.width/2, y: 650), zPosition: self.zPosition+5)
+        if let cdl = countdownLabel {
+            self.addChild(cdl)
         }
     }
     
@@ -138,6 +183,7 @@ class GameScene: SKScene {
         case .GameOver:
             GameOver!.sceneTouched(touchLocation)
             break
+        default: break
         }
     }
     
@@ -164,6 +210,7 @@ class GameScene: SKScene {
         case .GameOver:
             GameOver!.sceneUntouched(touchLocation)
             break
+        default: break
         }
     }
     
@@ -193,7 +240,7 @@ class GameScene: SKScene {
             break
         }
         restart()
-        GS.GameState = .GameRunning
+        GS.GameState = .Countdown
     }
     
 }

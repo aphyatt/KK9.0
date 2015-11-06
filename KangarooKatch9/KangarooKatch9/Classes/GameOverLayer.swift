@@ -220,9 +220,13 @@ class GameOverLayer: SKNode {
         TheDropletLayer?.freezeDroplets()
         let shade = drawRectangle(fullRect, color: SKColor.grayColor(), width: 1.0)
         shade.fillColor = SKColor.grayColor()
-        shade.alpha = 0.4
+        shade.alpha = 0.0
         shade.zPosition = self.zPosition
         addChild(shade)
+        let fadeInShade = SKAction.fadeAlphaTo(0.4, duration: 0.5)
+        let fadeOutScore = SKAction.fadeAlphaTo(0.0, duration: 0.5)
+        shade.runAction(fadeInShade);
+        TheClassicHUD?.joeyCountLabel?.runAction(fadeOutScore)
         
         runJoeysCaughtAction()
         runBoomersCaughtAction()

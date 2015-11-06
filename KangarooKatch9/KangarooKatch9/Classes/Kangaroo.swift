@@ -24,7 +24,7 @@ class Kangaroo: SKNode {
     }
     
     override init() {
-        //CHANGE
+        //CHANGE TO FORMAT OF DROPLET
         super.init()
         
         TheKangaroo = self

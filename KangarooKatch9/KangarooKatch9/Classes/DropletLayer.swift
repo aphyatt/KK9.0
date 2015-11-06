@@ -511,6 +511,7 @@ class DropletLayer: SKNode {
         
         print(TheKangaroo!.position)
         
+        //not working for some reason... change Kangaroo.swift
         let shakeLeft = SKAction.moveByX((-10.0), y: 0.0, duration: 0.05)
         let shakeRight = SKAction.moveByX(20.0, y:0.0, duration: 0.1)
         let shakeOff = SKAction.sequence([shakeLeft, shakeRight, shakeLeft])

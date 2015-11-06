@@ -509,12 +509,14 @@ class DropletLayer: SKNode {
         //runAction(enemyCollisionSound) ouch!
         // make kangaroo frown
         
-        let shakeLeft = SKAction.moveByX(-10.0, y: 0.0, duration: 0.05)
-        let shakeRight = SKAction.moveByX(20.0, y: 0.0, duration: 0.1)
+        print(TheKangaroo!.position)
+        
+        let shakeLeft = SKAction.moveByX((-10.0), y: 0.0, duration: 0.05)
+        let shakeRight = SKAction.moveByX(20.0, y:0.0, duration: 0.1)
         let shakeOff = SKAction.sequence([shakeLeft, shakeRight, shakeLeft])
         //turn shake off into screen shake
-        print("shake")
         TheKangaroo!.runAction(shakeOff)
+        
         
         boomer.removeAllActions()
         boomer.runAction(SKAction.removeFromParent())

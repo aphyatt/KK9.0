@@ -9,55 +9,43 @@
 import SpriteKit
 
 var kangPosX: CGFloat = 0
-weak var TheKangaroo: Kangaroo?
 
-class Kangaroo: SKNode {
+class Kangaroo: SKSpriteNode {
     
     var leftTouch: Bool = false
     var rightTouch: Bool = false
     
     var kangPos: Int = 2
-    let kangaroo = SKSpriteNode(imageNamed: "Kangaroo")
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override init() {
-        //CHANGE TO FORMAT OF DROPLET
-        super.init()
+    init(imageNamed: String) {
+        let texture = SKTexture(imageNamed: imageNamed)
+        super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
         
         TheKangaroo = self
         
         self.name = "kangaroo"
         self.zPosition = 10
         
-        kangaroo.position = CGPoint(x: GameSize!.width/2, y: dropletCatchBoundaryY)
-        kangaroo.zPosition = 11
-        kangaroo.setScale(0.7)
-        addChild(kangaroo)
-        
-    }
-    
-    override func runAction(action: SKAction?) {
-        if let a = action {
-            kangaroo.runAction(a)
-        }
+        self.position = CGPoint(x: GameSize!.width/2, y: dropletCatchBoundaryY)
+        self.zPosition = 11
+        self.setScale(0.7)
     }
     
     func update(currentTime: CFTimeInterval) {
-        let kangSpeed: NSTimeInterval = 0.05
-        
         if leftTouch && (kangPos != 1) {
-            kangaroo.runAction(SKAction.moveToX(leftColX, duration: kangSpeed))
+            self.runAction(SKAction.moveToX(leftColX, duration: 0.05))
             kangPos = 1
         }
         if rightTouch && (kangPos != 3) {
-            kangaroo.runAction(SKAction.moveToX(rightColX, duration: kangSpeed))
+            self.runAction(SKAction.moveToX(rightColX, duration: 0.05))
             kangPos = 3
         }
         if ((!leftTouch && !rightTouch) || numFingers == 0) && (kangPos != 2) {
-            kangaroo.runAction(SKAction.moveToX(midColX, duration: kangSpeed))
+            self.runAction(SKAction.moveToX(midColX, duration: 0.05))
             kangPos = 2
         }
         

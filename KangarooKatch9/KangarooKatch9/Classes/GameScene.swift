@@ -15,9 +15,9 @@ var numFingers: Int = 0
 var playableMargin: CGFloat = 0
 var playableWidth: CGFloat = 0
 
-let leftColX: CGFloat = 219.43
-let midColX: CGFloat = 384.0
-let rightColX: CGFloat = 548.57
+let leftColX: CGFloat = 219.4300000
+let midColX: CGFloat = 384.000000
+let rightColX: CGFloat = 548.5700000
 let oneThirdX: CGFloat = 288.0
 let twoThirdX: CGFloat = 480.0
 

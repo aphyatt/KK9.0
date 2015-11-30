@@ -13,16 +13,13 @@ var rightRect: CGRect?
 var Droplets: DropletLayer?
 var TheWorld: World?
 var unpauseGame: Bool = false
+var TheKangaroo: Kangaroo?
 
 class World: SKNode {
-    
-    var Kang: Kangaroo?
     
     let pauseRect: CGRect
     var ThePauseMenu: PauseMenu?
     
-    //let pauseX: CGFloat = 585
-    //let pauseY: CGFloat = GameSize!.height - 80
     let pauseX: CGFloat = 120
     let pauseY: CGFloat = 20
     
@@ -69,7 +66,7 @@ class World: SKNode {
     func update(currentTime: CFTimeInterval) {
         switch GS.GameState {
         case .GameRunning:
-            Kang!.update(currentTime)
+            TheKangaroo!.update(currentTime)
             Droplets!.update(currentTime)
             break
         case .Paused:
@@ -83,8 +80,8 @@ class World: SKNode {
     }
     
     private func CreateKangaroo() {
-        Kang = Kangaroo()
-        if let kangaroo = Kang {
+        TheKangaroo = Kangaroo(imageNamed: "Kangaroo")
+        if let kangaroo = TheKangaroo {
             self.addChild(kangaroo)
         }
     }
@@ -119,7 +116,7 @@ class World: SKNode {
     func sceneTouched(touchLocation:CGPoint) {
         switch GS.GameState {
         case .GameRunning:
-            Kang!.sceneTouched(touchLocation)
+            TheKangaroo!.sceneTouched(touchLocation)
             if (pauseRect.contains(touchLocation)) {
                 GS.GameState = .Paused
             }
@@ -137,7 +134,7 @@ class World: SKNode {
     func sceneUntouched(touchLocation:CGPoint) {
         switch GS.GameState {
         case .GameRunning:
-            Kang!.sceneUntouched(touchLocation)
+            TheKangaroo!.sceneUntouched(touchLocation)
             break
         case .Paused:
             ThePauseMenu?.sceneUntouched(touchLocation)
@@ -150,7 +147,7 @@ class World: SKNode {
     
     func trackThumb(touchLocation:CGPoint) {
         if GS.GameState == .GameRunning {
-            Kang!.trackThumb(touchLocation)
+            TheKangaroo!.trackThumb(touchLocation)
         }
     }
     

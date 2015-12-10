@@ -243,4 +243,13 @@ class GameScene: SKScene {
         GS.GameState = .Countdown
     }
     
+    func shakeScreen() {
+        let amount = CGPoint(x: CGFloat.random()*30,
+            y: CGFloat.random()*30)
+        
+        let action = SKAction.screenShakeWithNode(GameWorld!, amount: amount, oscillations: 20, duration: 1.0)
+        
+        GameWorld!.runAction(action)
+    }
+    
 }

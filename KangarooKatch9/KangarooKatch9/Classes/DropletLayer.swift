@@ -508,15 +508,9 @@ class DropletLayer: SKNode {
         
         //runAction(enemyCollisionSound) ouch!
         // make kangaroo frown
-        
-        print(TheKangaroo!.position)
 
         //not working for some reason after pause...
-        let shakeLeft = SKAction.moveByX(-10.0, y: 0.0, duration: 0.05)
-        let shakeRight = SKAction.moveByX(20.0, y:0.0, duration: 0.1)
-        let shakeOff = SKAction.sequence([shakeLeft, shakeRight, shakeLeft])
-        //turn shake off into screen shake will fix problem anyway
-        TheKangaroo!.runAction(shakeOff)
+        TheGameScene!.shakeScreen()
         
         boomer.removeAllActions()
         boomer.runAction(SKAction.removeFromParent())
@@ -530,6 +524,7 @@ class DropletLayer: SKNode {
             GS.CurrBoomerangLives--
             
             if(GS.CurrBoomerangLives == 0) {
+                boomDeath = true
                 GS.GameState = .GameOver
             }
         }

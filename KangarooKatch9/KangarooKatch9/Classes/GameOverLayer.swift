@@ -9,6 +9,7 @@
 import SpriteKit
 
 var GameOver: GameOverLayer?
+var boomDeath: Bool = false
 
 class GameOverLayer: SKNode {
     
@@ -66,6 +67,7 @@ class GameOverLayer: SKNode {
         if(endGameCalls == 1) {
             var gameOver: SKAction
             if GS.GameMode == .Endless {
+                PreGameOver()
                 let highscore = GS.getEndlessHighscore()
                 if GS.CurrScore > highscore {
                     newHighscore = true
@@ -81,8 +83,15 @@ class GameOverLayer: SKNode {
                 gameOver = SKAction.runBlock({self.classicGameOver()})
             }
             let wait2 = SKAction.waitForDuration(NSTimeInterval(5))
+            let shakeWait: SKAction
+            if (boomDeath) {
+                shakeWait = SKAction.waitForDuration(NSTimeInterval(0.8))
+            }
+            else {
+                shakeWait = SKAction.waitForDuration(NSTimeInterval(0))
+            }
             let setBool = SKAction.runBlock({self.restartTapWait = true})
-            runAction(SKAction.sequence([gameOver, wait2, setBool]))
+            runAction(SKAction.sequence([shakeWait, gameOver, wait2, setBool]))
         }
         else {
             if restartTap {
@@ -162,8 +171,9 @@ class GameOverLayer: SKNode {
         }
     }
     
-    func endlessGameOver() {
+    func PreGameOver() {
         TheDropletLayer?.freezeDroplets()
+        
         let shade = drawRectangle(fullRect, color: SKColor.grayColor(), width: 1.0)
         shade.fillColor = SKColor.grayColor()
         shade.alpha = 0.0
@@ -173,6 +183,9 @@ class GameOverLayer: SKNode {
         let fadeOutScore = SKAction.fadeAlphaTo(0.0, duration: 0.5)
         shade.runAction(fadeInShade);
         scoreLabel?.runAction(fadeOutScore)
+    }
+    
+    func endlessGameOver() {
         
         CreateGameOverLabel()
         

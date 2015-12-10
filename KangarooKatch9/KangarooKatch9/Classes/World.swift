@@ -11,7 +11,7 @@ import SpriteKit
 var leftRect: CGRect?
 var rightRect: CGRect?
 var Droplets: DropletLayer?
-var TheWorld: World?
+//var TheWorld: World?
 var unpauseGame: Bool = false
 var TheKangaroo: Kangaroo?
 

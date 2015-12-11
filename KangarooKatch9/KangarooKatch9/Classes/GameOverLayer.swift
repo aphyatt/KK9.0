@@ -8,13 +8,12 @@
 
 import SpriteKit
 
-var GameOver: GameOverLayer?
 var boomDeath: Bool = false
+weak var TheGameOverLayer: GameOverLayer?
 
 class GameOverLayer: SKNode {
     
     let fullRect: CGRect
-    
     var restartTap: Bool = false
     var restartTapWait: Bool = false
     var startGameOver: Bool = false
@@ -51,7 +50,7 @@ class GameOverLayer: SKNode {
         
         super.init()
         
-        GameOver = self
+        TheGameOverLayer = self
         
         self.name = "GameOver"
         self.zPosition = 300
@@ -65,33 +64,24 @@ class GameOverLayer: SKNode {
     func endGame() {
         endGameCalls++
         if(endGameCalls == 1) {
-            var gameOver: SKAction
-            if GS.GameMode == .Endless {
-                PreGameOver()
-                let highscore = GS.getEndlessHighscore()
-                if GS.CurrScore > highscore {
-                    newHighscore = true
-                }
-                gameOver = SKAction.runBlock({self.endlessGameOver()})
+            let highscore = GS.getHighscore()
+            if GS.CurrScore > highscore {
+                newHighscore = true
             }
-            else { //if GS.GameMode == .Classic
-                let highscore = GS.getClassicHighscore()
-                let currScore = intDivisionToDouble(GS.CurrScore, rhs: GS.JoeyAmountSelected)*100
-                if currScore > highscore {
-                    newHighscore = true
-                }
-                gameOver = SKAction.runBlock({self.classicGameOver()})
-            }
-            let wait2 = SKAction.waitForDuration(NSTimeInterval(5))
+            let gameOver: SKAction = SKAction.runBlock({self.GameOver()})
+        
+            let wait = SKAction.waitForDuration(NSTimeInterval(5))
             let shakeWait: SKAction
             if (boomDeath) {
-                shakeWait = SKAction.waitForDuration(NSTimeInterval(0.8))
+                shakeWait = SKAction.waitForDuration(NSTimeInterval(0.5))
+                boomDeath = false
             }
             else {
-                shakeWait = SKAction.waitForDuration(NSTimeInterval(0))
+                shakeWait = SKAction.waitForDuration(NSTimeInterval(0.1))
             }
             let setBool = SKAction.runBlock({self.restartTapWait = true})
-            runAction(SKAction.sequence([shakeWait, gameOver, wait2, setBool]))
+            TheDropletLayer?.freezeDroplets()
+            runAction(SKAction.sequence([shakeWait, gameOver, wait, setBool]))
         }
         else {
             if restartTap {
@@ -126,54 +116,18 @@ class GameOverLayer: SKNode {
         }
     }
     
-    private func CreateBoomersCaughtLabel() {
-        boomersCaughtLabel = GameLabel(text: "Boomerangs: 0", size: 55,
-            horAlignMode: .Center, vertAlignMode: .Center,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(), shadowOffset: 3,
-            pos: CGPoint(x: GameSize!.width/2, y: boomersCaughtY), zPosition: self.zPosition + 1)
-        if let bcl = boomersCaughtLabel {
-            bcl.runAction(SKAction.scaleYTo(1.3, duration: 0.0))
-            bcl.alpha = 0.0
-            self.addChild(bcl)
-        }
-    }
-    
-    private func CreatePercentScoreLabel() {
-        percentScoreLabel = GameLabel(text: "Score: 0.00%", size: 55,
-            horAlignMode: .Center, vertAlignMode: .Center,
-            color: SKColor.whiteColor(), shadowColor: SKColor.grayColor(), shadowOffset: 3,
-            pos: CGPoint(x: GameSize!.width/2, y: scorePercentageY), zPosition: self.zPosition + 1)
-        if let psl = percentScoreLabel {
-            psl.runAction(SKAction.scaleYTo(1.3, duration: 0.0))
-            psl.alpha = 0.0
-            self.addChild(psl)
-        }
-    }
-    
     private func CreateHighscoreLabel() {
-        var ltext: String
-        var yPos: CGFloat
-        if GS.GameMode == .Classic {
-            ltext = "HIGHSCORE: \(GS.getClassicHighscore())%"
-            yPos = highScoreY
-        }
-        else { //Endless
-            ltext = "HIGHSCORE: \(GS.getEndlessHighscore())"
-            yPos = 624
-        }
-        highscoreLabel = GameLabel(text: ltext, size: 45,
+        highscoreLabel = GameLabel(text: "HIGHSCORE: \(GS.getHighscore())", size: 45,
             horAlignMode: .Center, vertAlignMode: .Baseline,
             color: SKColor.blackColor(), shadowColor: SKColor.whiteColor(), shadowOffset: 3,
-            pos: CGPoint(x: GameSize!.width/2, y: yPos), zPosition: self.zPosition + 1)
+            pos: CGPoint(x: GameSize!.width/2, y: 624), zPosition: self.zPosition + 1)
         if let hsl = highscoreLabel {
             hsl.alpha = 0.0
             self.addChild(hsl)
         }
     }
     
-    func PreGameOver() {
-        TheDropletLayer?.freezeDroplets()
-        
+    func GameOver() {
         let shade = drawRectangle(fullRect, color: SKColor.grayColor(), width: 1.0)
         shade.fillColor = SKColor.grayColor()
         shade.alpha = 0.0
@@ -183,9 +137,6 @@ class GameOverLayer: SKNode {
         let fadeOutScore = SKAction.fadeAlphaTo(0.0, duration: 0.5)
         shade.runAction(fadeInShade);
         scoreLabel?.runAction(fadeOutScore)
-    }
-    
-    func endlessGameOver() {
         
         CreateGameOverLabel()
         
@@ -216,7 +167,7 @@ class GameOverLayer: SKNode {
         
         //if new, replace old with new and animate
         if newHighscore {
-            GS.setEndlessHighscore(GS.CurrScore)
+            GS.setHighscore(GS.CurrScore)
             
             //TODO animate if new highscore
             let wait4 = SKAction.waitForDuration(6.0)
@@ -229,44 +180,7 @@ class GameOverLayer: SKNode {
         
     }
     
-    func classicGameOver() {
-        TheDropletLayer?.freezeDroplets()
-        let shade = drawRectangle(fullRect, color: SKColor.grayColor(), width: 1.0)
-        shade.fillColor = SKColor.grayColor()
-        shade.alpha = 0.0
-        shade.zPosition = self.zPosition
-        addChild(shade)
-        let fadeInShade = SKAction.fadeAlphaTo(0.4, duration: 0.5)
-        let fadeOutScore = SKAction.fadeAlphaTo(0.0, duration: 0.5)
-        shade.runAction(fadeInShade);
-        TheClassicHUD?.joeyCountLabel?.runAction(fadeOutScore)
-        
-        runJoeysCaughtAction()
-        runBoomersCaughtAction()
-        runPercentScoreAction()
-        
-        //show old high score appear
-        CreateHighscoreLabel()
-        let wait3 = SKAction.waitForDuration(9.5)
-        let fadeIn3 = SKAction.fadeAlphaTo(1.0, duration: 1.5)
-        let highscoreLabelAction = SKAction.sequence([wait3, fadeIn3])
-        highscoreLabel?.runAction(highscoreLabelAction)
-        
-        //if new, replace old with new and animate
-        if newHighscore {
-            let currScore = (Double(GS.CurrScore) / Double(GS.JoeyAmountSelected))*100
-            GS.setClassicHighscore(currScore)
-            
-            //TODO animate if new highscore
-            let wait3 = SKAction.waitForDuration(7.0)
-            let changeScore = SKAction.runBlock({
-                self.highscoreLabel?.text = "HIGHSCORE: \(currScore)%"
-            })
-            let newHighscoreAction = SKAction.sequence([wait3, changeScore])
-            highscoreLabel!.runAction(newHighscoreAction)
-        }
-    }
-    
+    //not currently used, but add later for normal gameover
     private func runJoeysCaughtAction() {
         CreateJoeysCaughtLabel()
         
@@ -283,63 +197,12 @@ class GameOverLayer: SKNode {
             self.joeysCaughtLabel!.text = "Joeys: \(JCtemp/2)"
         })
         
-        let JCwaitBetweenTime = SKAction.waitForDuration(scoreTime / Double(GS.JoeysCaught))
-        let JCrepeatScore = SKAction.repeatAction(SKAction.sequence([changeJC, JCwaitBetweenTime]), count: GS.JoeysCaught)
+        let JCwaitBetweenTime = SKAction.waitForDuration(scoreTime / Double(GS.CurrScore))
+        let JCrepeatScore = SKAction.repeatAction(SKAction.sequence([changeJC, JCwaitBetweenTime]), count: GS.CurrScore)
         let JCscoreAction = SKAction.group([JCrepeatScore, repeatScoreAnimation])
         
         let JCfinalAction = SKAction.sequence([SKAction.waitForDuration(2.5), JCscoreAction])
         joeysCaughtLabel!.runAction(JCfinalAction)
-    }
-    
-    private func runBoomersCaughtAction() {
-        CreateBoomersCaughtLabel()
-        
-        //show BoomersCaught
-        let BCwait = SKAction.waitForDuration(3.5)
-        let BCfadeIn = SKAction.fadeAlphaTo(1.0, duration: 2.0)
-        let BCfadeAction = SKAction.sequence([BCwait, BCfadeIn])
-        boomersCaughtLabel!.runAction(BCfadeAction)
-        
-        var BCtemp = 0
-        let changeBC = SKAction.runBlock({
-            //will add twice because of shadow and main label
-            BCtemp++
-            self.boomersCaughtLabel!.text = "Boomerangs: \(BCtemp/2)"
-        })
-        
-        let BCwaitBetweenTime = SKAction.waitForDuration(scoreTime / Double(GS.BoomersCaught))
-        let BCrepeatScore = SKAction.repeatAction(SKAction.sequence([changeBC, BCwaitBetweenTime]), count: GS.BoomersCaught)
-        let BCscoreAction = SKAction.group([BCrepeatScore, repeatScoreAnimation])
-        
-        let BCfinalAction = SKAction.sequence([SKAction.waitForDuration(5.5), BCscoreAction])
-        boomersCaughtLabel!.runAction(BCfinalAction)
-    }
-    
-    private func runPercentScoreAction() {
-        CreatePercentScoreLabel()
-        
-        //show BoomersCaught
-        let PSwait = SKAction.waitForDuration(6.0)
-        let PSfadeIn = SKAction.fadeAlphaTo(1.0, duration: 2.0)
-        let PSfadeAction = SKAction.sequence([PSwait, PSfadeIn])
-        percentScoreLabel!.runAction(PSfadeAction)
-        
-        var PStemp: Double = 0.00
-        let changePS = SKAction.runBlock({
-            //will add twice because of shadow and main label
-            PStemp = PStemp + 0.01
-            let scoreString = String(format: "%.2f", (PStemp/2))
-            self.percentScoreLabel!.text = "Score: \(scoreString)%"
-        })
-        
-        if (GS.CurrScore > 0) {
-            let PSwaitBetweenTime = SKAction.waitForDuration(scoreTime / (Double(GS.CurrScore)*100))
-            let PSrepeatScore = SKAction.repeatAction(SKAction.sequence([changePS, PSwaitBetweenTime]), count: GS.CurrScore*100)
-            let PSscoreAction = SKAction.group([PSrepeatScore, repeatScoreAnimation])
-            
-            let PSfinalAction = SKAction.sequence([SKAction.waitForDuration(8.0), PSscoreAction])
-            percentScoreLabel!.runAction(PSfinalAction)
-        }
     }
     
     func restartGame() {
@@ -358,6 +221,5 @@ class GameOverLayer: SKNode {
     func sceneUntouched(touchLocation:CGPoint) {
         
     }
-
     
 }

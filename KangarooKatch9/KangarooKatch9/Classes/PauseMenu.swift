@@ -117,7 +117,7 @@ class PauseMenu: SKNode {
         }
         if restartRect.contains(touchLocation) && buttonNumber == 2 {
             //add ask are you sure you want to restart?
-            GameOver?.restartGame()
+            TheGameOverLayer!.restartGame()
         }
         if exitRect.contains(touchLocation) && buttonNumber == 3 {
             //add ask are you sure you want to quit?

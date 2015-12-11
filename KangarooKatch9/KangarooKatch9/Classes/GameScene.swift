@@ -225,20 +225,11 @@ class GameScene: SKScene {
         GS.lineCountBeforeDrops = 0
         GS.groupAmtMin = 2
         GS.groupAmtMax = 3
-        GS.JoeysCaught = 0
-        GS.BoomersCaught = 0
         
-        switch GS.GameMode {
-        case .Classic:
-            GS.JoeysLeft = GS.JoeyAmountSelected
-            GS.DiffLevel = GS.DiffLevelSelected
-            break
-        case .Endless:
-            GS.DiffLevel = V_EASY
-            GS.CurrJoeyLives = 6
-            GS.CurrBoomerangLives = 3
-            break
-        }
+        GS.DiffLevel = V_EASY
+        GS.CurrJoeyLives = 6
+        GS.CurrBoomerangLives = 3
+    
         restart()
         GS.GameState = .Countdown
     }

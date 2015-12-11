@@ -54,112 +54,38 @@ class DropletLayer: SKNode {
         fadeZoneRect = CGRect(x: playableMargin, y: dropletFadeBoundaryY - 5,
             width: playableWidth,
             height: 10)
-        
-        switch GS.GameMode {
-        case .Endless:
-            setDifficulty(V_EASY)
-            break
-        case .Classic:
-            setDifficulty(GS.DiffLevel)
-        }
-        
+   
+        initDifficulty()
         dropLines = true
         
     }
     
     func update(currentTime: CFTimeInterval) {
-        switch GS.GameMode {
-        case .Endless:
-            switch GS.GameState {
-            case .GameRunning:
-                if (changeDiff) {
-                    changeDifficulty()
-                }
-                if (GS.totalLinesDropped - GS.lineCountBeforeDrops) == GS.currLinesToDrop {
-                    dropNewGroup()
-                }
-                break
-            case .Paused:
-                break
-            case .GameOver:
-                break
-            default: break
+        switch GS.GameState {
+        case .GameRunning:
+            if (changeDiff) {
+                changeDifficulty()
             }
-        case .Classic:
-            switch GS.GameState {
-            case .GameRunning:
-                if (GS.totalLinesDropped - GS.lineCountBeforeDrops) == GS.currLinesToDrop {
-                    dropNewGroup()
-                }
-                break
-            case .Paused:
-                break
-            case .GameOver:
-                break
-            default: break
+            if (GS.totalLinesDropped - GS.lineCountBeforeDrops) == GS.currLinesToDrop {
+                dropNewGroup()
             }
-        }
-
-    }
-    
-    //Set Difficulty once for Classic
-    func setDifficulty(diff: Int) {
-        switch diff {
-        case V_EASY:
-            GS.timeBetweenLines = 0.5
-            scene?.physicsWorld.gravity.dy = -7.8
-            GS.groupWaitTimeMax = 3
-            GS.groupWaitTimeMin = 2
-            GS.eggPercentage = 100
             break
-        case EASY:
-            GS.timeBetweenLines = 0.46
-            scene?.physicsWorld.gravity.dy = -9.0
-            GS.groupWaitTimeMax = 2.8
-            GS.groupWaitTimeMin = 1.8
-            GS.eggPercentage = 70
+        case .Paused:
             break
-        case MED:
-            GS.timeBetweenLines = 0.42
-            scene?.physicsWorld.gravity.dy = -10.2
-            GS.groupWaitTimeMax = 2.6
-            GS.groupWaitTimeMin = 1.6
-            GS.eggPercentage = 70
+        case .GameOver:
             break
-        case HARD:
-            GS.timeBetweenLines = 0.38
-            scene?.physicsWorld.gravity.dy = -11.4
-            GS.groupWaitTimeMax = 2.4
-            GS.groupWaitTimeMin = 1.4
-            GS.eggPercentage = 75
-            break
-        case V_HARD:
-            GS.timeBetweenLines = 0.34
-            scene?.physicsWorld.gravity.dy = -12.6
-            GS.groupWaitTimeMax = 2.2
-            GS.groupWaitTimeMin = 1.2
-            GS.eggPercentage = 90
-            break
-        default:
-            GS.timeBetweenLines = 0.3
-            scene?.physicsWorld.gravity.dy = -13.8
-            GS.groupWaitTimeMax = 2
-            GS.groupWaitTimeMin = 1
-            GS.eggPercentage = 90
-            break
+        default: break
         }
     }
     
-    //Update Group Amount for Classic
-    func updateGroupAmount() {
-        let t = GS.totalGroupsDropped
-        if t == 10 || t == 20 || t == 30 || t == 37 || t >= 42 {
-            GS.groupAmtMin = (GS.groupAmtMin*2 - 1)
-            GS.groupAmtMax = (GS.groupAmtMin*2 - 1)
-        }
+    func initDifficulty() {
+        GS.timeBetweenLines = 0.5
+        scene?.physicsWorld.gravity.dy = -7.8
+        GS.groupWaitTimeMax = 3
+        GS.groupWaitTimeMin = 2
+        GS.eggPercentage = 100
     }
     
-    //Change Difficulty for Endless
     func changeDifficulty() {
         if GS.DiffLevel < EXTREME {
             GS.timeBetweenLines -= 0.04
@@ -194,7 +120,6 @@ class DropletLayer: SKNode {
         changeDiff = false
     }
     
-    //Update Difficulty for Endless
     func updateDifficulty() {
         var groupRepeat: Int?
         switch GS.DiffLevel {
@@ -233,15 +158,8 @@ class DropletLayer: SKNode {
     * then groups a determined amount of these into one action
     *******************************************************************************/
     func dropNewGroup() {
-        //if true, drop a new group of lines
-        switch GS.GameMode {
-        case .Endless:
-            updateDifficulty()
-            break
-        case .Classic:
-            updateGroupAmount()
-            break
-        }
+    
+        updateDifficulty()
         
         let linesToDrop: Int?
         let waitBeforeGroup: NSTimeInterval?
@@ -360,9 +278,6 @@ class DropletLayer: SKNode {
                     [scaleUp, scaleDown, scaleUp, scaleDown])
                 let group = SKAction.group([fullScale, fullWiggle])
                 drop.runAction(SKAction.repeatActionForever(group))
-                if GS.GameMode == .Classic {
-                    TheClassicHUD?.subtractJoeyCount()
-                }
             }
             if(type == BOOMERANG) {
                 let halfSpin = SKAction.rotateByAngle(π, duration: 0.5)
@@ -467,7 +382,6 @@ class DropletLayer: SKNode {
         joey.removeAllActions()
         joey.runAction(SKAction.removeFromParent())
         
-        GS.JoeysCaught++
         GS.CurrScore++
         TheHUD?.updateScore()
         
@@ -492,14 +406,11 @@ class DropletLayer: SKNode {
         //change joey to have frown?
         addChild(joey)
         
-        if GS.GameMode == .Endless {
-            print(GS.CurrJoeyLives)
-            TheEndlessHUD?.removeLife("drop\(GS.CurrJoeyLives)")
-            GS.CurrJoeyLives--
+        TheHUD?.removeLife("drop\(GS.CurrJoeyLives)")
+        GS.CurrJoeyLives--
     
-            if(GS.CurrJoeyLives == 0) {
-                GS.GameState = .GameOver
-            }
+        if(GS.CurrJoeyLives == 0) {
+            GS.GameState = .GameOver
         }
         
     }
@@ -514,28 +425,21 @@ class DropletLayer: SKNode {
         
         boomer.removeAllActions()
         boomer.runAction(SKAction.removeFromParent())
-        GS.BoomersCaught++
-        if GS.GameMode == .Classic {
-            GS.CurrScore--
-        }
         
-        if GS.GameMode == .Endless {
-            TheEndlessHUD?.removeLife("life\(GS.CurrBoomerangLives)")
-            GS.CurrBoomerangLives--
+        TheHUD?.removeLife("life\(GS.CurrBoomerangLives)")
+        GS.CurrBoomerangLives--
             
-            if(GS.CurrBoomerangLives == 0) {
-                boomDeath = true
-                GS.GameState = .GameOver
-            }
+        if(GS.CurrBoomerangLives == 0) {
+            boomDeath = true
+            GS.GameState = .GameOver
         }
-        
+  
     }
     
     func kangarooMissedBoomer(boomer: Droplet) {
         let fade = SKAction.fadeAlphaTo(0.0, duration: 0.18)
         let remove = SKAction.removeFromParent()
         boomer.runAction(SKAction.sequence([fade, remove]))
-        
     }
     
     internal func freezeDroplets() {

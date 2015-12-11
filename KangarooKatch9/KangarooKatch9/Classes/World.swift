@@ -11,7 +11,6 @@ import SpriteKit
 var leftRect: CGRect?
 var rightRect: CGRect?
 var Droplets: DropletLayer?
-//var TheWorld: World?
 var unpauseGame: Bool = false
 var TheKangaroo: Kangaroo?
 
@@ -20,7 +19,7 @@ class World: SKNode {
     let pauseRect: CGRect
     var ThePauseMenu: PauseMenu?
     
-    let pauseX: CGFloat = 120
+    let pauseX: CGFloat = 595
     let pauseY: CGFloat = 20
     
     var pauseButton: SKSpriteNode?
@@ -55,6 +54,8 @@ class World: SKNode {
         
         let background = SKSpriteNode(imageNamed: "KKbackground")
         background.position = CGPoint(x: size!.width/2, y: size!.height/2)
+        background.size.width = background.size.width*(1.1)
+        background.size.height = background.size.height*(1.1)
         background.zPosition = 1
         addChild(background)
         

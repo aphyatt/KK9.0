@@ -10,27 +10,25 @@ import Foundation
 import SpriteKit
 
 class MainMenu: SKScene {
-    let classicRect: CGRect
-    let endlessRect: CGRect
+    let normalRect: CGRect
     let multiRect: CGRect
     let settingsRect: CGRect
     
-    var classicButton: OptionButton?
-    var endlessButton: OptionButton?
+    var normalButton: OptionButton?
     var multiButton: OptionButton?
     var settingsButton: OptionButton?
-    let classicY: CGFloat = 760
-    let endlessY: CGFloat = 580
-    let multiY: CGFloat = 400
-    let settingsY: CGFloat = 220
+    
+    let normalY: CGFloat = 720
+    let multiY: CGFloat = 480
+    let settingsY: CGFloat = 240
     
     let buttonColor: UIColor = kangColor
     let buttonOColor: UIColor = SKColor.blackColor()
     let textColor: UIColor = SKColor.blackColor()
     let textSColor: UIColor = SKColor.whiteColor()
     let buttonWidth: CGFloat = 500
-    let buttonHeight: CGFloat = 100
-    let fontSize: CGFloat = 55
+    let buttonHeight: CGFloat = 180
+    let fontSize: CGFloat = 70
     
     override func didMoveToView(view: SKView) {
         if (TheGameScene != nil) {
@@ -47,12 +45,8 @@ class MainMenu: SKScene {
     }
     
     override init(size: CGSize) {
-        classicRect = CGRect(x: size.width/2 - buttonWidth/2,
-            y: classicY - buttonHeight/2,
-            width: buttonWidth,
-            height: buttonHeight)
-        endlessRect = CGRect(x: size.width/2 - buttonWidth/2,
-            y: endlessY - buttonHeight/2,
+        normalRect = CGRect(x: size.width/2 - buttonWidth/2,
+            y: normalY - buttonHeight/2,
             width: buttonWidth,
             height: buttonHeight)
         multiRect = CGRect(x: size.width/2 - buttonWidth/2,
@@ -73,58 +67,45 @@ class MainMenu: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func CreateClassicButton() {
-        classicButton = OptionButton(buttonRect: classicRect,
+    private func CreateNormalButton() {
+        normalButton = OptionButton(buttonRect: normalRect,
             outlineColor: buttonOColor, fillColor: buttonColor,
             lineWidth: 4, startZ: 2)
-        classicButton?.setText("CLASSIC MODE", textSize: fontSize,
+        normalButton?.setText("PLAY", textSize: fontSize,
             textColor: textColor, textColorS: textSColor,
-            textPos: CGPoint(x: size.width/2, y: classicY-15), shadowOffset: 3)
-        if let cb = classicButton {
-            self.addChild(cb)
-        }
-    }
-    
-    private func CreateEndlessButton() {
-        classicButton = OptionButton(buttonRect: endlessRect,
-            outlineColor: buttonOColor, fillColor: buttonColor,
-            lineWidth: 4, startZ: 2)
-        classicButton?.setText("ENDLESS MODE", textSize: fontSize,
-            textColor: textColor, textColorS: textSColor,
-            textPos: CGPoint(x: size.width/2, y: endlessY-15), shadowOffset: 3)
-        if let cb = classicButton {
-            self.addChild(cb)
+            textPos: CGPoint(x: size.width/2, y: normalY-15), shadowOffset: 3)
+        if let nb = normalButton {
+            self.addChild(nb)
         }
     }
     
     private func CreateMultiButton() {
-        classicButton = OptionButton(buttonRect: multiRect,
+        multiButton = OptionButton(buttonRect: multiRect,
             outlineColor: buttonOColor, fillColor: buttonColor,
             lineWidth: 4, startZ: 2)
-        classicButton?.setText("MULTIPLAYER MODE", textSize: fontSize,
+        multiButton?.setText("MULTIPLAYER", textSize: fontSize,
             textColor: textColor, textColorS: textSColor,
             textPos: CGPoint(x: size.width/2, y: multiY-15), shadowOffset: 3)
-        if let cb = classicButton {
-            self.addChild(cb)
+        if let mb = multiButton {
+            self.addChild(mb)
         }
     }
     
     private func CreateSettingsButton() {
-        classicButton = OptionButton(buttonRect: settingsRect,
+        settingsButton = OptionButton(buttonRect: settingsRect,
             outlineColor: buttonOColor, fillColor: buttonColor,
             lineWidth: 4, startZ: 2)
-        classicButton?.setText("SETTINGS", textSize: fontSize,
+        settingsButton?.setText("SETTINGS", textSize: fontSize,
             textColor: textColor, textColorS: textSColor,
             textPos: CGPoint(x: size.width/2, y: settingsY-15), shadowOffset: 3)
-        if let cb = classicButton {
-            self.addChild(cb)
+        if let sb = settingsButton {
+            self.addChild(sb)
         }
     }
     
     func CreateMainMenu() {
         
-        CreateClassicButton()
-        CreateEndlessButton()
+        CreateNormalButton()
         CreateMultiButton()
         CreateSettingsButton()
         
@@ -133,12 +114,8 @@ class MainMenu: SKScene {
     func sceneTouched(touchLocation:CGPoint) {
         var shade: SKShapeNode!
         var buttonTouched: Bool = false
-        if(classicRect.contains(touchLocation)) {
-            shade = drawRectangle(classicRect, color: SKColor.grayColor(), width: 1.0)
-            buttonTouched = true
-        }
-        else if(endlessRect.contains(touchLocation)) {
-            shade = drawRectangle(endlessRect, color: SKColor.grayColor(), width: 1.0)
+        if(normalRect.contains(touchLocation)) {
+            shade = drawRectangle(normalRect, color: SKColor.grayColor(), width: 1.0)
             buttonTouched = true
         }
         else if(multiRect.contains(touchLocation)) {
@@ -167,18 +144,8 @@ class MainMenu: SKScene {
             shade!.removeFromParent()
             
             var myScene: SKScene!
-            if(classicRect.contains(touchLocation)) {
-                GS.GameMode = .Classic
-                //Create menus for diff->amount->then go
-                GS.DiffLevelSelected = MED
-                GS.JoeyAmountSelected = 100
-                myScene = GameScene(size: self.size)
-                myScene.scaleMode = self.scaleMode
-                let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-                self.view?.presentScene(myScene, transition: reveal)
-            }
-            else if(endlessRect.contains(touchLocation)) {
-                GS.GameMode = .Endless
+            if(normalRect.contains(touchLocation)) {
+                GS.GameMode = .Normal
                 myScene = GameScene(size: self.size)
                 myScene.scaleMode = self.scaleMode
                 let reveal = SKTransition.flipHorizontalWithDuration(0.5)
@@ -209,10 +176,7 @@ class MainMenu: SKScene {
     }
     
     func debugDrawPlayableArea() {
-        let cShape = drawRectangle(classicRect, color: SKColor.redColor(), width: 4.0)
-        addChild(cShape)
-        
-        let eShape = drawRectangle(endlessRect, color: SKColor.redColor(), width: 4.0)
+        let eShape = drawRectangle(normalRect, color: SKColor.redColor(), width: 4.0)
         addChild(eShape)
         
         let mShape = drawRectangle(multiRect, color: SKColor.redColor(), width: 4.0)
@@ -220,7 +184,6 @@ class MainMenu: SKScene {
         
         let sShape = drawRectangle(settingsRect, color: SKColor.redColor(), width: 4.0)
         addChild(sShape)
-  
     }
     
     

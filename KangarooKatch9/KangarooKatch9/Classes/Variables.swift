@@ -17,8 +17,8 @@ enum GameStateType {
 }
 
 enum GameModeType {
-    case Classic
-    case Endless
+    case Normal
+    case Multiplayer
 }
 
 let kangColor: SKColor = SKColorWithRGB(189, g: 88, b: 14)

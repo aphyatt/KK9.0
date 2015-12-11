@@ -40,9 +40,7 @@
 		ADDDEA1E1BBA361300A95BA3 /* Icon76.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA131BBA361300A95BA3 /* Icon76.png */; };
 		ADDDEA1F1BBA361300A95BA3 /* Icon76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA141BBA361300A95BA3 /* Icon76@2x.png */; };
 		ADDDEA321BBA38FA00A95BA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA211BBA38FA00A95BA3 /* AppDelegate.swift */; };
-		ADDDEA341BBA38FA00A95BA3 /* ClassicHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA231BBA38FA00A95BA3 /* ClassicHUD.swift */; };
 		ADDDEA351BBA38FA00A95BA3 /* DropletLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA241BBA38FA00A95BA3 /* DropletLayer.swift */; };
-		ADDDEA361BBA38FA00A95BA3 /* EndlessHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA251BBA38FA00A95BA3 /* EndlessHUD.swift */; };
 		ADDDEA371BBA38FA00A95BA3 /* GameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA261BBA38FA00A95BA3 /* GameLabel.swift */; };
 		ADDDEA381BBA38FA00A95BA3 /* GameOverLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA271BBA38FA00A95BA3 /* GameOverLayer.swift */; };
 		ADDDEA391BBA38FA00A95BA3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDDEA281BBA38FA00A95BA3 /* GameScene.swift */; };
@@ -116,9 +114,7 @@
 		ADDDEA131BBA361300A95BA3 /* Icon76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon76.png; sourceTree = "<group>"; };
 		ADDDEA141BBA361300A95BA3 /* Icon76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon76@2x.png"; sourceTree = "<group>"; };
 		ADDDEA211BBA38FA00A95BA3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ADDDEA231BBA38FA00A95BA3 /* ClassicHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicHUD.swift; sourceTree = "<group>"; };
 		ADDDEA241BBA38FA00A95BA3 /* DropletLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropletLayer.swift; sourceTree = "<group>"; };
-		ADDDEA251BBA38FA00A95BA3 /* EndlessHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndlessHUD.swift; sourceTree = "<group>"; };
 		ADDDEA261BBA38FA00A95BA3 /* GameLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLabel.swift; sourceTree = "<group>"; };
 		ADDDEA271BBA38FA00A95BA3 /* GameOverLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverLayer.swift; sourceTree = "<group>"; };
 		ADDDEA281BBA38FA00A95BA3 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -253,10 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				ADDDEA211BBA38FA00A95BA3 /* AppDelegate.swift */,
-				ADDDEA231BBA38FA00A95BA3 /* ClassicHUD.swift */,
 				ADDDEA241BBA38FA00A95BA3 /* DropletLayer.swift */,
 				ADEFB9911BBB877D0009F97A /* Droplet.swift */,
-				ADDDEA251BBA38FA00A95BA3 /* EndlessHUD.swift */,
 				ADDDEA261BBA38FA00A95BA3 /* GameLabel.swift */,
 				ADDDEA271BBA38FA00A95BA3 /* GameOverLayer.swift */,
 				ADDDEA281BBA38FA00A95BA3 /* GameScene.swift */,
@@ -446,7 +440,6 @@
 				ADDDEA3B1BBA38FA00A95BA3 /* GameViewController.swift in Sources */,
 				ADDDEA351BBA38FA00A95BA3 /* DropletLayer.swift in Sources */,
 				ADDDEA411BBA38FA00A95BA3 /* Variables.swift in Sources */,
-				ADDDEA341BBA38FA00A95BA3 /* ClassicHUD.swift in Sources */,
 				AD83791B1C190C8B00BDFB59 /* SKTEffects.swift in Sources */,
 				ADDDEA391BBA38FA00A95BA3 /* GameScene.swift in Sources */,
 				AD8379191C190BD400BDFB59 /* SKAction+SpecialEffects.swift in Sources */,
@@ -456,7 +449,6 @@
 				ADDDEA3A1BBA38FA00A95BA3 /* GameStatus.swift in Sources */,
 				ADDDEA3C1BBA38FA00A95BA3 /* HUD.swift in Sources */,
 				ADDDEA401BBA38FA00A95BA3 /* Settings.swift in Sources */,
-				ADDDEA361BBA38FA00A95BA3 /* EndlessHUD.swift in Sources */,
 				ADDDEA321BBA38FA00A95BA3 /* AppDelegate.swift in Sources */,
 				ADDDEA381BBA38FA00A95BA3 /* GameOverLayer.swift in Sources */,
 				ADEFB9921BBB877D0009F97A /* Droplet.swift in Sources */,

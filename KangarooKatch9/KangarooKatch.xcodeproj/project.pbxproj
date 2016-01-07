@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		AD024B521BC49BDC00E84EAA /* PauseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD024B511BC49BDC00E84EAA /* PauseMenu.swift */; };
 		AD024B541BC4AB2200E84EAA /* WhiteCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = AD024B531BC4AB2200E84EAA /* WhiteCheck.png */; };
+		AD33C2D21C3CAB9C0077B733 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD33C2D11C3CAB9C0077B733 /* GameKit.framework */; };
 		AD6DD26B1BC72EC800DA17C4 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6DD26A1BC72EC800DA17C4 /* OptionButton.swift */; };
 		AD8379191C190BD400BDFB59 /* SKAction+SpecialEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8379181C190BD400BDFB59 /* SKAction+SpecialEffects.swift */; };
 		AD83791B1C190C8B00BDFB59 /* SKTEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83791A1C190C8B00BDFB59 /* SKTEffects.swift */; };
 		AD83791D1C190D4B00BDFB59 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83791C1C190D4B00BDFB59 /* SKTTimingFunctions.swift */; };
+		ADB3315E1C1F958A00287848 /* Template.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB3315D1C1F958A00287848 /* Template.png */; };
 		ADDDE9CC1BBA34FD00A95BA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CA1BBA34FD00A95BA3 /* Main.storyboard */; };
 		ADDDE9CE1BBA34FD00A95BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CD1BBA34FD00A95BA3 /* Assets.xcassets */; };
 		ADDDE9D11BBA34FD00A95BA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CF1BBA34FD00A95BA3 /* LaunchScreen.storyboard */; };
@@ -24,10 +26,8 @@
 		ADDDEA021BBA360C00A95BA3 /* KKbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9F91BBA360C00A95BA3 /* KKbackground.png */; };
 		ADDDEA031BBA360C00A95BA3 /* LoadingScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9FA1BBA360C00A95BA3 /* LoadingScreen.png */; };
 		ADDDEA041BBA360C00A95BA3 /* MainMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9FB1BBA360C00A95BA3 /* MainMenu.png */; };
-		ADDDEA051BBA360C00A95BA3 /* OneThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9FC1BBA360C00A95BA3 /* OneThumb.png */; };
 		ADDDEA061BBA360C00A95BA3 /* PauseButtonGray.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9FD1BBA360C00A95BA3 /* PauseButtonGray.png */; };
 		ADDDEA071BBA360C00A95BA3 /* PauseButtonWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9FE1BBA360C00A95BA3 /* PauseButtonWhite.png */; };
-		ADDDEA081BBA360C00A95BA3 /* TwoThumbs.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9FF1BBA360C00A95BA3 /* TwoThumbs.png */; };
 		ADDDEA151BBA361300A95BA3 /* Icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA0A1BBA361300A95BA3 /* Icon29.png */; };
 		ADDDEA161BBA361300A95BA3 /* Icon29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA0B1BBA361300A95BA3 /* Icon29@2x.png */; };
 		ADDDEA171BBA361300A95BA3 /* Icon29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDDEA0C1BBA361300A95BA3 /* Icon29@3x.png */; };
@@ -77,10 +77,12 @@
 /* Begin PBXFileReference section */
 		AD024B511BC49BDC00E84EAA /* PauseMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseMenu.swift; sourceTree = "<group>"; };
 		AD024B531BC4AB2200E84EAA /* WhiteCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCheck.png; sourceTree = "<group>"; };
+		AD33C2D11C3CAB9C0077B733 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		AD6DD26A1BC72EC800DA17C4 /* OptionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
 		AD8379181C190BD400BDFB59 /* SKAction+SpecialEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKAction+SpecialEffects.swift"; sourceTree = "<group>"; };
 		AD83791A1C190C8B00BDFB59 /* SKTEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTEffects.swift; sourceTree = "<group>"; };
 		AD83791C1C190D4B00BDFB59 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
+		ADB3315D1C1F958A00287848 /* Template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Template.png; sourceTree = "<group>"; };
 		ADDDE9BF1BBA34FD00A95BA3 /* KangarooKatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KangarooKatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADDDE9CB1BBA34FD00A95BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ADDDE9CD1BBA34FD00A95BA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,10 +100,8 @@
 		ADDDE9F91BBA360C00A95BA3 /* KKbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KKbackground.png; sourceTree = "<group>"; };
 		ADDDE9FA1BBA360C00A95BA3 /* LoadingScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoadingScreen.png; sourceTree = "<group>"; };
 		ADDDE9FB1BBA360C00A95BA3 /* MainMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainMenu.png; sourceTree = "<group>"; };
-		ADDDE9FC1BBA360C00A95BA3 /* OneThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OneThumb.png; sourceTree = "<group>"; };
 		ADDDE9FD1BBA360C00A95BA3 /* PauseButtonGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseButtonGray.png; sourceTree = "<group>"; };
 		ADDDE9FE1BBA360C00A95BA3 /* PauseButtonWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseButtonWhite.png; sourceTree = "<group>"; };
-		ADDDE9FF1BBA360C00A95BA3 /* TwoThumbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwoThumbs.png; sourceTree = "<group>"; };
 		ADDDEA0A1BBA361300A95BA3 /* Icon29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon29.png; sourceTree = "<group>"; };
 		ADDDEA0B1BBA361300A95BA3 /* Icon29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon29@2x.png"; sourceTree = "<group>"; };
 		ADDDEA0C1BBA361300A95BA3 /* Icon29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon29@3x.png"; sourceTree = "<group>"; };
@@ -136,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD33C2D21C3CAB9C0077B733 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,9 +157,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD760E941C3E014E00A7596E /* GameKit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GameKit;
+			sourceTree = "<group>";
+		};
 		ADDDE9B61BBA34FD00A95BA3 = {
 			isa = PBXGroup;
 			children = (
+				AD760E941C3E014E00A7596E /* GameKit */,
+				AD33C2D11C3CAB9C0077B733 /* GameKit.framework */,
 				ADDDE9C11BBA34FD00A95BA3 /* KangarooKatch9 */,
 				ADDDEA431BBA399700A95BA3 /* Fonts */,
 				ADDDE9DA1BBA34FD00A95BA3 /* KangarooKatch9Tests */,
@@ -213,16 +223,15 @@
 		ADDDE9F61BBA360C00A95BA3 /* KKImages */ = {
 			isa = PBXGroup;
 			children = (
+				ADB3315D1C1F958A00287848 /* Template.png */,
 				AD024B531BC4AB2200E84EAA /* WhiteCheck.png */,
 				ADDDE9F71BBA360C00A95BA3 /* ButtonImage.png */,
 				ADDDE9F81BBA360C00A95BA3 /* ImageBoundary.png */,
 				ADDDE9F91BBA360C00A95BA3 /* KKbackground.png */,
 				ADDDE9FA1BBA360C00A95BA3 /* LoadingScreen.png */,
 				ADDDE9FB1BBA360C00A95BA3 /* MainMenu.png */,
-				ADDDE9FC1BBA360C00A95BA3 /* OneThumb.png */,
 				ADDDE9FD1BBA360C00A95BA3 /* PauseButtonGray.png */,
 				ADDDE9FE1BBA360C00A95BA3 /* PauseButtonWhite.png */,
-				ADDDE9FF1BBA360C00A95BA3 /* TwoThumbs.png */,
 			);
 			path = KKImages;
 			sourceTree = "<group>";
@@ -347,6 +356,12 @@
 				TargetAttributes = {
 					ADDDE9BE1BBA34FD00A95BA3 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 73L79FW6FC;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					ADDDE9D61BBA34FD00A95BA3 = {
 						CreatedOnToolsVersion = 7.0;
@@ -386,11 +401,11 @@
 				ADDDEA061BBA360C00A95BA3 /* PauseButtonGray.png in Resources */,
 				ADDDE9D11BBA34FD00A95BA3 /* LaunchScreen.storyboard in Resources */,
 				ADDDEA071BBA360C00A95BA3 /* PauseButtonWhite.png in Resources */,
+				ADB3315E1C1F958A00287848 /* Template.png in Resources */,
 				ADDDEA1E1BBA361300A95BA3 /* Icon76.png in Resources */,
 				ADDDEA041BBA360C00A95BA3 /* MainMenu.png in Resources */,
 				ADDDE9CE1BBA34FD00A95BA3 /* Assets.xcassets in Resources */,
 				ADDDEA031BBA360C00A95BA3 /* LoadingScreen.png in Resources */,
-				ADDDEA081BBA360C00A95BA3 /* TwoThumbs.png in Resources */,
 				ADDDEA1F1BBA361300A95BA3 /* Icon76@2x.png in Resources */,
 				ADDDEA1C1BBA361300A95BA3 /* Icon60@2x.png in Resources */,
 				ADDDEA161BBA361300A95BA3 /* Icon29@2x.png in Resources */,
@@ -400,7 +415,6 @@
 				ADDDEA1D1BBA361300A95BA3 /* Icon60@3x.png in Resources */,
 				ADDDEA181BBA361300A95BA3 /* Icon40.png in Resources */,
 				ADDDEA011BBA360C00A95BA3 /* ImageBoundary.png in Resources */,
-				ADDDEA051BBA360C00A95BA3 /* OneThumb.png in Resources */,
 				ADDDEA151BBA361300A95BA3 /* Icon29.png in Resources */,
 				ADDDE9CC1BBA34FD00A95BA3 /* Main.storyboard in Resources */,
 				AD024B541BC4AB2200E84EAA /* WhiteCheck.png in Resources */,
@@ -594,10 +608,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = KangarooKatch9/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.orangedude.KangarooKatch;
 				PRODUCT_NAME = KangarooKatch;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -605,10 +622,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = KangarooKatch9/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.orangedude.KangarooKatch;
 				PRODUCT_NAME = KangarooKatch;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

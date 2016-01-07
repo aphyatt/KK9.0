@@ -13,6 +13,7 @@ class MainMenu: SKScene {
     let normalRect: CGRect
     let multiRect: CGRect
     let settingsRect: CGRect
+    let playableRect: CGRect
     
     var normalButton: OptionButton?
     var multiButton: OptionButton?
@@ -41,10 +42,17 @@ class MainMenu: SKScene {
         background.zPosition = -1
         addChild(background)
         
-        //debugDrawPlayableArea()
+        debugDrawPlayableArea()
     }
     
     override init(size: CGSize) {
+        let maxAspectRatio: CGFloat = 16.0/9.0
+        let playableWidth = size.height / maxAspectRatio
+        let playableMargin = (size.width-playableWidth)/2.0
+        print(playableMargin)
+        print(playableMargin+playableWidth)
+        print(size.height)
+        playableRect = CGRect(x: playableMargin, y: 0, width: playableWidth, height: size.height)
         normalRect = CGRect(x: size.width/2 - buttonWidth/2,
             y: normalY - buttonHeight/2,
             width: buttonWidth,
@@ -184,6 +192,9 @@ class MainMenu: SKScene {
         
         let sShape = drawRectangle(settingsRect, color: SKColor.redColor(), width: 4.0)
         addChild(sShape)
+        
+        let pShape = drawRectangle(playableRect, color: SKColor.whiteColor(), width: 5.0)
+        addChild(pShape)
     }
     
     

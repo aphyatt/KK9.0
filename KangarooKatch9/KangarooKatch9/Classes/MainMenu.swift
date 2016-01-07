@@ -42,7 +42,7 @@ class MainMenu: SKScene {
         background.zPosition = -1
         addChild(background)
         
-        debugDrawPlayableArea()
+        //debugDrawPlayableArea()
     }
     
     override init(size: CGSize) {

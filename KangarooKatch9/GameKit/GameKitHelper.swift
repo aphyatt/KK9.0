@@ -10,6 +10,7 @@ import GameKit
 import Foundation
 
 let singleton = GameKitHelper()
+let PresentAuthenticationViewController = "PresentAuthenticationViewController"
 
 class GameKitHelper: NSObject {
     var authenticationViewController: UIViewController?
@@ -23,5 +24,23 @@ class GameKitHelper: NSObject {
     override init() {
         gameCenterEnabled = true
         super.init()
+    }
+    
+    func authenticateLocalPlayer() {
+        let localPlayer = GKLocalPlayer.localPlayer()
+        localPlayer.authenticateHandler = {(viewController, error) in
+            self.lastError = error
+            
+            if viewController != nil {
+                self.authenticationViewController = viewController
+                
+                NSNotificationCenter.defaultCenter().postNotificationName(PresentAuthenticationViewController,
+                    object: self)
+            } else if localPlayer.authenticated {
+                self.gameCenterEnabled = true
+            } else {
+                self.gameCenterEnabled = false
+            }
+        }
     }
 }

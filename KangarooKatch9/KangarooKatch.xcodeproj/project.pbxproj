@@ -12,6 +12,7 @@
 		AD33C2D21C3CAB9C0077B733 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD33C2D11C3CAB9C0077B733 /* GameKit.framework */; };
 		AD6DD26B1BC72EC800DA17C4 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6DD26A1BC72EC800DA17C4 /* OptionButton.swift */; };
 		AD760E991C3E050900A7596E /* GameKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD760E981C3E050900A7596E /* GameKitHelper.swift */; };
+		AD760E9B1C3E0BCE00A7596E /* KangarooKatchNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD760E9A1C3E0BCE00A7596E /* KangarooKatchNavigationController.swift */; };
 		AD8379191C190BD400BDFB59 /* SKAction+SpecialEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8379181C190BD400BDFB59 /* SKAction+SpecialEffects.swift */; };
 		AD83791B1C190C8B00BDFB59 /* SKTEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83791A1C190C8B00BDFB59 /* SKTEffects.swift */; };
 		AD83791D1C190D4B00BDFB59 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83791C1C190D4B00BDFB59 /* SKTTimingFunctions.swift */; };
@@ -81,6 +82,7 @@
 		AD33C2D11C3CAB9C0077B733 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		AD6DD26A1BC72EC800DA17C4 /* OptionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
 		AD760E981C3E050900A7596E /* GameKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameKitHelper.swift; sourceTree = "<group>"; };
+		AD760E9A1C3E0BCE00A7596E /* KangarooKatchNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KangarooKatchNavigationController.swift; sourceTree = "<group>"; };
 		AD8379181C190BD400BDFB59 /* SKAction+SpecialEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKAction+SpecialEffects.swift"; sourceTree = "<group>"; };
 		AD83791A1C190C8B00BDFB59 /* SKTEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTEffects.swift; sourceTree = "<group>"; };
 		AD83791C1C190D4B00BDFB59 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				ADDDEA2F1BBA38FA00A95BA3 /* Settings.swift */,
 				ADDDEA301BBA38FA00A95BA3 /* Variables.swift */,
 				ADDDEA311BBA38FA00A95BA3 /* World.swift */,
+				AD760E9A1C3E0BCE00A7596E /* KangarooKatchNavigationController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				AD8379191C190BD400BDFB59 /* SKAction+SpecialEffects.swift in Sources */,
 				ADDDEA3F1BBA38FA00A95BA3 /* MyUtils.swift in Sources */,
 				ADDDEA371BBA38FA00A95BA3 /* GameLabel.swift in Sources */,
+				AD760E9B1C3E0BCE00A7596E /* KangarooKatchNavigationController.swift in Sources */,
 				AD6DD26B1BC72EC800DA17C4 /* OptionButton.swift in Sources */,
 				ADDDEA3A1BBA38FA00A95BA3 /* GameStatus.swift in Sources */,
 				ADDDEA3C1BBA38FA00A95BA3 /* HUD.swift in Sources */,

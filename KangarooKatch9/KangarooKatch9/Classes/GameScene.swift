@@ -31,6 +31,7 @@ class GameScene: SKScene {
     var GameWorld: World?
     var HUDdisplay: HUD?
     var GameOver: GameOverLayer?
+    var AchievementHelper: AchievementsHelper?
     
     var countdownWait: Bool = false
     var countdownLabel: GameLabel?
@@ -119,6 +120,7 @@ class GameScene: SKScene {
             GameOver!.update(currentTime)
             break
         }
+        
     }
     
     var countdownCalls: Int = 0

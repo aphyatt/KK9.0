@@ -187,6 +187,7 @@ class DropletLayer: SKNode {
     
     /*********************** Drop Group Helper Functions ******************************/
     
+     //TODO: figure out how to save lines to drop after resuming a pause
     /*
     * Drops random line chosen from pickRandomLine() by making
     * three simultaneous calls to spawnDroplet

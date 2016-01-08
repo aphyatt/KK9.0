@@ -15,6 +15,8 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         self.view?.multipleTouchEnabled = true
         
+        sleep(UInt32(1.5))
+        
         let scene = MainMenu(size: CGSize(width: 768, height: 1024))
         // Configure the view.
         let skView = self.view as! SKView

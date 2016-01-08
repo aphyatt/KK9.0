@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GameKit
 
 var boomDeath: Bool = false
 weak var TheGameOverLayer: GameOverLayer?
@@ -158,6 +159,8 @@ class GameOverLayer: SKNode {
         let scoreAction = SKAction.sequence([wait2, grow, moveAndSizeScore, fadeInScore])
         scoreLabel!.runAction(scoreAction)
         
+        reportAchievementsForJoeys(GS.CurrScore)
+        
         //have old high score appear
         CreateHighscoreLabel()
         let wait3 = SKAction.waitForDuration(5.5)
@@ -203,6 +206,15 @@ class GameOverLayer: SKNode {
         
         let JCfinalAction = SKAction.sequence([SKAction.waitForDuration(2.5), JCscoreAction])
         joeysCaughtLabel!.runAction(JCfinalAction)
+    }
+    
+    func reportAchievementsForJoeys(joeys: Int) {
+        let achievements: [GKAchievement] =
+        AchievementsHelper.joeysCaughtAchievements(joeys)
+        
+        if achievements.count != 0 {
+            GameKitHelper.sharedInstance.reportAchievements(achievements)
+        }
     }
     
     func restartGame() {

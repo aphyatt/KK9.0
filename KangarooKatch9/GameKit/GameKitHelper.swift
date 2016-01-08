@@ -43,4 +43,15 @@ class GameKitHelper: NSObject {
             }
         }
     }
+    
+    func reportAchievements(achievements: [GKAchievement]) {
+        if !gameCenterEnabled {
+            print("Local player is not authenticated")
+            return
+        }
+        GKAchievement.reportAchievements(achievements) {(error) in
+            self.lastError = error
+        }
+    }
+    
 }

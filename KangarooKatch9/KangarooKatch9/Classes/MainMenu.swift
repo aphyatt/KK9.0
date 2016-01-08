@@ -13,23 +13,29 @@ class MainMenu: SKScene {
     let normalRect: CGRect
     let multiRect: CGRect
     let settingsRect: CGRect
+    let gameCenterRect: CGRect
     let playableRect: CGRect
     
     var normalButton: OptionButton?
     var multiButton: OptionButton?
     var settingsButton: OptionButton?
+    var gameCenterButton: OptionButton?
     
     let normalY: CGFloat = 720
     let multiY: CGFloat = 480
     let settingsY: CGFloat = 240
+    let gameCenterY: CGFloat = 240
     
     let buttonColor: UIColor = kangColor
     let buttonOColor: UIColor = SKColor.blackColor()
     let textColor: UIColor = SKColor.blackColor()
     let textSColor: UIColor = SKColor.whiteColor()
-    let buttonWidth: CGFloat = 500
-    let buttonHeight: CGFloat = 180
+    let buttonWidth: CGFloat = 480
+    let smallButtonWidth: CGFloat = 225
+    let buttonHeight: CGFloat = 165
+    let smallButtonHeight: CGFloat = 135
     let fontSize: CGFloat = 70
+    let smallFontSize: CGFloat = 35
     
     override func didMoveToView(view: SKView) {
         if (TheGameScene != nil) {
@@ -61,10 +67,14 @@ class MainMenu: SKScene {
             y: multiY - buttonHeight/2,
             width: buttonWidth,
             height: buttonHeight)
-        settingsRect = CGRect(x: size.width/2 - buttonWidth/2,
+        settingsRect = CGRect(x: playableMargin + playableWidth/4 - smallButtonWidth/2,
             y: settingsY - buttonHeight/2,
-            width: buttonWidth,
-            height: buttonHeight)
+            width: smallButtonWidth,
+            height: smallButtonHeight)
+        gameCenterRect = CGRect(x: playableMargin + (3*playableWidth)/4 - smallButtonWidth/2,
+            y: gameCenterY - buttonHeight/2,
+            width: smallButtonWidth,
+            height: smallButtonHeight)
         
         super.init(size: size)
         
@@ -103,11 +113,23 @@ class MainMenu: SKScene {
         settingsButton = OptionButton(buttonRect: settingsRect,
             outlineColor: buttonOColor, fillColor: buttonColor,
             lineWidth: 4, startZ: 2)
-        settingsButton?.setText("SETTINGS", textSize: fontSize,
+        settingsButton?.setText("SETTINGS", textSize: smallFontSize,
             textColor: textColor, textColorS: textSColor,
-            textPos: CGPoint(x: size.width/2, y: settingsY-15), shadowOffset: 3)
+            textPos: CGPoint(x: size.width/2 - 145, y: settingsY-20), shadowOffset: 2)
         if let sb = settingsButton {
             self.addChild(sb)
+        }
+    }
+    
+    private func CreateGameCenterButton() {
+        gameCenterButton = OptionButton(buttonRect: gameCenterRect,
+            outlineColor: buttonOColor, fillColor: buttonColor,
+            lineWidth: 4, startZ: 2)
+        gameCenterButton?.setText("GAME CENTER", textSize: smallFontSize,
+            textColor: textColor, textColorS: textSColor,
+            textPos: CGPoint(x: size.width/2 + 145, y: gameCenterY-20), shadowOffset: 2)
+        if let gcb = gameCenterButton {
+            self.addChild(gcb)
         }
     }
     
@@ -116,6 +138,7 @@ class MainMenu: SKScene {
         CreateNormalButton()
         CreateMultiButton()
         CreateSettingsButton()
+        CreateGameCenterButton()
         
     }
     
@@ -132,6 +155,10 @@ class MainMenu: SKScene {
         }
         else if(settingsRect.contains(touchLocation)) {
             shade = drawRectangle(settingsRect, color: SKColor.grayColor(), width: 1.0)
+            buttonTouched = true
+        }
+        else if(gameCenterRect.contains(touchLocation)) {
+            shade = drawRectangle(gameCenterRect, color: SKColor.grayColor(), width: 1.0)
             buttonTouched = true
         }
         
@@ -168,6 +195,9 @@ class MainMenu: SKScene {
                 let reveal = SKTransition.flipHorizontalWithDuration(0.5)
                 self.view?.presentScene(myScene, transition: reveal)
             }
+            else if(gameCenterRect.contains(touchLocation)) {
+                //show game center scene here
+            }
         }
     }
     
@@ -192,6 +222,9 @@ class MainMenu: SKScene {
         
         let sShape = drawRectangle(settingsRect, color: SKColor.redColor(), width: 4.0)
         addChild(sShape)
+        
+        let gcShape = drawRectangle(gameCenterRect, color: SKColor.redColor(), width: 4.0)
+        addChild(gcShape)
         
         let pShape = drawRectangle(playableRect, color: SKColor.whiteColor(), width: 5.0)
         addChild(pShape)

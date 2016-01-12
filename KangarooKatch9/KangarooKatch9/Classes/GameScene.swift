@@ -199,6 +199,7 @@ class GameScene: SKScene {
         let touch = touches.first
         let touchLocation = touch!.locationInNode(self)
         numFingers -= touches.count
+        if numFingers < 0 { numFingers == 0 }
         
         switch GS.GameState {
         case .GameRunning:

@@ -196,7 +196,8 @@ class MainMenu: SKScene {
                 self.view?.presentScene(myScene, transition: reveal)
             }
             else if(gameCenterRect.contains(touchLocation)) {
-                //show game center scene here
+                GameKitHelper.sharedInstance.showGKGameCenterViewController(
+                    self)
             }
         }
     }

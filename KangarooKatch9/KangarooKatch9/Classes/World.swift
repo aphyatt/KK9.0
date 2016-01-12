@@ -117,9 +117,11 @@ class World: SKNode {
     func sceneTouched(touchLocation:CGPoint) {
         switch GS.GameState {
         case .GameRunning:
-            TheKangaroo!.sceneTouched(touchLocation)
             if (pauseRect.contains(touchLocation)) {
                 GS.GameState = .Paused
+            }
+            else {
+                TheKangaroo!.sceneTouched(touchLocation)
             }
             break
         case .Paused:

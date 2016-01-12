@@ -60,35 +60,62 @@ class Kangaroo: SKSpriteNode {
     }
     
     func sceneTouched(touchLocation:CGPoint) {
+        print("numFingers = \(numFingers)")
         if touchLocation.x < oneThirdX {
+            print("push left")
             leftTouch = true
             rightTouch = false
         }
-        if touchLocation.x > twoThirdX {
+        else if touchLocation.x > twoThirdX {
+            print("push right")
             rightTouch = true
+            leftTouch = false
+        }
+        else {
+            print("push center")
+            rightTouch = false
             leftTouch = false
         }
     }
     
     func sceneUntouched(touchLocation:CGPoint) {
+        print("numFingers = \(numFingers)")
         if numFingers == 0 {
+            print("off center")
             leftTouch = false
             rightTouch = false
+        }
+        if numFingers == 1 {
+            if touchLocation.x > twoThirdX {
+                print("off right")
+                leftTouch = true
+                rightTouch = false
+            }
+            if touchLocation.x < oneThirdX {
+                print("off left")
+                leftTouch = false
+                rightTouch = true
+            }
         }
     }
     
     func trackThumb(touchLocation:CGPoint) {
-        if touchLocation.x < oneThirdX {
-            leftTouch = true
-            rightTouch = false
-        }
-        else if touchLocation.x > twoThirdX {
-            rightTouch = true
-            leftTouch = false
-        }
-        else {
-            leftTouch = false
-            rightTouch = false
+        if numFingers == 1 {
+            if touchLocation.x < oneThirdX {
+                print("track left")
+                leftTouch = true
+                rightTouch = false
+            }
+            else if touchLocation.x > twoThirdX {
+                print("track right")
+                rightTouch = true
+                leftTouch = false
+            }
+            else {
+                print("track middle")
+                leftTouch = false
+                rightTouch = false
+            }
         }
     }
     

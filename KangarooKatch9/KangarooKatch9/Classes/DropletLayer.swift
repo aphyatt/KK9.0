@@ -55,6 +55,7 @@ class DropletLayer: SKNode {
             width: playableWidth,
             height: 10)
    
+        changeDiff = false
         initDifficulty()
         dropLines = true
         
@@ -78,9 +79,10 @@ class DropletLayer: SKNode {
         }
     }
     
+    
     func initDifficulty() {
         GS.timeBetweenLines = 0.5
-        scene?.physicsWorld.gravity.dy = -7.8
+        TheGameScene!.physicsWorld.gravity.dy = -7.8
         GS.groupWaitTimeMax = 3
         GS.groupWaitTimeMin = 2
         GS.eggPercentage = 100
@@ -89,7 +91,7 @@ class DropletLayer: SKNode {
     func changeDifficulty() {
         if GS.DiffLevel < EXTREME {
             GS.timeBetweenLines -= 0.04
-            scene?.physicsWorld.gravity.dy -= 1.2
+            TheGameScene!.physicsWorld.gravity.dy -= 1.2
             GS.groupWaitTimeMax -= 0.2
             GS.groupWaitTimeMin -= 0.2
             GS.groupAmtMin = (GS.groupAmtMin*2 - 1)
@@ -373,7 +375,6 @@ class DropletLayer: SKNode {
     //Can use pouch idea where joey falls behind pouch and detection is near entrance
     func kangarooCaughtJoey(joey: Droplet) {
         //runAction(caughtJoeySound)
-        //println("joeyCaught")
         
         let jumpUp = SKAction.moveByX(0.0, y: 10.0, duration: 0.1)
         let jumpDown = jumpUp.reversedAction()

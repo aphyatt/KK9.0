@@ -65,6 +65,7 @@ class GameOverLayer: SKNode {
     func endGame() {
         endGameCalls++
         if(endGameCalls == 1) {
+            GameKitHelper.sharedInstance.reportHighscore(Int64(GS.CurrScore))
             let highscore = GS.getHighscore()
             if GS.CurrScore > highscore {
                 newHighscore = true

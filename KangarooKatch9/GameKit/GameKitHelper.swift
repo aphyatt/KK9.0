@@ -62,7 +62,7 @@ class GameKitHelper: NSObject, GKGameCenterControllerDelegate {
         
         let gameCenterViewController = GKGameCenterViewController()
         gameCenterViewController.gameCenterDelegate = self
-        gameCenterViewController.viewState = .Achievements
+        gameCenterViewController.viewState = .Leaderboards
         
         let vc: UIViewController = (viewController.view?.window?.rootViewController)!;
         vc.presentViewController(gameCenterViewController, animated: true, completion: nil)
@@ -71,6 +71,25 @@ class GameKitHelper: NSObject, GKGameCenterControllerDelegate {
     func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
         
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func reportHighscore(score: Int64) {
+        if !gameCenterEnabled {
+            print("Local player is not authenticated")
+            return
+        }
+        
+        let scoreReporter = GKScore(
+            leaderboardIdentifier: "com.orangedude.KangarooKatch.highscore")
+        scoreReporter.value = score
+        scoreReporter.context = 0
+        
+        let scores = [scoreReporter]
+        
+        GKScore.reportScores(scores) {(error) in
+            self.lastError = error
+        }
+        
     }
     
 }

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import GameKit
 
-class KangarooKatchNavigationController: UINavigationController {
+class KangarooKatchNavigationController: UINavigationController, GameKitHelperDelegate {
 
     override func viewDidLoad() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector:
@@ -30,6 +31,22 @@ class KangarooKatchNavigationController: UINavigationController {
             topViewController!.presentViewController(authenticationViewController, animated: true,
             completion: nil)
         }
+    }
+    
+    func showMatchMakerViewController() {
+        GameKitHelper.sharedInstance.findMatch(presentingViewController: self, delegate: self)
+    }
+    
+    func matchStarted() {
+        print("Match has started successfully")
+    }
+    
+    func matchEnded() {
+        print("Match has ended")
+    }
+    
+    func matchReceivedData(match: GKMatch, data: NSData, fromPlayer player: String) {
+        
     }
     
     deinit {

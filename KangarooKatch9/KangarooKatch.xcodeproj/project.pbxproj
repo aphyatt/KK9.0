@@ -17,7 +17,6 @@
 		AD8379191C190BD400BDFB59 /* SKAction+SpecialEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8379181C190BD400BDFB59 /* SKAction+SpecialEffects.swift */; };
 		AD83791B1C190C8B00BDFB59 /* SKTEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83791A1C190C8B00BDFB59 /* SKTEffects.swift */; };
 		AD83791D1C190D4B00BDFB59 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD83791C1C190D4B00BDFB59 /* SKTTimingFunctions.swift */; };
-		ADB3315E1C1F958A00287848 /* Template.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB3315D1C1F958A00287848 /* Template.png */; };
 		ADDDE9CC1BBA34FD00A95BA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CA1BBA34FD00A95BA3 /* Main.storyboard */; };
 		ADDDE9CE1BBA34FD00A95BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CD1BBA34FD00A95BA3 /* Assets.xcassets */; };
 		ADDDE9D11BBA34FD00A95BA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADDDE9CF1BBA34FD00A95BA3 /* LaunchScreen.storyboard */; };
@@ -88,7 +87,6 @@
 		AD8379181C190BD400BDFB59 /* SKAction+SpecialEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKAction+SpecialEffects.swift"; sourceTree = "<group>"; };
 		AD83791A1C190C8B00BDFB59 /* SKTEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTEffects.swift; sourceTree = "<group>"; };
 		AD83791C1C190D4B00BDFB59 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
-		ADB3315D1C1F958A00287848 /* Template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Template.png; sourceTree = "<group>"; };
 		ADDDE9BF1BBA34FD00A95BA3 /* KangarooKatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KangarooKatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADDDE9CB1BBA34FD00A95BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ADDDE9CD1BBA34FD00A95BA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 		ADDDE9F61BBA360C00A95BA3 /* KKImages */ = {
 			isa = PBXGroup;
 			children = (
-				ADB3315D1C1F958A00287848 /* Template.png */,
 				AD024B531BC4AB2200E84EAA /* WhiteCheck.png */,
 				ADDDE9F71BBA360C00A95BA3 /* ButtonImage.png */,
 				ADDDE9F81BBA360C00A95BA3 /* ImageBoundary.png */,
@@ -410,7 +407,6 @@
 				ADDDEA061BBA360C00A95BA3 /* PauseButtonGray.png in Resources */,
 				ADDDE9D11BBA34FD00A95BA3 /* LaunchScreen.storyboard in Resources */,
 				ADDDEA071BBA360C00A95BA3 /* PauseButtonWhite.png in Resources */,
-				ADB3315E1C1F958A00287848 /* Template.png in Resources */,
 				ADDDEA1E1BBA361300A95BA3 /* Icon76.png in Resources */,
 				ADDDEA041BBA360C00A95BA3 /* MainMenu.png in Resources */,
 				ADDDE9CE1BBA34FD00A95BA3 /* Assets.xcassets in Resources */,

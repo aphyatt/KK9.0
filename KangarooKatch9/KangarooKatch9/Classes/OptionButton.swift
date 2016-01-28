@@ -35,6 +35,8 @@ class OptionButton: SKNode {
     var rectSZPos: CGFloat?
     
     var shade: SKShapeNode?
+    var highlight: SKShapeNode?
+    var highlightOn: Bool = false
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -107,7 +109,26 @@ class OptionButton: SKNode {
     }
     
     func unclick() {
-        shade!.removeFromParent()
+        if shade != nil {
+            shade!.removeFromParent()
+        }
+    }
+    
+    func showHighlight() {
+        if !highlightOn {
+            highlight = getRoundedRectShape(rect!, cornerRadius: 16, color: SKColor.yellowColor(), lineWidth: 2.0)
+            highlight!.alpha = 1.0
+            highlight!.zPosition = rectSZPos! + 3
+            addChild(highlight!)
+            highlightOn = true
+        }
+    }
+    
+    func removeHighlight() {
+        if highlight != nil {
+            highlight!.removeFromParent()
+            highlightOn = false
+        }
     }
     
     func stretchText() {

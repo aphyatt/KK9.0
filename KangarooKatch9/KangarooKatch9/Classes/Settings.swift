@@ -14,12 +14,20 @@ class Settings: SKScene {
     let backButtonRect: CGRect
     var backButton: OptionButton?
     
+    let twoHandsControlRect: CGRect
+    var twoHandsControlButton: OptionButton?
+    let oneHandControlRect: CGRect
+    var oneHandControlButton: OptionButton?
+    
     var settingsLabel: GameLabel?
     let settingsTitleY: CGFloat = 890
     
     let backButtonX: CGFloat = 180
     let backButtonY: CGFloat = 970
     
+    let oneHandControlX: CGFloat = 254
+    let twoHandsControlX: CGFloat = 514
+    let controlButtonY: CGFloat = 710
     
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.whiteColor()
@@ -36,11 +44,18 @@ class Settings: SKScene {
         backButtonRect = CGRect(x: backButtonX - 50, y: backButtonY - 20,
             width: 100,
             height: 40)
+        twoHandsControlRect = CGRect(x: twoHandsControlX - 110, y: controlButtonY-40,
+            width: 220, height: 80)
+        oneHandControlRect = CGRect(x: oneHandControlX - 110, y: controlButtonY-40,
+            width: 220, height: 80)
         
         super.init(size: size)
         
         CreateSettingsLabel()
+        CreateControlsLabel()
         CreateBackButton()
+        CreateTwoHandsControlButton()
+        CreateOneHandControlButton()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -52,6 +67,16 @@ class Settings: SKScene {
             horAlignMode: .Center, vertAlignMode: .Baseline,
             color: SKColor.blackColor(), shadowColor: SKColor.whiteColor(), shadowOffset: 3,
             pos: CGPoint(x: self.size.width/2, y: settingsTitleY), zPosition: self.zPosition+1)
+        if let sl = settingsLabel {
+            self.addChild(sl)
+        }
+    }
+    
+    private func CreateControlsLabel() {
+        settingsLabel = GameLabel(text: "CONTROLS:", size: 45,
+            horAlignMode: .Center, vertAlignMode: .Baseline,
+            color: SKColor.blackColor(), shadowColor: SKColor.whiteColor(), shadowOffset: 3,
+            pos: CGPoint(x: self.size.width/2 - 150, y: 780), zPosition: self.zPosition+1)
         if let sl = settingsLabel {
             self.addChild(sl)
         }
@@ -69,39 +94,70 @@ class Settings: SKScene {
         }
     }
     
-    func sceneTouched(touchLocation:CGPoint) {
-        var shade: SKShapeNode!
-        var buttonTouched: Bool = false
-        if(backButtonRect.contains(touchLocation)) {
-            shade = drawRectangle(backButtonRect, color: SKColor.grayColor(), width: 1.0)
-            buttonTouched = true
+    private func CreateTwoHandsControlButton() {
+        twoHandsControlButton = OptionButton(buttonRect: twoHandsControlRect,
+            outlineColor: SKColor.blackColor(), fillColor: kangColor,
+            lineWidth: 4, startZ: self.zPosition+1)
+        twoHandsControlButton?.setText("TWO THUMBS", textSize: 33,
+            textColor: SKColor.blackColor(), textColorS: SKColor.whiteColor(),
+            textPos: CGPoint(x: twoHandsControlX, y: controlButtonY-9), shadowOffset: 2)
+        if let thb = twoHandsControlButton {
+            self.addChild(thb)
         }
-        
-        if buttonTouched {
-            shade.fillColor = SKColor.grayColor()
-            shade.alpha = 0.4
-            shade.name = "buttonDown"
-            shade.zPosition = 4
-            addChild(shade)
-            buttonTouched = false
+        if GS.GameControls == .TwoHands {
+            twoHandsControlButton!.showHighlight()
+        }
+    }
+    
+    private func CreateOneHandControlButton() {
+        oneHandControlButton = OptionButton(buttonRect: oneHandControlRect,
+            outlineColor: SKColor.blackColor(), fillColor: kangColor,
+            lineWidth: 4, startZ: self.zPosition+1)
+        oneHandControlButton?.setText("SWIPE", textSize: 40,
+            textColor: SKColor.blackColor(), textColorS: SKColor.whiteColor(),
+            textPos: CGPoint(x: oneHandControlX, y: controlButtonY-9), shadowOffset: 2)
+        if let ohb = oneHandControlButton {
+            self.addChild(ohb)
+        }
+        if GS.GameControls == .OneHand {
+            oneHandControlButton!.showHighlight()
+        }
+    }
+    
+    func sceneTouched(touchLocation:CGPoint) {
+        if(backButtonRect.contains(touchLocation)) {
+            backButton!.click()
+        }
+        if(twoHandsControlRect.contains(touchLocation)) {
+            twoHandsControlButton!.click()
+        }
+        if(oneHandControlRect.contains(touchLocation)) {
+            oneHandControlButton!.click()
         }
     }
     
     func sceneUntouched(touchLocation:CGPoint) {
-        let shade = childNodeWithName("buttonDown")
-        if (shade != nil) {
-            shade!.removeFromParent()
-            
-            var myScene: SKScene!
-            
-            if(backButtonRect.contains(touchLocation)) {
-                myScene = MainMenu(size: self.size)
-                myScene.scaleMode = self.scaleMode
-                let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-                self.view?.presentScene(myScene, transition: reveal)
-            }
-
+        var myScene: SKScene!
+        
+        if(backButtonRect.contains(touchLocation)) {
+            myScene = MainMenu(size: self.size)
+            myScene.scaleMode = self.scaleMode
+            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+            self.view?.presentScene(myScene, transition: reveal)
         }
+        if(twoHandsControlRect.contains(touchLocation)) {
+            GS.GameControls = .TwoHands
+            twoHandsControlButton!.unclick()
+            twoHandsControlButton!.showHighlight()
+            oneHandControlButton!.removeHighlight()
+        }
+        if(oneHandControlRect.contains(touchLocation)) {
+            GS.GameControls = .OneHand
+            oneHandControlButton!.unclick()
+            oneHandControlButton!.showHighlight()
+            twoHandsControlButton!.removeHighlight()
+        }
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

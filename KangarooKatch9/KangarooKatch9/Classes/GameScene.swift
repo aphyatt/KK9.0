@@ -15,9 +15,9 @@ var numFingers: Int = 0
 var playableMargin: CGFloat = 0
 var playableWidth: CGFloat = 0
 
-let leftColX: CGFloat = 219.4300000
-let midColX: CGFloat = 384.000000
-let rightColX: CGFloat = 548.5700000
+let leftColX: CGFloat = 219.43000
+let midColX: CGFloat = 384.0000
+let rightColX: CGFloat = 548.57000
 let oneThirdX: CGFloat = 288.0
 let twoThirdX: CGFloat = 480.0
 
@@ -25,8 +25,6 @@ class GameScene: SKScene {
     
     let fullRect: CGRect
     let sceneRect: CGRect
-    let worldRect: CGRect
-    let hudRect: CGRect
     
     var GameWorld: World?
     var HUDdisplay: HUD?
@@ -80,12 +78,6 @@ class GameScene: SKScene {
         fullRect = CGRect(x: 0, y: 0,
             width: size.width,
             height: size.height)
-        worldRect = CGRect(x: 0, y: 0,
-            width: size.width,
-            height: size.height - HUDheight)
-        hudRect = CGRect(x: 0, y: size.height - HUDheight,
-            width: size.width,
-            height: HUDheight)
         sceneRect = CGRect(x: playableMargin, y: 0,
             width: playableWidth,
             height: size.height)
@@ -171,13 +163,11 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let touchLocation = touch!.locationInNode(self)
-        numFingers += touches.count
+        //numFingers += touches.count
         
         switch GS.GameState {
         case .GameRunning:
-            if worldRect.contains(touchLocation) {
-                GameWorld!.sceneTouched(touchLocation)
-            }
+            GameWorld!.sceneTouched(touchLocation)
             break
         case .Paused:
             GameWorld!.sceneTouched(touchLocation)
@@ -198,14 +188,10 @@ class GameScene: SKScene {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let touchLocation = touch!.locationInNode(self)
-        numFingers -= touches.count
-        if numFingers < 0 { numFingers == 0 }
         
         switch GS.GameState {
         case .GameRunning:
-            if worldRect.contains(touchLocation) {
-                GameWorld!.sceneUntouched(touchLocation)
-            }
+            GameWorld!.sceneUntouched(touchLocation)
             break
         case .Paused:
             GameWorld!.sceneUntouched(touchLocation)
@@ -215,6 +201,28 @@ class GameScene: SKScene {
             break
         default: break
         }
+        
+        /*
+        numFingers -= touches.count
+        if numFingers < 0
+        {
+            numFingers == 0
+        }
+        else {
+            switch GS.GameState {
+            case .GameRunning:
+                GameWorld!.sceneUntouched(touchLocation)
+                break
+            case .Paused:
+                GameWorld!.sceneUntouched(touchLocation)
+                break
+            case .GameOver:
+                GameOver!.sceneUntouched(touchLocation)
+                break
+            default: break
+            }
+        }
+        */
     }
     
     override func didEvaluateActions()  {
@@ -238,10 +246,10 @@ class GameScene: SKScene {
     }
     
     func shakeScreen() {
-        let amount = CGPoint(x: CGFloat.random()*30,
-            y: CGFloat.random()*30)
+        let amount = CGPoint(x: CGFloat.random()*35,
+            y: CGFloat.random()*35)
         
-        let action = SKAction.screenShakeWithNode(GameWorld!, amount: amount, oscillations: 20, duration: 1.0)
+        let action = SKAction.screenShakeWithNode(GameWorld!, amount: amount, oscillations: 20, duration: 1.5)
         
         GameWorld!.runAction(action)
     }

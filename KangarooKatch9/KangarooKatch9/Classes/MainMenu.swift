@@ -187,7 +187,14 @@ class MainMenu: SKScene {
                 self.view?.presentScene(myScene, transition: reveal)
             }
             else if(multiRect.contains(touchLocation)) {
-                //multiplayer scene (?) good luck...
+                TurnBasedHelper.sharedInstance.joinTurnBasedMatch(self)
+                if GameKitHelper.sharedInstance.gameCenterEnabled {
+                    sleep(UInt32(2.0))
+                    GS.GameMode = .Multiplayer
+                    myScene = GameScene(size: self.size)
+                    myScene.scaleMode = self.scaleMode
+                    self.view?.presentScene(myScene)
+                }
             }
             else if(settingsRect.contains(touchLocation)) {
                 myScene = Settings(size: self.size)
@@ -196,8 +203,7 @@ class MainMenu: SKScene {
                 self.view?.presentScene(myScene, transition: reveal)
             }
             else if(gameCenterRect.contains(touchLocation)) {
-                GameKitHelper.sharedInstance.showGKGameCenterViewController(
-                    self)
+                GameKitHelper.sharedInstance.showGKGameCenterViewController(self)
             }
         }
     }

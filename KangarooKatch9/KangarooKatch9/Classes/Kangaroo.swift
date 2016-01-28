@@ -14,6 +14,7 @@ class Kangaroo: SKSpriteNode {
     
     var leftTouch: Bool = false
     var rightTouch: Bool = false
+    var fingerOn: Bool = false
     
     var kangPos: Int = 2
     
@@ -35,6 +36,119 @@ class Kangaroo: SKSpriteNode {
         self.setScale(0.7)
     }
     
+    func update(currentTime: CFTimeInterval) {
+        switch GS.GameControls {
+        case .TwoHands:
+            if leftTouch && (kangPos != 1) {
+                self.runAction(SKAction.moveToX(leftColX, duration: 0.05))
+                kangPos = 1
+            }
+            if rightTouch && (kangPos != 3) {
+                self.runAction(SKAction.moveToX(rightColX, duration: 0.05))
+                kangPos = 3
+            }
+            if (!leftTouch && !rightTouch) && (kangPos != 2) {
+                self.runAction(SKAction.moveToX(midColX, duration: 0.05))
+                kangPos = 2
+            }
+            break
+        case .OneHand:
+            if fingerOn {
+                if leftTouch && (kangPos != 1) {
+                    self.runAction(SKAction.moveToX(leftColX, duration: 0.05))
+                    kangPos = 1
+                }
+                if rightTouch && (kangPos != 3) {
+                    self.runAction(SKAction.moveToX(rightColX, duration: 0.05))
+                    kangPos = 3
+                }
+                if (!leftTouch && !rightTouch) && (kangPos != 2) {
+                    self.runAction(SKAction.moveToX(midColX, duration: 0.05))
+                    kangPos = 2
+                }
+            }
+            else {
+                if kangPos != 2 {
+                    self.runAction(SKAction.moveToX(midColX, duration: 0.05))
+                    kangPos = 2
+                }
+            }
+            break
+        }
+        
+        switch kangPos {
+        case 1: kangPosX = leftColX
+            break
+        case 2: kangPosX = midColX
+            break
+        default: kangPosX = rightColX
+        }
+    }
+    
+    func sceneTouched(touchLocation:CGPoint) {
+        switch GS.GameControls {
+        case .TwoHands:
+            if touchLocation.x < midColX {
+                leftTouch = true
+                rightTouch = false
+            }
+            else { //if touchLocation.x > midColX
+                rightTouch = true
+                leftTouch = false
+            }
+            break
+        case .OneHand:
+            if !fingerOn {
+                fingerOn = true
+                if touchLocation.x < oneThirdX {
+                    leftTouch = true
+                }
+                else if touchLocation.x > twoThirdX {
+                    rightTouch = true
+                }
+            }
+            break
+        }
+    }
+    
+    func sceneUntouched(touchLocation:CGPoint) {
+        switch GS.GameControls {
+        case .TwoHands:
+            if touchLocation.x < midColX {
+                leftTouch = false
+            }
+            else { //if touchLocation.x > midColX
+                rightTouch = false
+            }
+            break
+        case .OneHand:
+            fingerOn = false
+            break
+        }
+    }
+    
+    func trackThumb(touchLocation:CGPoint) {
+        switch GS.GameControls {
+        case .TwoHands:
+            break
+        case .OneHand:
+            if touchLocation.x < oneThirdX {
+                leftTouch = true
+                rightTouch = false
+            }
+            else if touchLocation.x > twoThirdX {
+                rightTouch = true
+                leftTouch = false
+            }
+            else {
+                leftTouch = false
+                rightTouch = false
+            }
+            break
+        }
+    }
+    
+    /*
     func update(currentTime: CFTimeInterval) {
         if leftTouch && (kangPos != 1) {
             self.runAction(SKAction.moveToX(leftColX, duration: 0.05))
@@ -60,39 +174,31 @@ class Kangaroo: SKSpriteNode {
     }
     
     func sceneTouched(touchLocation:CGPoint) {
-        print("numFingers = \(numFingers)")
         if touchLocation.x < oneThirdX {
-            print("push left")
             leftTouch = true
             rightTouch = false
         }
         else if touchLocation.x > twoThirdX {
-            print("push right")
             rightTouch = true
             leftTouch = false
         }
         else {
-            print("push center")
             rightTouch = false
             leftTouch = false
         }
     }
     
     func sceneUntouched(touchLocation:CGPoint) {
-        print("numFingers = \(numFingers)")
         if numFingers == 0 {
-            print("off center")
             leftTouch = false
             rightTouch = false
         }
         if numFingers == 1 {
             if touchLocation.x > twoThirdX {
-                print("off right")
                 leftTouch = true
                 rightTouch = false
             }
             if touchLocation.x < oneThirdX {
-                print("off left")
                 leftTouch = false
                 rightTouch = true
             }
@@ -102,21 +208,19 @@ class Kangaroo: SKSpriteNode {
     func trackThumb(touchLocation:CGPoint) {
         if numFingers == 1 {
             if touchLocation.x < oneThirdX {
-                print("track left")
                 leftTouch = true
                 rightTouch = false
             }
             else if touchLocation.x > twoThirdX {
-                print("track right")
                 rightTouch = true
                 leftTouch = false
             }
             else {
-                print("track middle")
                 leftTouch = false
                 rightTouch = false
             }
         }
     }
+    */
     
 }

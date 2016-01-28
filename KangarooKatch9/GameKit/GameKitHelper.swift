@@ -23,7 +23,7 @@ class GameKitHelper: NSObject, GKGameCenterControllerDelegate {
     }
     
     override init() {
-        gameCenterEnabled = true
+        gameCenterEnabled = false
         super.init()
     }
     

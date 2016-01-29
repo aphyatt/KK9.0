@@ -99,8 +99,8 @@ class DropletLayer: SKNode {
             GS.DiffLevel++
         }
         else {
-            GS.timeBetweenLines -= 0.02
-            TheGameScene!.physicsWorld.gravity.dy -= 0.6
+            GS.timeBetweenLines -= 0.03
+            TheGameScene!.physicsWorld.gravity.dy -= 0.9
             GS.groupAmtMin = (GS.groupAmtMin*2 - 1)
             GS.groupAmtMax = (GS.groupAmtMin*2 - 1)
         }
@@ -121,6 +121,7 @@ class DropletLayer: SKNode {
         }
         
         print("Diff Changed to \(GS.DiffLevel)")
+        GS.printStatus()
         changeDiff = false
     }
     

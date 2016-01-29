@@ -52,6 +52,7 @@ class GameStatus {
     }
     
     func printStatus() {
+        print("********************Status************************")
         print("Curr Joey Lives: \(CurrJoeyLives)")
         print("Curr Boomerang Lives: \(CurrBoomerangLives)")
         print("Curr Score: \(CurrScore)")
@@ -70,6 +71,7 @@ class GameStatus {
         print("groupWaitTimeMax: \(groupWaitTimeMax)")
         print("groupAmtMin: \(groupAmtMin)")
         print("groupAmtMax: \(groupAmtMax)")
+        print("**************************************************")
     }
     
 }

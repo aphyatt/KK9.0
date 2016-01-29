@@ -21,7 +21,7 @@ class GameStatus {
     
     var GameMode: GameModeType = .Normal
     var GameState: GameStateType = .GameRunning
-    var GameControls: ControlType = .OneHand
+    var GameControls: ControlType = .TwoHands
     
     var SoundOn: Bool = true
     var ShakeOn: Bool = true

@@ -9,6 +9,8 @@
 import Foundation
 import SpriteKit
 
+weak var TheMainMenu: MainMenu?
+
 class MainMenu: SKScene {
     let normalRect: CGRect
     let multiRect: CGRect
@@ -78,6 +80,7 @@ class MainMenu: SKScene {
         
         super.init(size: size)
         
+        TheMainMenu = self
         CreateMainMenu()
     }
     
@@ -188,13 +191,6 @@ class MainMenu: SKScene {
             }
             else if(multiRect.contains(touchLocation)) {
                 TurnBasedHelper.sharedInstance.joinTurnBasedMatch(self)
-                if GameKitHelper.sharedInstance.gameCenterEnabled {
-                    sleep(UInt32(2.0))
-                    GS.GameMode = .Multiplayer
-                    myScene = GameScene(size: self.size)
-                    myScene.scaleMode = self.scaleMode
-                    self.view?.presentScene(myScene)
-                }
             }
             else if(settingsRect.contains(touchLocation)) {
                 myScene = Settings(size: self.size)
@@ -206,6 +202,14 @@ class MainMenu: SKScene {
                 GameKitHelper.sharedInstance.showGKGameCenterViewController(self)
             }
         }
+    }
+    
+    func transitionToMultiplayerScene() {
+        GS.GameMode = .Normal
+        let myScene: SKScene! = GameScene(size: self.size)
+        myScene.scaleMode = self.scaleMode
+        let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+        self.view?.presentScene(myScene, transition: reveal)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

@@ -48,9 +48,9 @@ class DropletLayer: SKNode {
         self.name = "droplets"
         self.zPosition = 50
       
-        catchZoneRect = CGRect(x: playableMargin, y: dropletCatchBoundaryY - 5,
+        catchZoneRect = CGRect(x: playableMargin, y: dropletCatchBoundaryY - 3,
             width: playableWidth,
-            height: 10)
+            height: 6)
         fadeZoneRect = CGRect(x: playableMargin, y: dropletFadeBoundaryY - 5,
             width: playableWidth,
             height: 10)
@@ -99,6 +99,8 @@ class DropletLayer: SKNode {
             GS.DiffLevel++
         }
         else {
+            GS.timeBetweenLines -= 0.02
+            TheGameScene!.physicsWorld.gravity.dy -= 0.6
             GS.groupAmtMin = (GS.groupAmtMin*2 - 1)
             GS.groupAmtMax = (GS.groupAmtMin*2 - 1)
         }

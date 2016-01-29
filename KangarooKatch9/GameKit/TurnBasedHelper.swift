@@ -41,7 +41,7 @@ class TurnBasedHelper: UIViewController, GKTurnBasedMatchmakerViewControllerDele
         }
         
         viewController.dismissViewControllerAnimated(true, completion: nil)
-        
+        TheMainMenu!.transitionToMultiplayerScene()
     }
     
     func joinTurnBasedMatch(scene: SKScene!) {

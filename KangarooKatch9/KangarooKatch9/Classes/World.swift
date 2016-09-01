@@ -156,7 +156,7 @@ class World: SKNode {
     
     var pauseGameCalls: Int = 0
     func pauseGame() {
-        pauseGameCalls++
+        pauseGameCalls += 1
         if(pauseGameCalls == 1) {
             TheDropletLayer!.freezeDroplets()
             showPauseMenu()

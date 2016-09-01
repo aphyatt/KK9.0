@@ -13,7 +13,7 @@ class KangarooKatchNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector:
-        Selector("showAuthenticationViewController"),
+        #selector(KangarooKatchNavigationController.showAuthenticationViewController),
             name: PresentAuthenticationViewController, object: nil)
         
         GameKitHelper.sharedInstance.authenticateLocalPlayer()

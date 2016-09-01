@@ -10,7 +10,6 @@
 		AD024B521BC49BDC00E84EAA /* PauseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD024B511BC49BDC00E84EAA /* PauseMenu.swift */; };
 		AD024B541BC4AB2200E84EAA /* WhiteCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = AD024B531BC4AB2200E84EAA /* WhiteCheck.png */; };
 		AD33C2D21C3CAB9C0077B733 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD33C2D11C3CAB9C0077B733 /* GameKit.framework */; };
-		AD3C008B1C51DC4000867D75 /* TurnBasedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3C008A1C51DC4000867D75 /* TurnBasedHelper.swift */; };
 		AD3C008F1C51E83A00867D75 /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3C008E1C51E83A00867D75 /* MultiplayerViewController.swift */; };
 		AD6DD26B1BC72EC800DA17C4 /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6DD26A1BC72EC800DA17C4 /* OptionButton.swift */; };
 		AD7343981C3F3A170011CFAD /* AchievementsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7343971C3F3A170011CFAD /* AchievementsHelper.swift */; };
@@ -82,7 +81,6 @@
 		AD024B511BC49BDC00E84EAA /* PauseMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseMenu.swift; sourceTree = "<group>"; };
 		AD024B531BC4AB2200E84EAA /* WhiteCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteCheck.png; sourceTree = "<group>"; };
 		AD33C2D11C3CAB9C0077B733 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		AD3C008A1C51DC4000867D75 /* TurnBasedHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnBasedHelper.swift; sourceTree = "<group>"; };
 		AD3C008E1C51E83A00867D75 /* MultiplayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
 		AD6DD26A1BC72EC800DA17C4 /* OptionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
 		AD7343971C3F3A170011CFAD /* AchievementsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementsHelper.swift; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				AD760E981C3E050900A7596E /* GameKitHelper.swift */,
-				AD3C008A1C51DC4000867D75 /* TurnBasedHelper.swift */,
 				AD7343971C3F3A170011CFAD /* AchievementsHelper.swift */,
 			);
 			path = GameKit;
@@ -458,7 +455,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD3C008B1C51DC4000867D75 /* TurnBasedHelper.swift in Sources */,
 				ADDDEA3E1BBA38FA00A95BA3 /* MainMenu.swift in Sources */,
 				AD760E991C3E050900A7596E /* GameKitHelper.swift in Sources */,
 				AD024B521BC49BDC00E84EAA /* PauseMenu.swift in Sources */,
